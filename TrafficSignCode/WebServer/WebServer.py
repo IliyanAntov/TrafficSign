@@ -12,14 +12,11 @@ server_socket.listen(5)
 print ("Listening for client . . .")
 conn, address = server_socket.accept()
 print ("Connected to client at ", address)
-#pick a large output buffer size because i dont necessarily know how big the incoming packet is                                                    
 while True:
     output = conn.recv(2048)
     if output.strip() == b"disconnect":
         conn.close()
         sys.exit("Received disconnect message.  Shutting down.")
-        conn.send(b"dack")
     elif output:
         print ("Message received from client:")
         print (output)
-        conn.send(b"ack")
