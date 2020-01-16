@@ -14,36 +14,76 @@ class GUI(QWidget):
         self.top = 100
         self.width = 200
         self.height = 400
-        self.font = ("Arial", 14)
+        self.defaultFont = ("Arial", 14)
         self.initUI()
         
     def initUI(self):
         self.setWindowTitle(self.title)
-        self.setGeometry(self.left, self.top, self.width, self.height)
+        self.setWindowIcon(QIcon('./images/icon.png'))
 
-        self.CreateLabel(10, 10, "Username:") #Create username label
+        self.setGeometry(self.left, self.top, self.width, self.height)
+ 
+        self.usernameLabel = self.CreateLabel(10, 10, "Username:") #Create username label
 
         self.usernameTextBox = self.CreateTextBox(10, 35, 150, 40) #Create username textbox
 
-        self.CreateLabel(10, 85, "Password:") #Create username label
+        self.passwordLabel = self.CreateLabel(10, 85, "Password:") #Create password label
 
-        self.passwordTextBox = self.CreateTextBox(10, 110, 150, 40) #Create username textbox
-        self.passwordTextBox.setEchoMode(QLineEdit.Password)
+        self.passwordTextBox = self.CreateTextBox(10, 110, 150, 40) #Create password textbox
+        self.passwordTextBox.setEchoMode(QLineEdit.Password) #Mask password input
 
         self.CreateButton(20, 160, 100, 40, "Connect", self.connection_attempt_click) #Create login button
 
+
+        self.OrderLayout()
+
+
         self.show()
 
+    def OrderLayout(self):
+        self.vBox = QVBoxLayout()
+
+        usernameHBox = QHBoxLayout()
+
+        usernameHBox.addStretch(1)
+        usernameHBox.addWidget(self.usernameLabel)
+        usernameHBox.addStretch(1)
+
+        self.vBox.addLayout(usernameHBox)
+
+        usernameInputHBox = QHBoxLayout()
+
+        usernameInputHBox.addStretch(1)
+        usernameInputHBox.addWidget(self.usernameTextBox)
+        usernameInputHBox.addStretch(1)
+
+        self.vBox.addLayout(usernameInputHBox)
+
+        # self.hBox.addStretch(1)
+        # self.hBox.addWidget(self.passwordLabel)
+        # self.hBox.addStretch(1)
+
+        # self.vBox.addLayout(self.hBox)
+
+        # self.hBox.addStretch(1)
+        # self.hBox.addWidget(self.passwordTextBox)
+        # self.hBox.addStretch(1)
+
+        # self.vBox.addLayout(self.hBox)
+
+        self.vBox.addStretch(1)
+        self.setLayout(self.vBox)
 
     def CreateLabel(self, x, y, text):
         label = QLabel(self)
-        label.setFont(QFont(*self.font))
+        label.setFont(QFont(*self.defaultFont))
         label.setText(text)
         label.move(x, y)
+        return label
     
     def CreateTextBox(self, x, y, width, height):
         textbox = QLineEdit(self)
-        textbox.setFont(QFont(*self.font))
+        textbox.setFont(QFont(*self.defaultFont))
         textbox.move(x, y)
         textbox.resize(width, height)
         return textbox
@@ -51,10 +91,10 @@ class GUI(QWidget):
     def CreateButton(self, x, y, width, height, text, func):
         button = QPushButton(text, self)
         button.resize(width, height)
-        button.setFont(QFont(*self.font))
+        button.setFont(QFont(*self.defaultFont))
         button.move(x, y)
         button.clicked.connect(func)
-
+        return button
 
 
     def keyPressEvent(self, event):
