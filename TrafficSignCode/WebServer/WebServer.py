@@ -36,6 +36,8 @@ def recvall(sock, count):
     return buf
 
 
+
+
 username = recv_one_message(conn)
 password = recv_one_message(conn)
 print(username)
@@ -49,7 +51,6 @@ if (username and password) != None:
         print("not authorized")
         send_one_message(conn, b"nauth")
         conn.close()
-        
 else:
     conn.close()
 server_socket.close()

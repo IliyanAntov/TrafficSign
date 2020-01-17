@@ -8,7 +8,33 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import QIcon, QFont
 from PyQt5.QtCore import pyqtSlot, Qt
 
+
 class GUI(QWidget):
+    def __init__(self):
+        super().__init__()
+        self.title = 'Login'
+        self.left = 100
+        self.top = 100
+        self.width = 400
+        self.height = 400
+        self.defaultFont = ("Arial", 14)
+        self.connection = Connection()
+        self.initUI()
+        
+    def initUI(self):
+        self.setWindowTitle(self.title)
+        self.setWindowIcon(QIcon('./images/icon.png'))
+
+        self.setGeometry(self.left, self.top, self.width, self.height)
+ 
+        self.show()
+
+
+
+
+
+
+class LoginWindow(QDialog):
     def __init__(self):
         super().__init__()
         self.title = 'Login'
@@ -40,12 +66,12 @@ class GUI(QWidget):
 
         self.OrderLoginLayout()
 
-
         self.show()
 
     def OrderLoginLayout(self):
         windowVBox = QVBoxLayout()
         windowVBox.addStretch(1)
+
         # Username label and input box
         usernameHBox = QHBoxLayout()
 
@@ -116,24 +142,32 @@ class GUI(QWidget):
         button.clicked.connect(func)
         return button
 
+    def LaunchControlApp(self):
+        appl = GUI(self)
+        appl.show()
+
 
     def keyPressEvent(self, event):
         if event.key() == Qt.Key_Escape:
             self.connection.Close()
             self.close()
+        if event.key() == Qt.Key_Enter:
+            self.ConnectionAttemptClick()
 
     @pyqtSlot()
     def ConnectionAttemptClick(self):
         username = self.usernameTextBox.text()
         password = self.passwordTextBox.text()
         if(self.connection.AttemptConnect()):
-            self.connection.AttemptLogin(username, password)
-            #self.LaunchControlApp()
-        print(username)
-        print(password)
+            data = self.connection.AttemptLogin(username, password)
+            print(data)
+            if (data == 'auth'):
+                self.accept()
+            elif (data == 'nauth'):
+                QMessageBox.warning(self, "Error", "Wrong username or password")
+            else:
+                print("Error")
 
-    def on_click(self):
-        print('Connection attempt')
 
 class Connection():
     def __init__(self):
@@ -157,12 +191,12 @@ class Connection():
         if not data:
             self.Close()
         else:
-            print(data)   
+            return data   
 
     def WaitForData(self):
         ready = select.select([self.client_socket], [], [], 2)
         if ready[0]:
-            data = self.ReceiveMessage()
+            data = self.ReceiveMessage().decode('utf-8')
             return data
         else:
             print("Connection timeout")
@@ -201,7 +235,10 @@ class Connection():
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
-    ex = GUI()
+    login = LoginWindow()
+    if(login.exec_() ==  QDialog.Accepted):
+        gui = GUI()
+        gui.show()
     sys.exit(app.exec_())
 
 
