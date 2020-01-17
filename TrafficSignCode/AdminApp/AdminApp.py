@@ -12,7 +12,7 @@ class GUI(QWidget):
         self.title = 'Login'
         self.left = 100
         self.top = 100
-        self.width = 200
+        self.width = 400
         self.height = 400
         self.defaultFont = ("Arial", 14)
         self.initUI()
@@ -32,47 +32,64 @@ class GUI(QWidget):
         self.passwordTextBox = self.CreateTextBox(10, 110, 150, 40) #Create password textbox
         self.passwordTextBox.setEchoMode(QLineEdit.Password) #Mask password input
 
-        self.CreateButton(20, 160, 100, 40, "Connect", self.connection_attempt_click) #Create login button
+        self.connectButton = self.CreateButton(20, 160, 100, 100, "Connect", self.connection_attempt_click) #Create login button
 
 
-        self.OrderLayout()
+        self.OrderLoginLayout()
 
 
         self.show()
 
-    def OrderLayout(self):
-        self.vBox = QVBoxLayout()
-
+    def OrderLoginLayout(self):
+        windowVBox = QVBoxLayout()
+        windowVBox.addStretch(1)
+        # Username label and input box
         usernameHBox = QHBoxLayout()
 
         usernameHBox.addStretch(1)
         usernameHBox.addWidget(self.usernameLabel)
         usernameHBox.addStretch(1)
 
-        self.vBox.addLayout(usernameHBox)
+        windowVBox.addLayout(usernameHBox)
 
         usernameInputHBox = QHBoxLayout()
 
         usernameInputHBox.addStretch(1)
-        usernameInputHBox.addWidget(self.usernameTextBox)
+        self.usernameTextBox.setFixedHeight(40)
+        usernameInputHBox.addWidget(self.usernameTextBox, 2)
         usernameInputHBox.addStretch(1)
 
-        self.vBox.addLayout(usernameInputHBox)
+        windowVBox.addLayout(usernameInputHBox)
 
-        # self.hBox.addStretch(1)
-        # self.hBox.addWidget(self.passwordLabel)
-        # self.hBox.addStretch(1)
+        # Password label and input box
+        passwordHBox = QHBoxLayout()
 
-        # self.vBox.addLayout(self.hBox)
+        passwordHBox.addStretch(1)
+        passwordHBox.addWidget(self.passwordLabel)
+        passwordHBox.addStretch(1)
 
-        # self.hBox.addStretch(1)
-        # self.hBox.addWidget(self.passwordTextBox)
-        # self.hBox.addStretch(1)
+        windowVBox.addLayout(passwordHBox)
 
-        # self.vBox.addLayout(self.hBox)
+        passwordInputHBox = QHBoxLayout()
 
-        self.vBox.addStretch(1)
-        self.setLayout(self.vBox)
+        passwordInputHBox.addStretch(1)
+        self.passwordTextBox.setFixedHeight(40)
+        passwordInputHBox.addWidget(self.passwordTextBox, 2)
+        passwordInputHBox.addStretch(1)
+
+        windowVBox.addLayout(passwordInputHBox)
+
+        # Connect button
+        connectButtonHBox = QHBoxLayout()
+
+        connectButtonHBox.addStretch(1)
+        self.connectButton.setFixedHeight(40)
+        connectButtonHBox.addWidget(self.connectButton, 2)
+        connectButtonHBox.addStretch(1)
+
+        windowVBox.addStretch(1)
+        windowVBox.addLayout(connectButtonHBox, 2)
+        self.setLayout(windowVBox)
 
     def CreateLabel(self, x, y, text):
         label = QLabel(self)
@@ -110,6 +127,15 @@ class GUI(QWidget):
 
     def on_click(self):
         print('Connection attempt')
+
+class Connection():
+    def __init__(self):
+        super().__init__()
+    
+
+    def AttemptConnect(self):
+        print("Connecting...")
+
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
