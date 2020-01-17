@@ -1,6 +1,8 @@
 import socket
 import time
 import sys
+import select
+import struct
 # from PyQt5.QtWidgets import QApplication, QWidget
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import QIcon, QFont
@@ -15,6 +17,7 @@ class GUI(QWidget):
         self.width = 400
         self.height = 400
         self.defaultFont = ("Arial", 14)
+        self.connection = Connection()
         self.initUI()
         
     def initUI(self):
@@ -32,7 +35,7 @@ class GUI(QWidget):
         self.passwordTextBox = self.CreateTextBox(10, 110, 150, 40) #Create password textbox
         self.passwordTextBox.setEchoMode(QLineEdit.Password) #Mask password input
 
-        self.connectButton = self.CreateButton(20, 160, 100, 100, "Connect", self.connection_attempt_click) #Create login button
+        self.connectButton = self.CreateButton(20, 160, 100, 100, "Connect", self.ConnectionAttemptClick) #Create login button
 
 
         self.OrderLoginLayout()
@@ -116,12 +119,16 @@ class GUI(QWidget):
 
     def keyPressEvent(self, event):
         if event.key() == Qt.Key_Escape:
+            self.connection.Close()
             self.close()
 
     @pyqtSlot()
-    def connection_attempt_click(self):
+    def ConnectionAttemptClick(self):
         username = self.usernameTextBox.text()
         password = self.passwordTextBox.text()
+        if(self.connection.AttemptConnect()):
+            self.connection.AttemptLogin(username, password)
+            #self.LaunchControlApp()
         print(username)
         print(password)
 
@@ -132,9 +139,64 @@ class Connection():
     def __init__(self):
         super().__init__()
     
-
     def AttemptConnect(self):
-        print("Connecting...")
+        try:
+            self.client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            self.client_socket.connect(("localhost", 8220))
+            print("Connection successful")
+            return True
+        except:
+            print("Connection to server unsuccessful")
+            return False
+
+    def AttemptLogin(self, username, password):
+        print("Attempting to log in...")
+        self.SendMessage(str.encode(username))
+        self.SendMessage(str.encode(password))
+        data = self.WaitForData()
+        if not data:
+            self.Close()
+        else:
+            print(data)   
+
+    def WaitForData(self):
+        ready = select.select([self.client_socket], [], [], 2)
+        if ready[0]:
+            data = self.ReceiveMessage()
+            return data
+        else:
+            print("Connection timeout")
+            return None
+
+
+    def SendMessage(self, data):
+        length = len(data)
+        self.client_socket.sendall(struct.pack('!I', length))
+        self.client_socket.sendall(data)
+
+    def ReceiveMessage(self):
+        lengthbuf = self.ReceiveAll(4)
+        length, = struct.unpack('!I', lengthbuf)
+        return self.ReceiveAll(length)
+
+    def ReceiveAll(self, count):
+        buf = b''
+        while count:
+            newbuf = self.client_socket.recv(count)
+            if not newbuf: return None
+            buf += newbuf
+            count -= len(newbuf)
+        return buf
+
+
+
+
+
+
+    def Close(self):
+        print("Closing connection...")
+        self.client_socket.close()
+
 
 
 if __name__ == '__main__':
