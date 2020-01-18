@@ -2,6 +2,7 @@ import socket
 import sys
 import select
 import struct
+import threading
 
 
 # def send_one_message(sock, data):
@@ -56,8 +57,6 @@ class Connection():
                 print("Connection closed by remote client")
                 return False
 
-
-
     def AuthenticateAdminConnection(self):
         username = self.ReceiveMessage(self.admin_socket)
         if(username == None):
@@ -77,6 +76,17 @@ class Connection():
         else:
             print("error")
             self.admin_socket.close()
+
+    def ListenToClient(self):
+        while True:
+            data = self.ReceiveMessage(self.admin_socket)
+            print(data)
+            if(data == None):
+                break
+
+    def ExchangeInformation(self):
+        pass
+
 
     def SendMessage(self, sock, data):
         length = len(data)
@@ -103,6 +113,6 @@ if __name__ == '__main__':
     connection = Connection()
     while True:
         if connection.WaitForAdminConnection():
-            print("success")
+            threading.Thread(target = connection.ListenToClient).start()
 
 #server_socket.close()
