@@ -36,21 +36,22 @@ def recvall(sock, count):
     return buf
 
 
-
-
-username = recv_one_message(conn)
-password = recv_one_message(conn)
-print(username)
-print(password)
-if (username and password) != None:
-    if (username == b"admin" and password == b"1234"):
-        print("authorized")
-        send_one_message(conn, b"auth")
-        conn.close()
+#username = recv_one_message(conn)
+#password = recv_one_message(conn)
+#print(username)
+#print(password)
+while True:
+    username = recv_one_message(conn)
+    password = recv_one_message(conn)
+    if (username and password) != None:
+        if (username == b"admin" and password == b"1234"):
+            print("authorized")
+            send_one_message(conn, b"auth")
+            break
+        else:
+            print("not authorized")
+            send_one_message(conn, b"nauth")
     else:
-        print("not authorized")
-        send_one_message(conn, b"nauth")
         conn.close()
-else:
-    conn.close()
+
 server_socket.close()

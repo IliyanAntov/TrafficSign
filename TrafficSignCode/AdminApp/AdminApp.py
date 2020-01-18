@@ -12,13 +12,12 @@ from PyQt5.QtCore import pyqtSlot, Qt
 class GUI(QWidget):
     def __init__(self):
         super().__init__()
-        self.title = 'Login'
+        self.title = 'Traffic Sign Control Application'
         self.left = 100
         self.top = 100
         self.width = 400
         self.height = 400
         self.defaultFont = ("Arial", 14)
-        self.connection = Connection()
         self.initUI()
         
     def initUI(self):
@@ -30,11 +29,7 @@ class GUI(QWidget):
         self.show()
 
 
-
-
-
-
-class LoginWindow(QDialog):
+class LoginDialog(QDialog):
     def __init__(self):
         super().__init__()
         self.title = 'Login'
@@ -45,6 +40,7 @@ class LoginWindow(QDialog):
         self.defaultFont = ("Arial", 14)
         self.connection = Connection()
         self.initUI()
+        self.TryConnect()
         
     def initUI(self):
         self.setWindowTitle(self.title)
@@ -63,10 +59,27 @@ class LoginWindow(QDialog):
 
         self.connectButton = self.CreateButton(20, 160, 100, 100, "Connect", self.ConnectionAttemptClick) #Create login button
 
-
         self.OrderLoginLayout()
 
+        self.DisableInput()
+
+        #DELETE LATER
+        self.usernameTextBox.setText('admin')
+        self.passwordTextBox.setText('1234')
+
+
+        
         self.show()
+
+    def EnableInput(self):
+        self.usernameTextBox.setDisabled(False)
+        self.passwordTextBox.setDisabled(False)
+        self.connectButton.setDisabled(False)
+
+    def DisableInput(self):
+        self.usernameTextBox.setDisabled(True)
+        self.passwordTextBox.setDisabled(True)
+        self.connectButton.setDisabled(True)
 
     def OrderLoginLayout(self):
         windowVBox = QVBoxLayout()
@@ -142,15 +155,11 @@ class LoginWindow(QDialog):
         button.clicked.connect(func)
         return button
 
-    def LaunchControlApp(self):
-        appl = GUI(self)
-        appl.show()
-
 
     def keyPressEvent(self, event):
         if event.key() == Qt.Key_Escape:
             self.connection.Close()
-            self.close()
+            self.reject()
         if event.key() == Qt.Key_Enter:
             self.ConnectionAttemptClick()
 
@@ -158,15 +167,24 @@ class LoginWindow(QDialog):
     def ConnectionAttemptClick(self):
         username = self.usernameTextBox.text()
         password = self.passwordTextBox.text()
-        if(self.connection.AttemptConnect()):
-            data = self.connection.AttemptLogin(username, password)
-            print(data)
-            if (data == 'auth'):
-                self.accept()
-            elif (data == 'nauth'):
-                QMessageBox.warning(self, "Error", "Wrong username or password")
-            else:
-                print("Error")
+        data = self.connection.AttemptLogin(username, password)
+        print(data)
+        if (data == 'auth'):
+            self.accept()
+        elif (data == 'nauth'):
+            QMessageBox.warning(self, "Error", "Wrong username or password")
+        else:
+            print("Error")
+
+    def TryConnect(self): #TODO: fix
+        if not self.connection.AttemptConnect():
+            reply = QMessageBox.question(self, "Error", "Could not connect to the server", QMessageBox.Retry | QMessageBox.Cancel)
+            if(reply == QMessageBox.Retry):
+                self.TryConnect()
+            elif(reply == QMessageBox.Cancel):
+                self.reject()
+        else:
+            self.EnableInput()
 
 
 class Connection():
@@ -202,7 +220,6 @@ class Connection():
             print("Connection timeout")
             return None
 
-
     def SendMessage(self, data):
         length = len(data)
         self.client_socket.sendall(struct.pack('!I', length))
@@ -222,24 +239,27 @@ class Connection():
             count -= len(newbuf)
         return buf
 
-
-
-
-
-
     def Close(self):
         print("Closing connection...")
         self.client_socket.close()
-
-
+  
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
-    login = LoginWindow()
-    if(login.exec_() ==  QDialog.Accepted):
-        gui = GUI()
-        gui.show()
-    sys.exit(app.exec_())
+    login = LoginDialog()
+    result = login.exec()
+    if(result ==  QDialog.Accepted):
+        print('asd')
+        apl = GUI()
+        apl.show()
+        sys.exit(app.exec_())
+    elif(result == QDialog.Rejected):
+        print("Rejected")
+        sys.exit()
+    else:
+        print("Something went wrong")
+        sys.exit()
+    #sys.exit(app.exec_())
 
 
 # client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
