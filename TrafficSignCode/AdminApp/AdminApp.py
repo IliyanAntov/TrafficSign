@@ -1,3 +1,4 @@
+#pyuic5 -x SetSpeedLimitDialog.ui -o SetSpeedLimitDialog.py
 import socket
 import time
 import sys
@@ -5,8 +6,8 @@ import select
 import struct
 # from PyQt5.QtWidgets import QApplication, QWidget
 from PyQt5.QtWidgets import *
-from PyQt5.QtGui import QIcon, QFont
-from PyQt5.QtCore import pyqtSlot, Qt
+from PyQt5.QtGui import QIcon, QFont, QRegExpValidator
+from PyQt5.QtCore import pyqtSlot, Qt, QRegExp
 from MainPage import Ui_MainWindow
 from SetSpeedLimitDialog import Ui_SetSpeedLimitDialog
 
@@ -17,10 +18,13 @@ class SetSpeedLimitDialog(QDialog):
         self.target = target
         self.ui = Ui_SetSpeedLimitDialog()
         self.ui.setupUi(self)
-        self.setupButtons()
+        self.setupFunctionality()
         self.connection = Connection()
     
-    def setupButtons(self):
+    def setupFunctionality(self):
+        inputRegEx = QRegExp("\d{1,3}")
+        validator = QRegExpValidator(inputRegEx)
+        self.ui.SpeedLimitTextBox.setValidator(validator)
         self.ui.ConfirmButton.clicked.connect(self.SendSpeedLimit)
         self.ui.CancelButton.clicked.connect(self.QuitDialog)
 
