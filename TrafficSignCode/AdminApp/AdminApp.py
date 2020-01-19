@@ -12,10 +12,25 @@ from SetSpeedLimitDialog import Ui_SetSpeedLimitDialog
 
 
 class SetSpeedLimitDialog(QDialog):
-    def __init__(self):
+    def __init__(self, target):
         super().__init__()
+        self.target = target
         self.ui = Ui_SetSpeedLimitDialog()
         self.ui.setupUi(self)
+        self.setupButtons()
+        self.connection = Connection()
+    
+    def setupButtons(self):
+        self.ui.ConfirmButton.clicked.connect(self.SendSpeedLimit)
+        self.ui.CancelButton.clicked.connect(self.QuitDialog)
+
+    def SendSpeedLimit(self):
+        speedLimit = self.ui.SpeedLimitTextBox.text()
+        self.connection.SendMessage(str.encode("Target:" + self.target + " " "SpeedLim:" + speedLimit))
+        self.accept()
+
+    def QuitDialog(self):
+        self.reject()
 
 class MainPage(QMainWindow):
     def __init__(self):
@@ -30,8 +45,10 @@ class MainPage(QMainWindow):
 
     @pyqtSlot()
     def showSetSpeedLimitDialog(self):
-        if (len(self.ui.DeviceList.selectedItems()) > 0):
-            self.setSpeedLimitDialog = SetSpeedLimitDialog()
+        deviceList = self.ui.DeviceList.selectedItems()
+        if (len(deviceList) > 0):
+            target = deviceList[0].text()
+            self.setSpeedLimitDialog = SetSpeedLimitDialog(target)
             self.setSpeedLimitDialog.show()
         else:
             pass
@@ -200,13 +217,16 @@ class LoginDialog(QDialog): #TODO: QTDesigner
 
 
 class Connection():
+
+    client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
     def __init__(self):
         super().__init__()
     
     def AttemptConnect(self):
         try:
-            self.client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-            self.client_socket.connect(("localhost", 8220))
+            # self.client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            Connection.client_socket.connect(("localhost", 8220))
             print("Connection successful")
             return True
         except:
@@ -230,7 +250,7 @@ class Connection():
             return data   
 
     def WaitForData(self):
-        ready = select.select([self.client_socket], [], [], 2)
+        ready = select.select([Connection.client_socket], [], [], 2)
         if ready[0]:
             data = self.ReceiveMessage().decode('utf-8')
             return data
@@ -240,8 +260,8 @@ class Connection():
 
     def SendMessage(self, data):
         length = len(data)
-        self.client_socket.sendall(struct.pack('!I', length))
-        self.client_socket.sendall(data)
+        Connection.client_socket.sendall(struct.pack('!I', length))
+        Connection.client_socket.sendall(data)
 
     def ReceiveMessage(self):
         lengthbuf = self.ReceiveAll(4)
@@ -251,7 +271,7 @@ class Connection():
     def ReceiveAll(self, count):
         buf = b''
         while count:
-            newbuf = self.client_socket.recv(count)
+            newbuf = Connection.client_socket.recv(count)
             if not newbuf: return None
             buf += newbuf
             count -= len(newbuf)
@@ -259,7 +279,7 @@ class Connection():
 
     def Close(self):
         print("Closing connection...")
-        self.client_socket.close()
+        Connection.client_socket.close()
   
 
 if __name__ == '__main__':
