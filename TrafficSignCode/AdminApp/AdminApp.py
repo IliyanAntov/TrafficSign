@@ -7,29 +7,39 @@ import struct
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import QIcon, QFont
 from PyQt5.QtCore import pyqtSlot, Qt
+from MainPage import Ui_MainWindow
+from SetSpeedLimitDialog import Ui_SetSpeedLimitDialog
 
 
-class GUI(QWidget):
+class SetSpeedLimitDialog(QDialog):
     def __init__(self):
         super().__init__()
-        self.title = 'Traffic Sign Control Application'
-        self.left = 100
-        self.top = 100
-        self.width = 400
-        self.height = 400
-        self.defaultFont = ("Arial", 14)
-        self.initUI()
-        
-    def initUI(self):
-        self.setWindowTitle(self.title)
-        self.setWindowIcon(QIcon('./images/icon.png'))
+        self.ui = Ui_SetSpeedLimitDialog()
+        self.ui.setupUi(self)
 
-        self.setGeometry(self.left, self.top, self.width, self.height)
- 
-        self.show()
+class MainPage(QMainWindow):
+    def __init__(self):
+        super().__init__()
+        self.ui = Ui_MainWindow()
+        self.ui.setupUi(self)
+        self.setupButtons()
 
 
-class LoginDialog(QDialog):
+    def setupButtons(self):
+        self.ui.SetSpeedLimitButton.clicked.connect(self.showSetSpeedLimitDialog)
+
+    @pyqtSlot()
+    def showSetSpeedLimitDialog(self):
+        if (len(self.ui.DeviceList.selectedItems()) > 0):
+            self.setSpeedLimitDialog = SetSpeedLimitDialog()
+            self.setSpeedLimitDialog.show()
+        else:
+            pass
+        #self.setSpeedLimitDialog.setupUi(self)
+
+
+
+class LoginDialog(QDialog): #TODO: QTDesigner
     def __init__(self):
         super().__init__()
         self.title = 'Login'
@@ -258,7 +268,7 @@ if __name__ == '__main__':
     result = login.exec()
     if(result ==  QDialog.Accepted):
         print('asd')
-        apl = GUI()
+        apl = MainPage()
         apl.show()
         sys.exit(app.exec_())
     elif(result == QDialog.Rejected):
