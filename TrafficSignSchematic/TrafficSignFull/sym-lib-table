@@ -1,4 +1,5 @@
 (sym_lib_table
   (lib (name SIM800L)(type Legacy)(uri ${KIPRJMOD}/SIM800L.LIB)(options "")(descr ""))
   (lib (name TrafficSign-rescue)(type Legacy)(uri ${KIPRJMOD}/TrafficSign-rescue.lib)(options "")(descr ""))
+  (lib (name CustomSymbols)(type Legacy)(uri ${KIPRJMOD}/CustomSymbols.lib)(options "")(descr ""))
 )

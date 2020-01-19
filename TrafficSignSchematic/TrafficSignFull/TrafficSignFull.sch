@@ -666,7 +666,7 @@ Wire Wire Line
 	3150 4650 3200 4650
 Connection ~ 3150 4650
 $Comp
-L TrafficSign-rescue:BQ24650-Battery_Management U3
+L CustomSymbols:BQ24650-MPPT-Controller U3
 U 1 1 5E1C2763
 P 2450 1250
 F 0 "U3" H 2450 1565 50  0000 C CNN
@@ -1025,7 +1025,7 @@ U 1 1 5E17AFFA
 P 3350 4650
 F 0 "C2" V 3300 4750 50  0000 C CNN
 F 1 "22pF" V 3400 4800 50  0000 C CNN
-F 2 "" H 3388 4500 50  0001 C CNN
+F 2 "Capacitor_THT:C_Disc_D4.3mm_W1.9mm_P5.00mm" H 3388 4500 50  0001 C CNN
 F 3 "https://store.comet.bg/Catalogue/Product/27466/" H 3350 4650 50  0001 C CNN
 	1    3350 4650
 	0    1    1    0   
@@ -1036,7 +1036,7 @@ U 1 1 5E16B77E
 P 3350 4350
 F 0 "C1" V 3300 4450 50  0000 C CNN
 F 1 "22pF" V 3400 4500 50  0000 C CNN
-F 2 "" H 3388 4200 50  0001 C CNN
+F 2 "Capacitor_THT:C_Disc_D4.3mm_W1.9mm_P5.00mm" H 3388 4200 50  0001 C CNN
 F 3 "https://store.comet.bg/Catalogue/Product/27466/" H 3350 4350 50  0001 C CNN
 	1    3350 4350
 	0    1    1    0   
