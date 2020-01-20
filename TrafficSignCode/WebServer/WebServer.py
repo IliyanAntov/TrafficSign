@@ -106,7 +106,7 @@ class Connection():
 
 
     def ExchangeTrafficSignInformation(self):
-        deviceList.append('Oshte edin')
+        Connection().deviceList.append('Oshte edin')
         while True:
             request = b'details'
             self.deviceSocket.send(request)
