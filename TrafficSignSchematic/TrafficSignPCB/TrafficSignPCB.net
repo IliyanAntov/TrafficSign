@@ -1,7 +1,7 @@
 (export (version D)
   (design
     (source C:\Users\SoMe0nE\Desktop\TrafficSign\TrafficSignSchematic\TrafficSignPCB\TrafficSignPCB.sch)
-    (date "20-Jan-20 11:16:25")
+    (date "20-Jan-20 19:21:50")
     (tool "Eeschema (5.1.5)-3")
     (sheet (number 1) (name /) (tstamps /)
       (title_block
@@ -54,7 +54,7 @@
       (value SIM800L)
       (footprint SIM800:Sim800L)
       (datasheet https://img.filipeflop.com/files/download/Datasheet_SIM800L.pdf)
-      (libsource (lib SIM800L) (part SIM800L) (description ""))
+      (libsource (lib TrafficSignPCB-rescue) (part SIM800L-SIM800L) (description ""))
       (sheetpath (names /) (tstamps /))
       (tstamp 5DF831F1))
     (comp (ref CIN1)
@@ -387,10 +387,10 @@
         (pin (num 3) (name GND) (type power_in))
         (pin (num 4) (name FB) (type input))
         (pin (num 5) (name ~ON~/OFF) (type input))))
-    (libpart (lib SIM800L) (part SIM800L)
+    (libpart (lib TrafficSignPCB-rescue) (part SIM800L-SIM800L)
       (fields
         (field (name Reference) U)
-        (field (name Value) SIM800L))
+        (field (name Value) SIM800L-SIM800L))
       (pins
         (pin (num 1) (name NET) (type input))
         (pin (num 2) (name VCC) (type input))
@@ -413,8 +413,8 @@
       (uri D:\Programs\KiCad\share\kicad\library/MCU_Microchip_ATmega.lib))
     (library (logical Regulator_Switching)
       (uri D:\Programs\KiCad\share\kicad\library/Regulator_Switching.lib))
-    (library (logical SIM800L)
-      (uri C:/Users/SoMe0nE/Desktop/TrafficSign/TrafficSignSchematic/TrafficSignFull/SIM800L.LIB)))
+    (library (logical TrafficSignPCB-rescue)
+      (uri C:\Users\SoMe0nE\Desktop\TrafficSign\TrafficSignSchematic\TrafficSignPCB/TrafficSignPCB-rescue.lib)))
   (nets
     (net (code 1) (name "Net-(R6-Pad2)")
       (node (ref U1) (pin 1))
