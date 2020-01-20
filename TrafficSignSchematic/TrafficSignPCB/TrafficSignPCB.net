@@ -1,7 +1,7 @@
 (export (version D)
   (design
     (source C:\Users\SoMe0nE\Desktop\TrafficSign\TrafficSignSchematic\TrafficSignPCB\TrafficSignPCB.sch)
-    (date "20-Jan-20 19:21:50")
+    (date "20-Jan-20 20:13:59")
     (tool "Eeschema (5.1.5)-3")
     (sheet (number 1) (name /) (tstamps /)
       (title_block
