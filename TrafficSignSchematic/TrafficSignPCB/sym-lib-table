@@ -1,4 +1,5 @@
 (sym_lib_table
   (lib (name SIM800L)(type Legacy)(uri C:/Users/SoMe0nE/Desktop/TrafficSign/TrafficSignSchematic/TrafficSignFull/SIM800L.LIB)(options "")(descr ""))
   (lib (name CustomSymbols)(type Legacy)(uri C:/Users/SoMe0nE/Desktop/TrafficSign/TrafficSignSchematic/TrafficSignFull/CustomSymbols.lib)(options "")(descr ""))
+  (lib (name TrafficSignPCB-rescue)(type Legacy)(uri ${KIPRJMOD}/TrafficSignPCB-rescue.lib)(options "")(descr ""))
 )

@@ -289,7 +289,7 @@ class Connection():
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     login = LoginDialog()
-    result = login.exec()
+    result = login.exec_()
     if(result ==  QDialog.Accepted):
         print('asd')
         apl = MainPage()

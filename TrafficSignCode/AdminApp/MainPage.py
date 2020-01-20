@@ -23,7 +23,7 @@ class Ui_MainWindow(object):
         font.setFamily("Arial")
         font.setPointSize(14)
         MainWindow.setFont(font)
-        MainWindow.setTabletTracking(False)
+        #MainWindow.setTabletTracking(False)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.gridLayout = QtWidgets.QGridLayout(self.centralwidget)
