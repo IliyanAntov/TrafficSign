@@ -1,0 +1,13 @@
+SIM800L -> Web server:
+
+Incoming information header -> Data
+
+Incoming information header:
+[0][1][2]
+"ERC" = Error Code
+"DRR" = Details Request Response
+"IUC" = Information Update Confirm
+
+Data:
+ERC -> [3]
+DRR -> []

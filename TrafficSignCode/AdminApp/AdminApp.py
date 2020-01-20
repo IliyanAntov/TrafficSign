@@ -4,6 +4,7 @@ import time
 import sys
 import select
 import struct
+import threading
 # from PyQt5.QtWidgets import QApplication, QWidget
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import QIcon, QFont, QRegExpValidator
@@ -42,6 +43,16 @@ class MainPage(QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
         self.setupButtons()
+        self.connection = Connection()
+        threading.Thread(target = self.requestDevices).start()
+
+    def requestDevices(self):
+        while True:
+            self.connection.SendMessage(str.encode("GetDevices"))
+            deviceLen = self.connection.ReceiveMessage()
+            for i in range (int(deviceLen)):
+                print(self.connection.ReceiveMessage())
+            time.sleep(2)
 
 
     def setupButtons(self):

@@ -13,6 +13,17 @@ void setup()
 
   Serial.println("Initializing...");
   delay(1000);
+
+  mySerial.println("AT");
+  updateSerial();
+  mySerial.println("AT+CFUN=1");
+  updateSerial();
+  mySerial.println("AT+CSTT=\"internet.vivacom.com\",\"VIVACOM\",\"VIVACOM\"");
+  updateSerial();
+  mySerial.println("AT+CIICR");
+  updateSerial();
+  mySerial.println("AT+CIPSTART=\"TCP\",\"37.157.168.186\",65432");
+  updateSerial();
  
 }
 
@@ -30,6 +41,8 @@ void updateSerial()
   }
   while(mySerial.available()) 
   {
-    Serial.write(mySerial.read());//Forward what Software Serial received to Serial Port
+    int data = 0;
+    data = mySerial.read();
+    Serial.write(data);//Forward what Software Serial received to Serial Port
   }
 }

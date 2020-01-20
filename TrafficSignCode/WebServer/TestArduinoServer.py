@@ -3,7 +3,7 @@ import sys
 import select
 import struct
 import threading
-import time
+
 
 # def send_one_message(sock, data):
 #     length = len(data)
@@ -29,46 +29,17 @@ import time
 
 
 class Connection():
-
-    deviceList = ["Neshto"]
-
     def __init__(self):
         super().__init__()
-        self.traffic_sign_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self.traffic_sign_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-        self.traffic_sign_socket.bind(('192.168.1.137', 65432))
-        self.traffic_sign_socket.listen(100)
-
         self.server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-        self.server_socket.bind(('localhost', 8220))
+        self.server_socket.bind(('192.168.1.137', 65432))
         self.server_socket.listen(5)
-
-    def WaitForAdminConnection(self):
-        print ("Listening for client . . .")
-        self.admin_socket, self.admin_address = self.server_socket.accept()
-        print ("Connected to client at ", self.admin_address)
-        maxConnectionAttempts = 1
-        connectionAttemptsCount = 1
-        while True:
-            returnCode = self.AuthenticateAdminConnection()
-            if(returnCode == 0): #Username or password incorrect
-                connectionAttemptsCount+=1
-                if(connectionAttemptsCount > maxConnectionAttempts):
-                    print("Too many login attempts, closing connection...")
-                    self.admin_socket.close()
-                    return False
-            elif(returnCode == 1): #Username and password correct
-                print("Authenticated")
-                return True
-            elif(returnCode == 2): #Connection closed by client
-                print("Connection closed by remote client")
-                return False
 
     def WaitForTrafficSignConnection(self):
         print ("Listening for client . . .")
-        self.deviceSocket, self.deviceAddress = self.traffic_sign_socket.accept()
-        print ("Connected to client at ", self.deviceAddress)
+        self.trafficSignSocket, self.trafficSignAddress = self.server_socket.accept()
+        print ("Connected to client at ", self.trafficSignAddress)
         return True
 
     def AuthenticateAdminConnection(self):
@@ -91,26 +62,19 @@ class Connection():
             print("error")
             self.admin_socket.close()
 
-    def ListenToClient(self):
+    def ListenToAdmin(self):
         while True:
             data = self.ReceiveMessage(self.admin_socket)
             print(data)
             if(data == None):
                 break
-            else:
-                #data = str.decode(data, 'utf-8')
-                if(data == b"GetDevices"):
-                    self.SendMessage(self.admin_socket, str.encode(str(len(Connection().deviceList))))
-                    for i in range(len(Connection().deviceList)):
-                        self.SendMessage(self.admin_socket, str.encode(Connection().deviceList[i]))
-
 
     def ExchangeTrafficSignInformation(self):
-        deviceList.append('Oshte edin')
         while True:
             request = b'details'
-            self.deviceSocket.send(request)
-            data = self.deviceSocket.recv(100)
+            self.trafficSignSocket.send(request)
+            data = self.trafficSignSocket.recv(100)
+
 
 
     def SendMessage(self, sock, data):
@@ -137,9 +101,8 @@ class Connection():
 if __name__ == '__main__':
     connection = Connection()
     while True:
-        if connection.WaitForAdminConnection():
-            threading.Thread(target = connection.ListenToClient).start()
         if connection.WaitForTrafficSignConnection():
+            #threading.Thread(target = connection.ListenToAdmin).start()
             threading.Thread(target = connection.ExchangeTrafficSignInformation).start()
 
 #server_socket.close()
