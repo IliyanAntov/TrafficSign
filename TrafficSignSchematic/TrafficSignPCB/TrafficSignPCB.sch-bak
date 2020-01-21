@@ -551,16 +551,16 @@ F 3 "https://store.comet.bg/Catalogue/Product/27466/" H 3300 3800 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 Wire Wire Line
-	3800 2350 3800 2300
+	3800 2300 3800 2250
 $Comp
 L Device:R R4
 U 1 1 5E2884D8
-P 3800 2150
-F 0 "R4" H 3870 2196 50  0000 L CNN
-F 1 "20k" H 3870 2105 50  0000 L CNN
-F 2 "Resistor_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P7.62mm_Horizontal" V 3730 2150 50  0001 C CNN
-F 3 "https://store.comet.bg/Catalogue/Product/3884/" H 3800 2150 50  0001 C CNN
-	1    3800 2150
+P 3800 2100
+F 0 "R4" H 3870 2146 50  0000 L CNN
+F 1 "20k" H 3870 2055 50  0000 L CNN
+F 2 "Resistor_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P7.62mm_Horizontal" V 3730 2100 50  0001 C CNN
+F 3 "https://store.comet.bg/Catalogue/Product/3884/" H 3800 2100 50  0001 C CNN
+	1    3800 2100
 	1    0    0    -1  
 $EndComp
 Connection ~ 3100 3800
@@ -598,31 +598,27 @@ Wire Wire Line
 Wire Wire Line
 	2400 2500 3550 2500
 Wire Wire Line
-	3800 1550 3800 1600
-Wire Wire Line
 	3550 1550 3800 1550
 Wire Wire Line
 	3550 2500 3550 1550
 Wire Wire Line
-	3800 1950 3800 2000
-Connection ~ 3800 1950
-Wire Wire Line
-	3800 1950 4250 1950
-Wire Wire Line
 	3800 1900 3800 1950
+Connection ~ 3800 1900
+Wire Wire Line
+	3800 1900 4250 1900
+Wire Wire Line
+	3800 1850 3800 1900
 $Comp
 L Device:R R3
 U 1 1 5E100EA7
-P 3800 1750
-F 0 "R3" H 3870 1796 50  0000 L CNN
-F 1 "10k" H 3870 1705 50  0000 L CNN
-F 2 "Resistor_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P7.62mm_Horizontal" V 3730 1750 50  0001 C CNN
-F 3 "https://store.comet.bg/Catalogue/Product/25851/" H 3800 1750 50  0001 C CNN
-	1    3800 1750
+P 3800 1700
+F 0 "R3" H 3870 1746 50  0000 L CNN
+F 1 "10k" H 3870 1655 50  0000 L CNN
+F 2 "Resistor_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P7.62mm_Horizontal" V 3730 1700 50  0001 C CNN
+F 3 "https://store.comet.bg/Catalogue/Product/25851/" H 3800 1700 50  0001 C CNN
+	1    3800 1700
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	2400 2600 4750 2600
 Text GLabel 3000 4300 2    50   Input ~ 0
 OE
 Text GLabel 3000 4200 2    50   Input ~ 0
@@ -923,16 +919,14 @@ $EndComp
 $Comp
 L power:GND #PWR0116
 U 1 1 5E4EA9BE
-P 3800 2350
-F 0 "#PWR0116" H 3800 2100 50  0001 C CNN
-F 1 "GND" H 3805 2177 50  0000 C CNN
-F 2 "" H 3800 2350 50  0001 C CNN
-F 3 "" H 3800 2350 50  0001 C CNN
-	1    3800 2350
+P 3800 2300
+F 0 "#PWR0116" H 3800 2050 50  0001 C CNN
+F 1 "GND" H 3800 2150 50  0000 C CNN
+F 2 "" H 3800 2300 50  0001 C CNN
+F 3 "" H 3800 2300 50  0001 C CNN
+	1    3800 2300
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	4250 1950 4250 2500
 $Comp
 L power:+4V #PWR0117
 U 1 1 5E526B11
@@ -1063,4 +1057,21 @@ Wire Wire Line
 Connection ~ 2925 5125
 Wire Wire Line
 	2925 5125 3075 5125
+$Comp
+L Device:R R6
+U 1 1 5E6F86C9
+P 3800 2600
+F 0 "R6" V 3700 2700 50  0000 C CNN
+F 1 "10k" V 3700 2500 50  0000 C CNN
+F 2 "" V 3730 2600 50  0001 C CNN
+F 3 "~" H 3800 2600 50  0001 C CNN
+	1    3800 2600
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	4250 1900 4250 2500
+Wire Wire Line
+	2400 2600 3650 2600
+Wire Wire Line
+	3950 2600 4750 2600
 $EndSCHEMATC
