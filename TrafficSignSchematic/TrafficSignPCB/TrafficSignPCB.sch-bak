@@ -186,7 +186,7 @@ U 1 1 5DFADDFD
 P 9250 3200
 F 0 "D1" V 9204 3279 50  0000 L CNN
 F 1 "100V/5A" V 9295 3279 50  0000 L CNN
-F 2 "Diode_THT:D_DO-27_P15.24mm_Horizontal" H 9250 3200 50  0001 C CNN
+F 2 "Diode_THT:D_DO-27_P12.70mm_Horizontal" H 9250 3200 50  0001 C CNN
 F 3 "https://store.comet.bg/Catalogue/Product/9381/" H 9250 3200 50  0001 C CNN
 	1    9250 3200
 	0    1    1    0   
@@ -316,7 +316,7 @@ U 1 1 5E207114
 P 9250 4950
 F 0 "D2" V 9204 5029 50  0000 L CNN
 F 1 "100V/5A" V 9295 5029 50  0000 L CNN
-F 2 "Diode_THT:D_DO-27_P15.24mm_Horizontal" H 9250 4950 50  0001 C CNN
+F 2 "Diode_THT:D_DO-27_P12.70mm_Horizontal" H 9250 4950 50  0001 C CNN
 F 3 "https://store.comet.bg/Catalogue/Product/9381/" H 9250 4950 50  0001 C CNN
 	1    9250 4950
 	0    1    1    0   
