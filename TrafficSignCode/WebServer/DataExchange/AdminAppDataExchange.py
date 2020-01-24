@@ -29,13 +29,13 @@ class AdminAppDataExchange():
                 if(connectionAttemptsCount > maxConnectionAttempts):
                     print("Too many login attempts, closing connection...")
                     self.adminSocket.close()
-                    return False
+                    return None
             elif(returnCode == 1): #Username and password correct
                 print("Authenticated")
-                return True
+                return self.adminSocket
             elif(returnCode == 2): #Connection closed by client
                 print("Connection closed by remote client")
-                return False
+                return None
 
     def AuthenticateUser(self):
         username = Connection().ReceiveMessage(self.adminSocket)
@@ -57,7 +57,7 @@ class AdminAppDataExchange():
             print("Something went wrong...")
             self.adminSocket.close()
 
-    def ListenToUser(self):
+    def ListenToUser(self, socket):
         while True:
             data = Connection().ReceiveMessage(self.adminSocket)
             print(data)
