@@ -3,8 +3,8 @@ import sys
 import select
 import struct
 import threading
-from threading import Thread
 import time
+from threading import Thread
 from DataExchange.Connection import Connection
 
 

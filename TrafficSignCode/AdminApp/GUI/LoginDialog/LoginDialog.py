@@ -1,0 +1,114 @@
+# -*- coding: utf-8 -*-
+
+# Form implementation generated from reading ui file 'LoginDialog.ui'
+#
+# Created by: PyQt5 UI code generator 5.13.0
+#
+# WARNING! All changes made in this file will be lost!
+
+
+from PyQt5 import QtCore, QtGui, QtWidgets
+
+
+class Ui_LoginDialog(object):
+    def setupUi(self, LoginDialog):
+        LoginDialog.setObjectName("LoginDialog")
+        LoginDialog.setWindowModality(QtCore.Qt.NonModal)
+        LoginDialog.resize(400, 400)
+        font = QtGui.QFont()
+        font.setFamily("Arial")
+        font.setPointSize(14)
+        LoginDialog.setFont(font)
+        self.verticalLayout = QtWidgets.QVBoxLayout(LoginDialog)
+        self.verticalLayout.setObjectName("verticalLayout")
+        spacerItem = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        self.verticalLayout.addItem(spacerItem)
+        self.horizontalLayout = QtWidgets.QHBoxLayout()
+        self.horizontalLayout.setObjectName("horizontalLayout")
+        spacerItem1 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout.addItem(spacerItem1)
+        self.verticalLayout_3 = QtWidgets.QVBoxLayout()
+        self.verticalLayout_3.setSizeConstraint(QtWidgets.QLayout.SetDefaultConstraint)
+        self.verticalLayout_3.setContentsMargins(0, -1, -1, -1)
+        self.verticalLayout_3.setSpacing(10)
+        self.verticalLayout_3.setObjectName("verticalLayout_3")
+        self.usernameLabel = QtWidgets.QLabel(LoginDialog)
+        self.usernameLabel.setAlignment(QtCore.Qt.AlignCenter)
+        self.usernameLabel.setObjectName("usernameLabel")
+        self.verticalLayout_3.addWidget(self.usernameLabel)
+        self.usernameTextBox = QtWidgets.QLineEdit(LoginDialog)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(1)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.usernameTextBox.sizePolicy().hasHeightForWidth())
+        self.usernameTextBox.setSizePolicy(sizePolicy)
+        self.usernameTextBox.setMinimumSize(QtCore.QSize(0, 0))
+        self.usernameTextBox.setObjectName("usernameTextBox")
+        self.verticalLayout_3.addWidget(self.usernameTextBox)
+        self.horizontalLayout.addLayout(self.verticalLayout_3)
+        spacerItem2 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout.addItem(spacerItem2)
+        self.verticalLayout.addLayout(self.horizontalLayout)
+        self.horizontalLayout_3 = QtWidgets.QHBoxLayout()
+        self.horizontalLayout_3.setObjectName("horizontalLayout_3")
+        spacerItem3 = QtWidgets.QSpacerItem(12, 0, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout_3.addItem(spacerItem3)
+        self.verticalLayout_2 = QtWidgets.QVBoxLayout()
+        self.verticalLayout_2.setSizeConstraint(QtWidgets.QLayout.SetNoConstraint)
+        self.verticalLayout_2.setSpacing(10)
+        self.verticalLayout_2.setObjectName("verticalLayout_2")
+        self.passwordLabel = QtWidgets.QLabel(LoginDialog)
+        self.passwordLabel.setAlignment(QtCore.Qt.AlignCenter)
+        self.passwordLabel.setObjectName("passwordLabel")
+        self.verticalLayout_2.addWidget(self.passwordLabel)
+        self.passwordTextBox = QtWidgets.QLineEdit(LoginDialog)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.passwordTextBox.sizePolicy().hasHeightForWidth())
+        self.passwordTextBox.setSizePolicy(sizePolicy)
+        self.passwordTextBox.setMinimumSize(QtCore.QSize(0, 0))
+        self.passwordTextBox.setObjectName("passwordTextBox")
+        self.verticalLayout_2.addWidget(self.passwordTextBox)
+        self.horizontalLayout_3.addLayout(self.verticalLayout_2)
+        spacerItem4 = QtWidgets.QSpacerItem(20, 0, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout_3.addItem(spacerItem4)
+        self.verticalLayout.addLayout(self.horizontalLayout_3)
+        spacerItem5 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        self.verticalLayout.addItem(spacerItem5)
+        self.horizontalLayout_5 = QtWidgets.QHBoxLayout()
+        self.horizontalLayout_5.setObjectName("horizontalLayout_5")
+        spacerItem6 = QtWidgets.QSpacerItem(70, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout_5.addItem(spacerItem6)
+        self.connectButton = QtWidgets.QPushButton(LoginDialog)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(1)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.connectButton.sizePolicy().hasHeightForWidth())
+        self.connectButton.setSizePolicy(sizePolicy)
+        self.connectButton.setMinimumSize(QtCore.QSize(0, 50))
+        self.connectButton.setObjectName("connectButton")
+        self.horizontalLayout_5.addWidget(self.connectButton)
+        spacerItem7 = QtWidgets.QSpacerItem(70, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout_5.addItem(spacerItem7)
+        self.verticalLayout.addLayout(self.horizontalLayout_5)
+
+        self.retranslateUi(LoginDialog)
+        QtCore.QMetaObject.connectSlotsByName(LoginDialog)
+
+    def retranslateUi(self, LoginDialog):
+        _translate = QtCore.QCoreApplication.translate
+        LoginDialog.setWindowTitle(_translate("LoginDialog", "Login"))
+        self.usernameLabel.setText(_translate("LoginDialog", "Username:"))
+        self.passwordLabel.setText(_translate("LoginDialog", "Password:"))
+        self.connectButton.setText(_translate("LoginDialog", "Connect"))
+
+
+if __name__ == "__main__":
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+    LoginDialog = QtWidgets.QDialog()
+    ui = Ui_LoginDialog()
+    ui.setupUi(LoginDialog)
+    LoginDialog.show()
+    sys.exit(app.exec_())

@@ -5,7 +5,7 @@ import struct
 import threading
 import time
 from DataExchange.Connection import Connection
-from DataExchange.AdminAppDataExchange import AdminAppDataExchange
+from DataExchange.AdminConnection.AdminAppDataExchange import AdminAppDataExchange
 
 
 class AdminAppConnectionHandler():

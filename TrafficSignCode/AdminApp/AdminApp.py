@@ -9,44 +9,22 @@ import threading
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import QIcon, QFont, QRegExpValidator
 from PyQt5.QtCore import pyqtSlot, Qt, QRegExp
-from MainPage import Ui_MainWindow
-from SetSpeedLimitDialog import Ui_SetSpeedLimitDialog
+from GUI.MainWindow.MainWindow import Ui_MainWindow
+from GUI.SetSpeedLimitDialog.SetSpeedLimitDialog import Ui_SetSpeedLimitDialog
+from GUI.LoginDialog.LoginDialog import Ui_LoginDialog
 
 
-class SetSpeedLimitDialog(QDialog):
-    def __init__(self, target):
-        super().__init__()
-        self.target = target
-        self.ui = Ui_SetSpeedLimitDialog()
-        self.ui.setupUi(self)
-        self.setupFunctionality()
-        self.connection = Connection()
-    
-    def setupFunctionality(self):
-        inputRegEx = QRegExp("\d{1,3}")
-        validator = QRegExpValidator(inputRegEx)
-        self.ui.SpeedLimitTextBox.setValidator(validator)
-        self.ui.ConfirmButton.clicked.connect(self.SendSpeedLimit)
-        self.ui.CancelButton.clicked.connect(self.QuitDialog)
 
-    def SendSpeedLimit(self):
-        speedLimit = self.ui.SpeedLimitTextBox.text()
-        self.connection.SendMessage(str.encode("Target:" + self.target + " " "SpeedLim:" + speedLimit))
-        self.accept()
-
-    def QuitDialog(self):
-        self.reject()
-
-class MainPage(QMainWindow):
+class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
-        self.setupButtons()
+        self.SetupButtons()
         self.connection = Connection()
-        threading.Thread(target = self.requestDevices).start()
+        threading.Thread(target = self.RequestDevices).start()
 
-    def requestDevices(self):
+    def RequestDevices(self):
         while True:
             self.connection.SendMessage(str.encode("GetDevices"))
             deviceLen = self.connection.ReceiveMessage()
@@ -55,11 +33,11 @@ class MainPage(QMainWindow):
             time.sleep(2)
 
 
-    def setupButtons(self):
-        self.ui.SetSpeedLimitButton.clicked.connect(self.showSetSpeedLimitDialog)
+    def SetupButtons(self):
+        self.ui.SetSpeedLimitButton.clicked.connect(self.ShowSetSpeedLimitDialog)
 
     @pyqtSlot()
-    def showSetSpeedLimitDialog(self):
+    def ShowSetSpeedLimitDialog(self):
         deviceList = self.ui.DeviceList.selectedItems()
         if (len(deviceList) > 0):
             target = deviceList[0].text()
@@ -69,146 +47,47 @@ class MainPage(QMainWindow):
             pass
         #self.setSpeedLimitDialog.setupUi(self)
 
-
-
-class LoginDialog(QDialog): #TODO: QTDesigner
+class LoginDialog(QDialog):
     def __init__(self):
         super().__init__()
-        self.title = 'Login'
-        self.left = 100
-        self.top = 100
-        self.width = 400
-        self.height = 400
-        self.defaultFont = ("Arial", 14)
+        self.ui = Ui_LoginDialog()
+        self.ui.setupUi(self)
         self.connection = Connection()
-        self.initUI()
+        self.InitUI()
         self.TryConnect()
         
-    def initUI(self):
-        self.setWindowTitle(self.title)
+    def InitUI(self):
         self.setWindowIcon(QIcon('./images/icon.png'))
-
-        self.setGeometry(self.left, self.top, self.width, self.height)
- 
-        self.usernameLabel = self.CreateLabel(10, 10, "Username:") #Create username label
-
-        self.usernameTextBox = self.CreateTextBox(10, 35, 150, 40) #Create username textbox
-
-        self.passwordLabel = self.CreateLabel(10, 85, "Password:") #Create password label
-
-        self.passwordTextBox = self.CreateTextBox(10, 110, 150, 40) #Create password textbox
-        self.passwordTextBox.setEchoMode(QLineEdit.Password) #Mask password input
-
-        self.connectButton = self.CreateButton(20, 160, 100, 100, "Connect", self.ConnectionAttemptClick) #Create login button
-
-        self.OrderLoginLayout()
-
+        self.ui.passwordTextBox.setEchoMode(QLineEdit.Password) #Mask password input
         self.DisableInput()
+        self.ui.connectButton.clicked.connect(self.AttemptConnect)  
+
 
         #DELETE LATER
-        self.usernameTextBox.setText('admin')
-        self.passwordTextBox.setText('1234')
-
-
-        
-        self.show()
+        self.ui.usernameTextBox.setText('admin')
+        self.ui.passwordTextBox.setText('1234')
 
     def EnableInput(self):
-        self.usernameTextBox.setDisabled(False)
-        self.passwordTextBox.setDisabled(False)
-        self.connectButton.setDisabled(False)
+        self.ui.usernameTextBox.setDisabled(False)
+        self.ui.passwordTextBox.setDisabled(False)
+        self.ui.connectButton.setDisabled(False)
 
     def DisableInput(self):
-        self.usernameTextBox.setDisabled(True)
-        self.passwordTextBox.setDisabled(True)
-        self.connectButton.setDisabled(True)
-
-    def OrderLoginLayout(self):
-        windowVBox = QVBoxLayout()
-        windowVBox.addStretch(1)
-
-        # Username label and input box
-        usernameHBox = QHBoxLayout()
-
-        usernameHBox.addStretch(1)
-        usernameHBox.addWidget(self.usernameLabel)
-        usernameHBox.addStretch(1)
-
-        windowVBox.addLayout(usernameHBox)
-
-        usernameInputHBox = QHBoxLayout()
-
-        usernameInputHBox.addStretch(1)
-        self.usernameTextBox.setFixedHeight(40)
-        usernameInputHBox.addWidget(self.usernameTextBox, 2)
-        usernameInputHBox.addStretch(1)
-
-        windowVBox.addLayout(usernameInputHBox)
-
-        # Password label and input box
-        passwordHBox = QHBoxLayout()
-
-        passwordHBox.addStretch(1)
-        passwordHBox.addWidget(self.passwordLabel)
-        passwordHBox.addStretch(1)
-
-        windowVBox.addLayout(passwordHBox)
-
-        passwordInputHBox = QHBoxLayout()
-
-        passwordInputHBox.addStretch(1)
-        self.passwordTextBox.setFixedHeight(40)
-        passwordInputHBox.addWidget(self.passwordTextBox, 2)
-        passwordInputHBox.addStretch(1)
-
-        windowVBox.addLayout(passwordInputHBox)
-
-        # Connect button
-        connectButtonHBox = QHBoxLayout()
-
-        connectButtonHBox.addStretch(1)
-        self.connectButton.setFixedHeight(40)
-        connectButtonHBox.addWidget(self.connectButton, 2)
-        connectButtonHBox.addStretch(1)
-
-        windowVBox.addStretch(1)
-        windowVBox.addLayout(connectButtonHBox, 2)
-        self.setLayout(windowVBox)
-
-    def CreateLabel(self, x, y, text):
-        label = QLabel(self)
-        label.setFont(QFont(*self.defaultFont))
-        label.setText(text)
-        label.move(x, y)
-        return label
+        self.ui.usernameTextBox.setDisabled(True)
+        self.ui.passwordTextBox.setDisabled(True)
+        self.ui.connectButton.setDisabled(True)
     
-    def CreateTextBox(self, x, y, width, height):
-        textbox = QLineEdit(self)
-        textbox.setFont(QFont(*self.defaultFont))
-        textbox.move(x, y)
-        textbox.resize(width, height)
-        return textbox
-
-    def CreateButton(self, x, y, width, height, text, func):
-        button = QPushButton(text, self)
-        button.resize(width, height)
-        button.setFont(QFont(*self.defaultFont))
-        button.move(x, y)
-        button.clicked.connect(func)
-        return button
-
-
-    def keyPressEvent(self, event):
+    def KeyPressEvent(self, event):
         if event.key() == Qt.Key_Escape:
             self.connection.Close()
             self.reject()
         if event.key() == Qt.Key_Enter:
-            self.ConnectionAttemptClick()
+            self.AttemptConnect()
 
     @pyqtSlot()
-    def ConnectionAttemptClick(self):
-        username = self.usernameTextBox.text()
-        password = self.passwordTextBox.text()
+    def AttemptConnect(self):
+        username = self.ui.usernameTextBox.text()
+        password = self.ui.passwordTextBox.text()
         data = self.connection.AttemptLogin(username, password)
         print(data)
         if (data == 'auth'):
@@ -230,6 +109,29 @@ class LoginDialog(QDialog): #TODO: QTDesigner
         else:
             self.EnableInput()
 
+class SetSpeedLimitDialog(QDialog):
+    def __init__(self, target):
+        super().__init__()
+        self.target = target
+        self.ui = Ui_SetSpeedLimitDialog()
+        self.ui.setupUi(self)
+        self.SetupFunctionality()
+        self.connection = Connection()
+    
+    def SetupFunctionality(self):
+        inputRegEx = QRegExp("[1-9]\d{0,2}")
+        validator = QRegExpValidator(inputRegEx)
+        self.ui.SpeedLimitTextBox.setValidator(validator)
+        self.ui.ConfirmButton.clicked.connect(self.SendSpeedLimit)
+        self.ui.CancelButton.clicked.connect(self.QuitDialog)
+
+    def SendSpeedLimit(self):
+        speedLimit = self.ui.SpeedLimitTextBox.text()
+        self.connection.SendMessage(str.encode("Target:" + self.target + " " "SpeedLim:" + speedLimit))
+        self.accept()
+
+    def QuitDialog(self):
+        self.reject()
 
 class Connection():
 
@@ -303,7 +205,7 @@ if __name__ == '__main__':
     result = login.exec_()
     if(result ==  QDialog.Accepted):
         print('asd')
-        apl = MainPage()
+        apl = MainWindow()
         apl.show()
         sys.exit(app.exec_())
     elif(result == QDialog.Rejected):
