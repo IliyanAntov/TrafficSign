@@ -1,0 +1,49 @@
+import socket
+import time
+import sys
+import select
+import struct
+import threading
+# from PyQt5.QtWidgets import QApplication, QWidget
+from PyQt5.QtWidgets import *
+from PyQt5.QtGui import QIcon, QFont, QRegExpValidator
+from PyQt5.QtCore import pyqtSlot, Qt, QRegExp
+from GUI.MainWindow.MainWindow import Ui_MainWindow
+from GUI.SetSpeedLimitDialog.SetSpeedLimitDialog import Ui_SetSpeedLimitDialog
+from GUI.LoginDialog.LoginDialog import Ui_LoginDialog
+from DataExchange.DataExchange import DataExchange
+from DataExchange.Connection import Connection
+from GUI_logic.LoginDialog import LoginDialog
+from GUI_logic.SetSpeedLimitDialog import SetSpeedLimitDialog
+
+
+class MainWindow(QMainWindow):
+    def __init__(self):
+        super().__init__()
+        self.ui = Ui_MainWindow()
+        self.ui.setupUi(self)
+        self.SetupButtons()
+        self.connection = DataExchange()
+        threading.Thread(target = self.RequestDevices).start()
+
+    def RequestDevices(self):
+        while True:
+            Connection().SendMessage(str.encode("GetDevices"))
+            deviceLen = Connection().ReceiveMessage()
+            for i in range (int(deviceLen)):
+                print(Connection().ReceiveMessage())
+            time.sleep(2)
+
+    def SetupButtons(self):
+        self.ui.SetSpeedLimitButton.clicked.connect(self.ShowSetSpeedLimitDialog)
+
+    @pyqtSlot()
+    def ShowSetSpeedLimitDialog(self):
+        deviceList = self.ui.DeviceList.selectedItems()
+        if (len(deviceList) > 0):
+            target = deviceList[0].text()
+            self.setSpeedLimitDialog = SetSpeedLimitDialog(target)
+            self.setSpeedLimitDialog.show()
+        else:
+            pass
+        #self.setSpeedLimitDialog.setupUi(self)

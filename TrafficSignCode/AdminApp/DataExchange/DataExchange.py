@@ -27,11 +27,11 @@ class DataExchange():
     def AttemptLogin(self, username, password):
         print("Attempting to log in...")
         try:
-            Connection().SendMessage(Connection().client_socket, str.encode(username))
+            Connection().SendMessage(str.encode(username))
         except:
             return None
         try:
-            Connection().SendMessage(Connection().client_socket, str.encode(password))
+            Connection().SendMessage(str.encode(password))
         except:
             return None
         data = self.WaitForData()
@@ -43,7 +43,7 @@ class DataExchange():
     def WaitForData(self):
         ready = select.select([Connection().client_socket], [], [], 2)
         if ready[0]:
-            data = Connection().ReceiveMessage(Connection().client_socket).decode('utf-8')
+            data = Connection().ReceiveMessage().decode('utf-8')
             return data
         else:
             print("Connection timeout")

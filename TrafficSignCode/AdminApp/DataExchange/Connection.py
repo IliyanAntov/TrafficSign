@@ -18,29 +18,30 @@ class Connection():
     client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
     @staticmethod
-    def SendMessage(sock, data):
+    def SendMessage(data):
         length = len(data)
-        sock.sendall(struct.pack('!I', length))
-        sock.sendall(data)
+        Connection().client_socket.sendall(struct.pack('!I', length))
+        Connection().client_socket.sendall(data)
 
     @staticmethod
-    def ReceiveMessage(sock):
-        lengthbuf = Connection().ReceiveAll(sock, 4)
+    def ReceiveMessage():
+        lengthbuf = Connection().ReceiveAll(4)
         if not lengthbuf:
             return None
         length, = struct.unpack('!I', lengthbuf)
-        return Connection().ReceiveAll(sock, length)
+        return Connection().ReceiveAll(length)
 
     @staticmethod
-    def ReceiveAll(sock, count):
+    def ReceiveAll(count):
         buf = b''
         while count:
-            newbuf = sock.recv(count)
+            newbuf = Connection().client_socket.recv(count)
             if not newbuf: return None
             buf += newbuf
             count -= len(newbuf)
         return buf
 
+    @staticmethod
     def Close():
         print("Closing connection...")
         Connection().client_socket.close()
