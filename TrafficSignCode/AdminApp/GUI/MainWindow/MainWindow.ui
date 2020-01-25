@@ -30,44 +30,8 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
-    <item row="6" column="0">
-     <widget class="QListWidget" name="DeviceList">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-        <horstretch>2</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="font">
-       <font>
-        <family>Arial</family>
-        <pointsize>14</pointsize>
-       </font>
-      </property>
-      <item>
-       <property name="text">
-        <string>Test1</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>sfagd</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Test23</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Test2</string>
-       </property>
-      </item>
-     </widget>
-    </item>
     <item row="6" column="1" colspan="2">
-     <layout class="QVBoxLayout" name="verticalLayout" stretch="0,0,0,0">
+     <layout class="QVBoxLayout" name="verticalLayout" stretch="0,0,0,0,0">
       <property name="spacing">
        <number>5</number>
       </property>
@@ -83,6 +47,25 @@
       <property name="rightMargin">
        <number>0</number>
       </property>
+      <item>
+       <widget class="QPushButton" name="RefreshButton">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>50</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>Refresh</string>
+        </property>
+       </widget>
+      </item>
       <item>
        <spacer name="verticalSpacer">
         <property name="orientation">
@@ -168,6 +151,42 @@
       </property>
      </widget>
     </item>
+    <item row="6" column="0">
+     <widget class="QListWidget" name="DeviceList">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>2</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>14</pointsize>
+       </font>
+      </property>
+      <item>
+       <property name="text">
+        <string>Test1</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>sfagd</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Test23</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Test2</string>
+       </property>
+      </item>
+     </widget>
+    </item>
    </layout>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -176,7 +195,7 @@
      <x>0</x>
      <y>0</y>
      <width>917</width>
-     <height>28</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>

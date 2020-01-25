@@ -24,18 +24,20 @@ class MainWindow(QMainWindow):
         self.ui.setupUi(self)
         self.SetupButtons()
         self.connection = DataExchange()
-        threading.Thread(target = self.RequestDevices).start()
-
-    def RequestDevices(self):
-        while True:
-            Connection().SendMessage(str.encode("GetDevices"))
-            deviceLen = Connection().ReceiveMessage()
-            for i in range (int(deviceLen)):
-                print(Connection().ReceiveMessage())
-            time.sleep(2)
+        threading.Thread(target = DataExchange().RequestDevices).start()
 
     def SetupButtons(self):
         self.ui.SetSpeedLimitButton.clicked.connect(self.ShowSetSpeedLimitDialog)
+        self.ui.RefreshButton.clicked.connect(self.UpdateDeviceList)
+
+    def UpdateDeviceList(self):
+        DataExchange().RequestDevices()
+        self.ui.DeviceList.setDisabled(True)
+        self.ui.DeviceList.clear()
+        for i in range(len(Connection().deviceList)):
+            device = Connection().deviceList[i]
+            self.ui.DeviceList.addItem(device.decode('utf-8'))        
+        self.ui.DeviceList.setDisabled(False)
 
     @pyqtSlot()
     def ShowSetSpeedLimitDialog(self):
@@ -46,4 +48,11 @@ class MainWindow(QMainWindow):
             self.setSpeedLimitDialog.show()
         else:
             pass
-        #self.setSpeedLimitDialog.setupUi(self)
+
+    def KeyPressEvent(self, event):
+        if event.key() == Qt.Key_Escape:
+            self.connection.Close()
+            self.reject()
+        if event.key() == Qt.Key_Enter:
+            self.ConnectClick()
+

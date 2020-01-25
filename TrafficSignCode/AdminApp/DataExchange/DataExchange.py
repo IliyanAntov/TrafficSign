@@ -40,6 +40,15 @@ class DataExchange():
         else:
             return data   
 
+    def RequestDevices(self):
+        Connection().SendMessage(str.encode("GetDevices"))
+        deviceLen = Connection().ReceiveMessage()
+        Connection().deviceList.clear()
+        for i in range (int(deviceLen)):
+            device = Connection().ReceiveMessage()
+            Connection().deviceList.append(device)
+
+
     def WaitForData(self):
         ready = select.select([Connection().client_socket], [], [], 2)
         if ready[0]:

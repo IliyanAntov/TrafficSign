@@ -16,7 +16,8 @@ from GUI.LoginDialog.LoginDialog import Ui_LoginDialog
 class Connection():
 
     client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-
+    deviceList = []
+    
     @staticmethod
     def SendMessage(data):
         length = len(data)

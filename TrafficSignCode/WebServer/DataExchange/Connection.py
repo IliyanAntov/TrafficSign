@@ -7,7 +7,7 @@ import time
 
 class Connection():
 
-    deviceList = ["Neshto"]
+    deviceList = ["Neshto", "Drugo"]
 
     @staticmethod
     def SendMessage(sock, data):
