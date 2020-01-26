@@ -40,18 +40,6 @@ void setup() {
   //modem.restart();
   modem.init();
 
-  // SerialMon.print("Waiting for network...");
-  // if (!modem.waitForNetwork(240000L)) {
-  //   SerialMon.println(" fail");
-  //   delay(10000);
-  //   return;
-  // }
-  // SerialMon.println(" OK");
-
-  // if (modem.isNetworkConnected()) {
-  //   SerialMon.println("Network connected");
-  // }
-
   SerialMon.print(F("Connecting to "));
   SerialMon.print(apn);
   if (!modem.gprsConnect(apn, gprsUser, gprsPass)) {
@@ -66,20 +54,20 @@ void setup() {
   SerialMon.println(server);
   if (!client.connect(server, port)) {
     SerialMon.println(" fail");
-    delay(10000);
-    return;
+    delay(3000);
+    setup();
   }
   SerialMon.println(" OK");
 
   delay(2000);
   // Make a HTTP GET request:
-  SerialMon.println("Sending ICCID...");
+  SerialMon.println("Sending IMEI...");
   String IMEI = modem.getIMEI();
   //client.println();
-  client.println("IMEI: " + IMEI);
+  client.print("IMEI: " + IMEI);
 
   unsigned long timeout = millis();
-  while (client.connected() && millis() - timeout < 10000L) {
+  while (client.connected()){ //&& millis() - timeout < 10000L) {
     // Print available data
     while (client.available()) {
       char c = client.read();

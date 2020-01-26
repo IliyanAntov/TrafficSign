@@ -9,14 +9,24 @@ from DataExchange.TrafficSignConnection.TrafficSignConnectionHandler import Traf
 from DataExchange.AdminConnection.AdminAppConnectionHandler import AdminAppConnectionHandler
 
 
+def HandleAdminConnections():
+    while True:
+        adminConnection = adminConnections.WaitForConnection()
+
+def HandleDeviceConnections():
+    while True:
+         deviceConnection = deviceConnections.WaitForConnection()
+
 if __name__ == '__main__':
 
     adminConnections = AdminAppConnectionHandler()
     deviceConnections = TrafficSignConnectionHandler()
-    while True:
-        adminConnection = adminConnections.WaitForConnection()
-        deviceConnection = deviceConnections.WaitForConnection()
+
+    threading.Thread(target=HandleAdminConnections).start()
+    threading.Thread(target=HandleDeviceConnections).start()
+
     #threading.Thread(target = AdminConnectionHandler).start()
     #threading.Thread(target = DeviceConnectionHandler).start()
+
 
 #server_socket.close()

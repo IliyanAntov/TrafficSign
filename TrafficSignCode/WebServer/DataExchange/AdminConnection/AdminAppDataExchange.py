@@ -15,18 +15,42 @@ class AdminAppDataExchange(Thread):
         self.socket = socket
 
     def run(self):
-        self.ListenToUser(self.socket)
+        self.ListenToUser()
 
-    def ListenToUser(self, socket):
+    def ListenToUser(self):
         while True:
-            data = Connection().ReceiveMessage(socket)
+            data = Connection().ReceiveMessage(self.socket)
             print(data)
             if(data == None):
                 break
             else:
+                self.HandleUserRequest(data.decode('utf-8'))
                 #data = str.decode(data, 'utf-8')
-                if(data == b"GetDevices"):
-                    Connection().SendMessage(socket, str.encode(str(len(Connection().deviceList))))
-                    for i in range(len(Connection().deviceList)):
-                        Connection().SendMessage(socket, str.encode(Connection().deviceList[i]))
-        socket.close()
+        self.socket.close()
+
+    def HandleUserRequest(self, data):
+        commands = data.split(' ')
+        if(len(commands) > 1):
+            request = commands.pop(0)
+            if(request == "GET"):
+                self.HandleGetRequest(commands[0])
+            elif(request == "SET"):
+                self.HandleSetRequest(commands)
+        else:
+            print("Something went wrong")
+    
+    def HandleGetRequest(self, request):
+        if(request == "devices"):
+            devicesLength = len(Connection().deviceList)
+            Connection().SendMessage(self.socket, str.encode(str(devicesLength), encoding="utf-8"))
+            for i in Connection().deviceList:
+                Connection().SendMessage(self.socket, str.encode(str(i), encoding="utf-8"))
+            return
+        else:
+            print('Unknown request')
+            return
+        
+
+    def HandleSetRequest(self, commands):
+        pass
+    

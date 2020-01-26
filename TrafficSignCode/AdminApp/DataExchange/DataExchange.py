@@ -40,14 +40,16 @@ class DataExchange():
         else:
             return data   
 
-    def RequestDevices(self):
-        Connection().SendMessage(str.encode("GetDevices"))
+    def GetDevices(self):
+        Connection().SendMessage(str.encode("GET devices"))
         deviceLen = Connection().ReceiveMessage()
         Connection().deviceList.clear()
         for i in range (int(deviceLen)):
             device = Connection().ReceiveMessage()
             Connection().deviceList.append(device)
 
+    def SetSpeedLimit(self, target, speedLimit):
+        Connection().SendMessage(str.encode("SET " + target +  " speed " + speedLimit))
 
     def WaitForData(self):
         ready = select.select([Connection().client_socket], [], [], 2)

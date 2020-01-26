@@ -20,20 +20,20 @@ class SetSpeedLimitDialog(QDialog):
         self.target = target
         self.ui = Ui_SetSpeedLimitDialog()
         self.ui.setupUi(self)
-        self.SetupFunctionality()
         self.connection = DataExchange()
+        self.SetupFunctionality()
     
     def SetupFunctionality(self):
         inputRegEx = QRegExp("[1-9]\d{0,2}")
         validator = QRegExpValidator(inputRegEx)
         self.ui.SpeedLimitTextBox.setValidator(validator)
-        self.ui.ConfirmButton.clicked.connect(self.SendSpeedLimit)
+        self.ui.ConfirmButton.clicked.connect(self.SetSpeedLimit)
         self.ui.CancelButton.clicked.connect(self.QuitDialog)
-
-    def SendSpeedLimit(self):
-        speedLimit = self.ui.SpeedLimitTextBox.text()
-        Connection().SendMessage(str.encode("Target:" + self.target + " " "SpeedLim:" + speedLimit))
-        self.accept()
  
+    def SetSpeedLimit(self):
+        speedLimit = self.ui.SpeedLimitTextBox.text()
+        self.connection.SetSpeedLimit(self.target, speedLimit)
+        self.accept()
+
     def QuitDialog(self):
         self.reject() 

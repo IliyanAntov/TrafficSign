@@ -17,14 +17,18 @@ class TrafficSignDataExchange(Thread):
         self.ExchangeInformation(self.socket)
 
     def ExchangeInformation(self, socket):
-        Connection().deviceList.append('Oshte edin')
-        data = socket.recv(30)
-        IMEI = data.decode('utf-8')
+        incoming = socket.recv(30)
+        data = incoming.decode('utf-8').split(' ')
+        if(data[0] == "IMEI:" and len(data) > 1):
+            Connection().deviceList[data[1]] = socket
+            print("Success")
+        else:
+            print("Something went wrong")
         socket.send(b'ok')
-        Connection().deviceList.append(IMEI)
-        while True:
-            #request = b'details'
-            #self.deviceSocket.send(request)
-            data = socket.recv(30)
-            print(data.decode('utf-8'))
-            socket.send(b'zdrasti')
+
+        # while True:
+        #     #request = b'details'
+        #     #self.deviceSocket.send(request)
+        #     data = socket.recv(30)
+        #     print(data.decode('utf-8'))
+        #     socket.send(b'zdrasti')

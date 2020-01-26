@@ -24,19 +24,18 @@ class MainWindow(QMainWindow):
         self.ui.setupUi(self)
         self.SetupButtons()
         self.connection = DataExchange()
-        threading.Thread(target = DataExchange().RequestDevices).start()
 
     def SetupButtons(self):
         self.ui.SetSpeedLimitButton.clicked.connect(self.ShowSetSpeedLimitDialog)
         self.ui.RefreshButton.clicked.connect(self.UpdateDeviceList)
 
     def UpdateDeviceList(self):
-        DataExchange().RequestDevices()
+        DataExchange().GetDevices()
         self.ui.DeviceList.setDisabled(True)
         self.ui.DeviceList.clear()
         for i in range(len(Connection().deviceList)):
             device = Connection().deviceList[i]
-            self.ui.DeviceList.addItem(device.decode('utf-8'))        
+            self.ui.DeviceList.addItem(device.decode('utf-8'))
         self.ui.DeviceList.setDisabled(False)
 
     @pyqtSlot()
