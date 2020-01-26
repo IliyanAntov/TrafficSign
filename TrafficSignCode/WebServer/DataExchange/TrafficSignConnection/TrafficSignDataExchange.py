@@ -4,25 +4,27 @@ import select
 import struct
 import threading
 import time
+from threading import Thread
 from DataExchange.Connection import Connection
 
-class TrafficSignDataExchange():
+class TrafficSignDataExchange(Thread):
 
-    def __init__(self):
+    def __init__(self, socket):
         super().__init__()
-        self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self.socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-        self.socket.bind(('localhost', 65432))
-        self.socket.listen(100)
+        self.socket = socket
 
-    def WaitForConnection(self):
-        self.deviceSocket, self.deviceAddress = self.socket.accept()
-        print ("Traffic sign connected at ", self.deviceAddress)
-        return True
+    def run(self):
+        self.ExchangeInformation(self.socket)
 
-    def ExchangeInformation(self):
+    def ExchangeInformation(self, socket):
         Connection().deviceList.append('Oshte edin')
+        data = socket.recv(30)
+        IMEI = data.decode('utf-8')
+        socket.send(b'ok')
+        Connection().deviceList.append(IMEI)
         while True:
-            request = b'details'
-            self.deviceSocket.send(request)
-            data = self.deviceSocket.recv(100)
+            #request = b'details'
+            #self.deviceSocket.send(request)
+            data = socket.recv(30)
+            print(data.decode('utf-8'))
+            socket.send(b'zdrasti')

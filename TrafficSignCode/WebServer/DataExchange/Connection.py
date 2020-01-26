@@ -28,7 +28,8 @@ class Connection():
         buf = b''
         while count:
             newbuf = sock.recv(count)
-            if not newbuf: return None
+            if not newbuf:
+                return None
             buf += newbuf
             count -= len(newbuf)
         return buf
