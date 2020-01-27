@@ -69,11 +69,39 @@ void setup() {
   unsigned long timeout = millis();
   while (client.connected()){ //&& millis() - timeout < 10000L) {
     // Print available data
-    while (client.available()) {
-      char c = client.read();
-      SerialMon.print(c);
-      timeout = millis();
+    int incomingDataLength = client.available();
+    if(incomingDataLength){
+      char command[3] = "";
+      char request[3] = "";
+      char value[3] = "";
+      for (int i = 0; i < 3; i++){
+          char current = client.read();
+          command[i] = current;
+          SerialMon.print(current);
+      }
+      client.read();
+      SerialMon.print('\n');
+      for (int i = 0; i < 3; i++){
+          char current = client.read();
+          request[i] = current;
+          SerialMon.print(current);
+      }
+      client.read();
+      SerialMon.print('\n');
+      int i = 0;
+      while(client.available()){
+        char current = client.read();
+        value[i] = current;
+        i++;
+        SerialMon.print(current);
+      }
+      SerialMon.print('\n');
     }
+    // while (client.available()) {
+    //   char c = client.read();
+    //   SerialMon.print(c);
+    //   timeout = millis();
+    // }
   }
   SerialMon.println();
 

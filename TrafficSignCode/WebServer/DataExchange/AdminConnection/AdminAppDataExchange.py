@@ -6,6 +6,7 @@ import threading
 import time
 from threading import Thread
 from DataExchange.Connection import Connection
+from DataExchange.TrafficSignConnection.TrafficSignDataExchange import TrafficSignDataExchange
 
 
 class AdminAppDataExchange(Thread):
@@ -52,5 +53,13 @@ class AdminAppDataExchange(Thread):
         
 
     def HandleSetRequest(self, commands):
-        pass
+        targetIMEI = commands.pop(0)
+        request = commands.pop(0)
+        if(request == "speed"):
+            amount = commands.pop(0)
+        
+        Connection().SendSetRequest(targetIMEI, request, amount)
+        
+
+
     

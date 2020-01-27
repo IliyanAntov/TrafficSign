@@ -24,11 +24,3 @@ class TrafficSignDataExchange(Thread):
             print("Success")
         else:
             print("Something went wrong")
-        socket.send(b'ok')
-
-        # while True:
-        #     #request = b'details'
-        #     #self.deviceSocket.send(request)
-        #     data = socket.recv(30)
-        #     print(data.decode('utf-8'))
-        #     socket.send(b'zdrasti')

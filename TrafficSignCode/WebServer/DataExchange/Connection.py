@@ -33,3 +33,17 @@ class Connection():
             buf += newbuf
             count -= len(newbuf)
         return buf
+
+    @staticmethod
+    def SendSetRequest(targetIMEI, request, amount):
+        if(targetIMEI in Connection().deviceList):
+            deviceSocket = Connection().deviceList[targetIMEI]
+            if(request == 'speed'):
+                request = 'spd'
+            elif(request == 'warning'):
+                request = 'wrn'
+            deviceSocket.send(str.encode("SET " + request + " " + amount))
+        else:
+            print("Requested device not found")
+            return
+
