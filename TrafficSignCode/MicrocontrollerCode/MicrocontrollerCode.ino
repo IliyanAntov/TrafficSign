@@ -92,7 +92,7 @@ void ConnectToAPN() {
   // strcat(command, gprsUser);
   // strcat(command, ", ");
   // strcat(command, gprsPass);
-    ("asd");
+  SerialAT.print("asd");
   delay(3000);
   //SerialMon.println(" OK");
 }
