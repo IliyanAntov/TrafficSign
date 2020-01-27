@@ -26,6 +26,48 @@ const int port = 65432;
 
 void setup() {
 
+  InitSerial();
+
+  InitModem();
+
+  ConnectToAPN();
+
+  AttemptConnect();
+
+  SendIMEI();
+
+  ReadData();
+
+  SerialMon.println("Disconnected, stopping...");
+  client.stop();
+  modem.gprsDisconnect();
+
+
+}
+
+void loop() {
+
+  // Shutdown
+
+  //client.stop();
+  //SerialMon.println(F("Server disconnected"));
+    //modem.gprsDisconnect();
+    //SerialMon.println(F("GPRS disconnected"));
+
+  // Do nothing forevermore
+  while (true) {
+    delay(1000);
+  }
+}
+
+
+void RestartModule() {
+  digitalWrite(8, LOW);
+  delay(500);
+  digitalWrite(8,HIGH);
+}
+
+void InitSerial() {
   SerialMon.begin(115200);
   delay(10);
   SerialMon.println("Wait...");
@@ -36,36 +78,45 @@ void setup() {
   SerialAT.begin(9600);
   delay(3000);
 
+}
+
+void InitModem() {
   SerialMon.println("Initializing modem...");
   //modem.restart();
   modem.init();
+}
 
+void ConnectToAPN() {
   SerialMon.print(F("Connecting to "));
   SerialMon.print(apn);
   if (!modem.gprsConnect(apn, gprsUser, gprsPass)) {
     SerialMon.println(" fail");
-    delay(10000);
+    setup();
     return;
   }
   SerialMon.println(" OK");
+}
 
-
+void AttemptConnect() {
   SerialMon.print("Connecting to ");
   SerialMon.println(server);
   if (!client.connect(server, port)) {
     SerialMon.println(" fail");
-    delay(3000);
     setup();
+    return;
   }
   SerialMon.println(" OK");
 
   delay(2000);
-  // Make a HTTP GET request:
+}
+
+void SendIMEI() {
   SerialMon.println("Sending IMEI...");
   String IMEI = modem.getIMEI();
-  //client.println();
   client.print("IMEI: " + IMEI);
+}
 
+void ReadData() {
   unsigned long timeout = millis();
   while (client.connected()){ //&& millis() - timeout < 10000L) {
     // Print available data
@@ -97,34 +148,5 @@ void setup() {
       }
       SerialMon.print('\n');
     }
-    // while (client.available()) {
-    //   char c = client.read();
-    //   SerialMon.print(c);
-    //   timeout = millis();
-    // }
-  }
-  SerialMon.println();
-
-  client.stop();
-  modem.gprsDisconnect();
-
-
-}
-
-void loop() {
-
-  // Shutdown
-
-  //client.stop();
-  //SerialMon.println(F("Server disconnected"));
-
-//#if TINY_GSM_USE_GPRS
-    //modem.gprsDisconnect();
-    //SerialMon.println(F("GPRS disconnected"));
-//#endif
-
-  // Do nothing forevermore
-  while (true) {
-    delay(1000);
   }
 }
