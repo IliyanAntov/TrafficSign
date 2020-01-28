@@ -42,7 +42,8 @@ class Connection():
                 request = 'spd'
             elif(request == 'warning'):
                 request = 'wrn'
-            deviceSocket.send(str.encode("SET " + request + " " + amount))
+            #deviceSocket.send(str.encode("SET " + request + " " + amount + "\n"))
+            deviceSocket.send(str.encode(amount + "\n"))
         else:
             print("Requested device not found")
             return
