@@ -30,13 +30,13 @@ void setup() {
 
   InitSerial();
 
-  InitModem(modem);
+  //InitModem(modem);
 
-  ConnectToAPN(modem);
+  //ConnectToAPN(modem);
 
-  AttemptConnect(client);
+  //AttemptConnect(client);
 
-  SendIMEI(modem, client);
+  //SendIMEI(modem, client);
   
   //Visualize(client);
 
@@ -65,42 +65,18 @@ void loop() {
   int newValue = 0;
   while(true){
     if(SerialAT.available()){
-      //newValue = ReadData(currentValue);
-      newValue = currentValue+1;
+      newValue = ReadData(currentValue);
       matrix.fillScreen(matrix.Color333(0,0,0));
       matrix.drawCircle(16, 16, 15, matrix.Color333(1, 0, 0));
       matrix.setTextColor(matrix.Color333(1,1,1));
       matrix.setCursor(6, 9);
       matrix.println(newValue);
       currentValue = newValue;
-    }
-  }
-}
-
-void Visualize(TinyGsmClient client){
-  int currentValue = 30;
-  RGBmatrixPanel matrix(A, B, C, D, CLK, LAT, OE, false);
-  matrix.begin();
-  matrix.drawCircle(16, 16, 15, matrix.Color333(1, 0, 0));
-  matrix.setTextColor(matrix.Color333(1,1,1));
-  matrix.setTextSize(2);
-  matrix.setCursor(6, 9);
-  matrix.println(currentValue);
-  int newValue = 0;
-  while(true){
-    if(client.available()){
-      //newValue = ReadData(currentValue);
-      newValue = currentValue+1;
+      delay(2000);
       matrix.fillScreen(matrix.Color333(0,0,0));
-      matrix.drawCircle(16, 16, 15, matrix.Color333(1, 0, 0));
-      matrix.setTextColor(matrix.Color333(1,1,1));
-      matrix.setCursor(6, 9);
-      matrix.println(newValue);
-      currentValue = newValue;
     }
   }
 }
-
 
 void RestartModule() {
   digitalWrite(8, LOW);
@@ -109,13 +85,11 @@ void RestartModule() {
 }
 
 void InitSerial() {
-
   pinMode(8, OUTPUT);
   digitalWrite(8, HIGH);
 
   SerialAT.begin(9600);
   delay(1000);
-
 }
 
 void InitModem(TinyGsm modem) {
@@ -146,13 +120,12 @@ void SendIMEI(TinyGsm modem, TinyGsmClient client) {
 }
 
 int ReadData(int currentValue){
-
   while(SerialAT.available() > 0){
     current = (char) SerialAT.read();
     if(current == '\n'){
       command[index] = '\0';
       index = 0;
-      return 1;
+      return atoi(command);
     }
     else{
       command[index] = current;
@@ -160,10 +133,9 @@ int ReadData(int currentValue){
     index++;
     if(index >= 3){
       index = 0;
-      return 2;
     }
   }
-  return 0;
+  return currentValue;
   //   Serial.read();
   //   if(command != 'S'){
   //     return currentValue+1;
