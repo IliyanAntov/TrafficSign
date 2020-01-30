@@ -22,21 +22,21 @@ const char gprsPass[] = "VIVACOM";
 const char server[] = "37.157.168.186";
 const int port = 65432;
 
-//RGBmatrixPanel matrix(A, B, C, D, CLK, LAT, OE, false);
+RGBmatrixPanel matrix(A, B, C, D, CLK, LAT, OE, false);
+TinyGsm modem(SerialAT);
+TinyGsmClient client(modem);
 
 void setup() {
-  TinyGsm modem(SerialAT);
-  TinyGsmClient client(modem);
 
   InitSerial();
 
-  //InitModem(modem);
+  InitModem(modem);
 
-  //ConnectToAPN(modem);
+  ConnectToAPN(modem);
 
-  //AttemptConnect(client);
+  AttemptConnect(client);
 
-  //SendIMEI(modem, client);
+  SendIMEI(modem, client);
   
   //Visualize(client);
 
@@ -47,33 +47,28 @@ void setup() {
   //modem.gprsDisconnect();
 
 }
-
-char command[4];
-int index = 0;
-char current;
-
+int speedLimit = 30;
 
 void loop() {
-  int currentValue = 30;
-  RGBmatrixPanel matrix(A, B, C, D, CLK, LAT, OE, false);
+  // Visualize(speedLimit);
+  // delay(2000);
+  // speedLimit = ReadData(speedLimit);
+  // delay(2000);
   matrix.begin();
-  matrix.drawCircle(16, 16, 15, matrix.Color333(1, 0, 0));
-  matrix.setTextColor(matrix.Color333(1,1,1));
+  matrix.drawCircle(16, 16, 15, matrix.Color333(7, 0, 0));
+  matrix.setTextColor(matrix.Color333(7,7,7));
   matrix.setTextSize(2);
   matrix.setCursor(6, 9);
-  matrix.println(currentValue);
-  int newValue = 0;
+  matrix.println(speedLimit);
   while(true){
-    if(SerialAT.available()){
-      newValue = ReadData(currentValue);
-      matrix.fillScreen(matrix.Color333(0,0,0));
-      matrix.drawCircle(16, 16, 15, matrix.Color333(1, 0, 0));
-      matrix.setTextColor(matrix.Color333(1,1,1));
+    if(client.available()){
+      speedLimit = ReadData(speedLimit);
+      matrix.fillScreen(matrix.Color333(0, 0, 0));
+      matrix.drawCircle(16, 16, 15, matrix.Color333(7, 0, 0));
+      matrix.setTextColor(matrix.Color333(7,7,7));
+      matrix.setTextSize(2);
       matrix.setCursor(6, 9);
-      matrix.println(newValue);
-      currentValue = newValue;
-      delay(2000);
-      matrix.fillScreen(matrix.Color333(0,0,0));
+      matrix.println(speedLimit);
     }
   }
 }
@@ -119,9 +114,15 @@ void SendIMEI(TinyGsm modem, TinyGsmClient client) {
   client.print("IMEI: " + IMEI);
 }
 
+
+char command[4];
+char 
+int index = 0;
+char current;
+
 int ReadData(int currentValue){
-  while(SerialAT.available() > 0){
-    current = (char) SerialAT.read();
+  while(client.available() > 0){
+    current = (char) client.read();
     if(current == '\n'){
       command[index] = '\0';
       index = 0;
@@ -160,4 +161,21 @@ int ReadData(int currentValue){
   //   }
   // }
   //return atoi(value);
+}
+
+void Visualize(int value){
+  // RGBmatrixPanel matrix(A, B, C, D, CLK, LAT, OE, false);
+  // matrix.begin();
+  // matrix.drawCircle(16, 16, 15, matrix.Color333(1, 0, 0));
+  // matrix.setTextColor(matrix.Color333(1,1,1));
+  // matrix.setTextSize(2);
+  // matrix.setCursor(6, 9);
+  // matrix.println(value);
+  // delay(5000);
+  // while(true){
+  //   if(SerialAT.available()){
+  //     return;
+  //   }
+  //   delay(5000);
+  // }
 }
