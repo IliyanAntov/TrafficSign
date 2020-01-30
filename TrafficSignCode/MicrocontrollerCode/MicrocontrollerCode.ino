@@ -30,53 +30,41 @@ void setup() {
 
   InitSerial();
 
-  InitModem(modem);
+  ConnectToServer();
 
-  ConnectToAPN(modem);
-
-  AttemptConnect(client);
-
-  SendIMEI(modem, client);
+  InitMatrix();
   
-  //Visualize(client);
-
-  //ReadData();
-
   //SerialMon.println("Disconnected, stopping...");
   //client.stop();
   //modem.gprsDisconnect();
 
 }
-int speedLimit = 30;
 
 void loop() {
-  // Visualize(speedLimit);
-  // delay(2000);
-  // speedLimit = ReadData(speedLimit);
-  // delay(2000);
-  matrix.begin();
-  matrix.drawCircle(16, 16, 15, matrix.Color333(7, 0, 0));
-  matrix.setTextColor(matrix.Color333(7,7,7));
-  matrix.setTextSize(2);
-  matrix.setCursor(6, 9);
-  matrix.println(speedLimit);
-  while(true){
+  while(client.connected()){
     if(client.available()){
-      speedLimit = ReadData(speedLimit);
-      matrix.fillScreen(matrix.Color333(0, 0, 0));
-      matrix.drawCircle(16, 16, 15, matrix.Color333(7, 0, 0));
-      matrix.setTextColor(matrix.Color333(7,7,7));
-      matrix.setTextSize(2);
-      matrix.setCursor(6, 9);
-      matrix.println(speedLimit);
+      ReadCommand();
     }
   }
+  RestartModule();
+  ConnectToServer();
 }
 
 void RestartModule() {
   digitalWrite(8, LOW);
   delay(500);
   digitalWrite(8, HIGH);
+  delay(2000);
+}
+
+void ConnectToServer() {
+  InitModem();
+
+  ConnectToAPN();
+
+  AttemptConnect();
+
+  SendIMEI();
 }
 
 void InitSerial() {
@@ -87,11 +75,11 @@ void InitSerial() {
   delay(1000);
 }
 
-void InitModem(TinyGsm modem) {
-  modem.restart();
+void InitModem() {
+  modem.init();
 }
 
-void ConnectToAPN(TinyGsm modem) {
+void ConnectToAPN() {
   modem.gprsConnect(apn, gprsUser, gprsPass);
   if (!modem.waitForNetwork(240000L)) {
     delay(10000);
@@ -100,7 +88,7 @@ void ConnectToAPN(TinyGsm modem) {
   }
 }
 
-void AttemptConnect(TinyGsmClient client) {
+void AttemptConnect() {
   if (!client.connect(server, port)) {
     delay(10000);
     setup();
@@ -109,73 +97,113 @@ void AttemptConnect(TinyGsmClient client) {
   delay(2000);
 }
 
-void SendIMEI(TinyGsm modem, TinyGsmClient client) {
+void SendIMEI() {
   String IMEI = modem.getIMEI();
   client.print("IMEI: " + IMEI);
 }
 
+void InitMatrix(){
+  matrix.begin();
+  matrix.setTextColor(matrix.Color333(7,7,7));
+  matrix.setTextSize(1);
+  matrix.setCursor(0, 0);
+  matrix.setTextWrap(false);
+  matrix.println(F("Wait"));
+  matrix.setCursor(0, 8);
+  matrix.println(F("for"));
+  matrix.setCursor(0, 16);
+  matrix.println(F("data"));
+  matrix.setCursor(0, 24);
+  matrix.println(F("..."));
+  //delay(2000);
+  //matrix.fillScreen(matrix.Color333(0, 0, 0));
+}
 
 char command[4];
-char 
+char request[4];
+char value[4];
 int index = 0;
 char current;
 
-int ReadData(int currentValue){
-  while(client.available() > 0){
-    current = (char) client.read();
-    if(current == '\n'){
-      command[index] = '\0';
-      index = 0;
-      return atoi(command);
-    }
-    else{
-      command[index] = current;
-    }
+void ReadCommand(){
+  current = (char) client.read();
+  while(current != '\n' && current != ' '){
+    command[index] = current;
     index++;
     if(index >= 3){
       index = 0;
     }
+    current = (char) client.read();
   }
-  return currentValue;
-  //   Serial.read();
-  //   if(command != 'S'){
-  //     return currentValue+1;
-  //   }
+  command[index] = '\0';
+  index = 0;
+  if(strcmp(command, "END") == 0){
+    client.stop();
+    modem.gprsDisconnect();
+    return;   
+  }
+  else if(strcmp(command, "SET") == 0){
+    HandleSet();
+  }
+  else if(strcmp(command, "GET") == 0){
+    HandleGet();
+  }
+  else{
+    VisualizeSpeedLimit(0);
+    return;
+  }
 
-  //   request = Serial.read();
-  //   Serial.read();
-
-  //   int i = 0;
-  //   while (Serial.available())
-  //   {
-  //     char current = Serial.read();
-  //     Serial.print(current);
-  //     if(current == '\n'){
-        
-  //     }
-  //     else{
-  //       value[i] = current;
-  //     }
-  //     i++;
-  //   Serial.println(current);
-  //   }
-  // }
-  //return atoi(value);
 }
 
-void Visualize(int value){
-  // RGBmatrixPanel matrix(A, B, C, D, CLK, LAT, OE, false);
-  // matrix.begin();
-  // matrix.drawCircle(16, 16, 15, matrix.Color333(1, 0, 0));
-  // matrix.setTextColor(matrix.Color333(1,1,1));
-  // matrix.setTextSize(2);
-  // matrix.setCursor(6, 9);
-  // matrix.println(value);
-  // delay(5000);
-  // while(true){
-  //   if(SerialAT.available()){
-  //     return;
-  //   }
-  //   delay(5000);
-  // }
+void HandleSet(){
+  current = (char) client.read();
+  while(current != '\n' && current != ' '){
+    request[index] = current;
+    index++;
+    if(index >= 3){
+      index = 0;
+    }
+    current = (char) client.read();
+  }
+  request[index] = '\0';
+  index = 0;
+
+  if(strcmp(request, "spd") == 0){
+    int limit = ReadNum();
+    VisualizeSpeedLimit(limit);
+  }
+  else{
+    VisualizeSpeedLimit(1);
+  }
+}
+
+void HandleGet(){
+
+}
+
+int ReadNum(){
+  current = (char) client.read();
+  while(current != '\n' && current != ' '){
+    value[index] = current;
+    index++;
+    if(index >= 3){
+      index = 0;
+    }
+    current = (char) client.read();
+  }
+  value[index] = '\0';
+  index = 0;
+  while(client.available()){
+    client.read();
+  }
+  return atoi(value);
+}
+
+void VisualizeSpeedLimit(int speedLimit){
+  matrix.fillScreen(matrix.Color333(0, 0, 0));
+  matrix.drawCircle(16, 16, 15, matrix.Color333(7, 0, 0));
+  matrix.setTextColor(matrix.Color333(7,7,7));
+  matrix.setTextSize(2);
+  matrix.setCursor(6, 9);
+  matrix.println(speedLimit);
 }
