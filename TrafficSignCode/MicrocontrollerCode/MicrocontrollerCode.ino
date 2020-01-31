@@ -1,6 +1,8 @@
 #include <RGBmatrixPanel.h>
 
+
 #define TINY_GSM_MODEM_SIM800
+
 
 #define SerialAT Serial
 
@@ -130,13 +132,12 @@ void ReadCommand(){
   while(current != '\n' && current != ' '){
     command[index] = current;
     index++;
-    if(index >= 3){
+    if(index > 3){
       index = 0;
     }
     current = (char) client.read();
   }
   command[index] = '\0';
-  index = 0;
   if(strcmp(command, "END") == 0){
     client.stop();
     modem.gprsDisconnect();
@@ -156,11 +157,12 @@ void ReadCommand(){
 }
 
 void HandleSet(){
+  index = 0;
   current = (char) client.read();
   while(current != '\n' && current != ' '){
     request[index] = current;
     index++;
-    if(index >= 3){
+    if(index > 3){
       index = 0;
     }
     current = (char) client.read();
@@ -186,7 +188,7 @@ int ReadNum(){
   while(current != '\n' && current != ' '){
     value[index] = current;
     index++;
-    if(index >= 3){
+    if(index > 3){
       index = 0;
     }
     current = (char) client.read();
