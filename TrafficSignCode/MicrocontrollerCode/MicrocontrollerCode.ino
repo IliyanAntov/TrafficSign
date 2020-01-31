@@ -32,24 +32,22 @@ void setup() {
 
   InitSerial();
 
-  ConnectToServer();
+  //ConnectToServer();
 
   InitMatrix();
+  matrix.fillScreen(matrix.Color333(0, 0, 0));
   
-  //SerialMon.println("Disconnected, stopping...");
-  //client.stop();
-  //modem.gprsDisconnect();
-
 }
 
 void loop() {
-  while(client.connected()){
-    if(client.available()){
-      ReadCommand();
-    }
-  }
-  RestartModule();
-  ConnectToServer();
+
+  // while(client.connected()){
+  //   if(client.available()){
+  //     ReadCommand();
+  //   }
+  // }
+  // RestartModule();
+  // ConnectToServer();
 }
 
 void RestartModule() {
@@ -203,9 +201,40 @@ int ReadNum(){
 
 void VisualizeSpeedLimit(int speedLimit){
   matrix.fillScreen(matrix.Color333(0, 0, 0));
+
   matrix.drawCircle(16, 16, 15, matrix.Color333(7, 0, 0));
-  matrix.setTextColor(matrix.Color333(7,7,7));
-  matrix.setTextSize(2);
-  matrix.setCursor(6, 9);
+  matrix.drawCircle(16, 16, 14, matrix.Color333(7, 0, 0));
+  matrix.drawPixel(4, 8, matrix.Color333(7, 0, 0));
+  matrix.drawPixel(4, 24, matrix.Color333(7, 0, 0));
+  matrix.drawPixel(8, 4, matrix.Color333(7, 0, 0));
+  matrix.drawPixel(8, 28, matrix.Color333(7, 0, 0));
+
+  matrix.drawPixel(28, 8, matrix.Color333(7, 0, 0));
+  matrix.drawPixel(28, 24, matrix.Color333(7, 0, 0));
+  matrix.drawPixel(24, 4, matrix.Color333(7, 0, 0));
+  matrix.drawPixel(24, 28, matrix.Color333(7, 0, 0));
+
+  matrix.setTextColor(matrix.Color333(7, 7, 7));
+
+  if(speedLimit < 10){
+    matrix.setTextSize(3);
+    matrix.setCursor(9,6);
+  }
+  else if(speedLimit >= 10 && speedLimit < 100){
+    matrix.setTextSize(2);
+    if(speedLimit < 20){
+      matrix.setCursor(5, 9);
+    }
+    else if(speedLimit%10 == 1){
+      matrix.setCursor(7, 9);
+    }
+    else{
+      matrix.setCursor(6, 9);
+    }
+  }
+  else{
+    matrix.setTextSize(1);
+    matrix.setCursor(8, 13);
+  }
   matrix.println(speedLimit);
 }
