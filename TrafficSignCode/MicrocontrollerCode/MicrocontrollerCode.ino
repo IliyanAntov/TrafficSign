@@ -17,6 +17,7 @@
 const char apn[]  = "internet.vivacom.com";
 const char gprsUser[] = "VIVACOM";
 const char gprsPass[] = "VIVACOM";
+const int defaultSpeedLimit = 50;
 
 #include <TinyGsmClient.h>
 
@@ -35,7 +36,14 @@ void setup() {
   //ConnectToServer();
 
   InitMatrix();
+  delay(500);
   matrix.fillScreen(matrix.Color333(0, 0, 0));
+
+  // for(int i = 0; i < 200; i++){
+  //   VisualizeSpeedLimit(i);
+  //   delay(500);
+  // }
+  //matrix.fillScreen(matrix.Color333(0, 0, 0));
   
 }
 
@@ -125,6 +133,8 @@ char value[4];
 int index = 0;
 char current;
 
+char currentState[8];
+
 void ReadCommand(){
   current = (char) client.read();
   while(current != '\n' && current != ' '){
@@ -141,20 +151,8 @@ void ReadCommand(){
     modem.gprsDisconnect();
     return;   
   }
-  else if(strcmp(command, "SET") == 0){
-    HandleSet();
-  }
-  else if(strcmp(command, "GET") == 0){
-    HandleGet();
-  }
-  else{
-    VisualizeSpeedLimit(0);
-    return;
-  }
 
-}
 
-void HandleSet(){
   index = 0;
   current = (char) client.read();
   while(current != '\n' && current != ' '){
@@ -168,20 +166,42 @@ void HandleSet(){
   request[index] = '\0';
   index = 0;
 
-  if(strcmp(request, "spd") == 0){
-    int limit = ReadNum();
-    VisualizeSpeedLimit(limit);
+  if(strcmp(command, "SET") == 0){
+    HandleSet();
+  }
+  else if(strcmp(command, "GET") == 0){
+    HandleGet();
   }
   else{
-    VisualizeSpeedLimit(1);
+    VisualizeSpeedLimit(0);
+    return;
+  }
+
+}
+
+void HandleSet(){
+  if(strcmp(request, "spd") == 0){
+    int limit = ReadSpeed();
+    VisualizeSpeedLimit(limit);
+    ChangeCurrentState();
+    client.print('k');
+  }
+  else{
+    return;
   }
 }
 
 void HandleGet(){
+  if(strcmp(request, "dtl") == 0){
+    client.print(currentState);
+  }
 
+  else{
+    return;
+  }
 }
 
-int ReadNum(){
+int ReadSpeed(){
   current = (char) client.read();
   while(current != '\n' && current != ' '){
     value[index] = current;
@@ -196,7 +216,23 @@ int ReadNum(){
   while(client.available()){
     client.read();
   }
+
   return atoi(value);
+}
+
+void ChangeCurrentState(){
+
+  int i = 0;
+  for(; i < 3; i++){
+    currentState[i] = request[i];
+  }
+  currentState[3] = ' ';
+
+  for(; i < (strlen(value) + 4); i++){
+    currentState[i] = value[i];
+  }
+  currentState[i+1] = '\0';
+  return;
 }
 
 void VisualizeSpeedLimit(int speedLimit){
@@ -226,10 +262,10 @@ void VisualizeSpeedLimit(int speedLimit){
       matrix.setCursor(5, 9);
     }
     else if(speedLimit%10 == 1){
-      matrix.setCursor(7, 9);
+      matrix.setCursor(6, 9);
     }
     else{
-      matrix.setCursor(6, 9);
+      matrix.setCursor(5, 9);
     }
   }
   else{

@@ -46,8 +46,19 @@ class Connection():
             toSend = "SET " + request + " " + amount + "\n"
             print(toSend)
             deviceSocket.send(str.encode(toSend))
+            
+            ready = select.select([deviceSocket], [], [], 5)
+
+            if ready[0]:
+                data = deviceSocket.recv(2)
+            else:
+                print("Error, device not responding")
+                Connection().deviceList.pop(targetIMEI)
+
             #deviceSocket.send(str.encode(amount + "\n"))
         else:
             print("Requested device not found")
             return
+
+
 

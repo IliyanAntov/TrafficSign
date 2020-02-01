@@ -3,4 +3,13 @@ Server -> uC
 SET:
 spd = speed
 wrn = warning
-cst = custom
+
+GET:
+dtl = details
+
+
+
+uC -> Server
+
+GET dtl (Response) = 8 bytes:
+[<(X leading ' ' chars to fill 8 bytes)> + <request> + <' '> + <value>]
