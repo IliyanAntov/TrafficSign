@@ -30,8 +30,8 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
-    <item row="6" column="1" colspan="2">
-     <layout class="QVBoxLayout" name="verticalLayout" stretch="0,0,0,0,0">
+    <item row="6" column="2" colspan="2">
+     <layout class="QVBoxLayout" name="verticalLayout" stretch="0,0,0,0,0,0,0">
       <property name="spacing">
        <number>5</number>
       </property>
@@ -63,6 +63,38 @@
         </property>
         <property name="text">
          <string>Refresh</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="verticalSpacer_2">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>40</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QPushButton" name="SetListEntryAliasButton">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>50</height>
+         </size>
+        </property>
+        <property name="text">
+         <string> Set list entry alias </string>
         </property>
        </widget>
       </item>
@@ -113,7 +145,7 @@
          </size>
         </property>
         <property name="text">
-         <string>Set warning</string>
+         <string> Set warning sign </string>
         </property>
        </widget>
       </item>
@@ -132,26 +164,13 @@
          </size>
         </property>
         <property name="text">
-         <string>Set speed limit</string>
+         <string> Set speed limit sign </string>
         </property>
        </widget>
       </item>
      </layout>
     </item>
-    <item row="0" column="0" colspan="2">
-     <widget class="QLabel" name="label">
-      <property name="font">
-       <font>
-        <family>Arial</family>
-        <pointsize>14</pointsize>
-       </font>
-      </property>
-      <property name="text">
-       <string>Traffic signs:</string>
-      </property>
-     </widget>
-    </item>
-    <item row="6" column="0">
+    <item row="6" column="1">
      <widget class="QListWidget" name="DeviceList">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
@@ -165,26 +184,19 @@
         <pointsize>14</pointsize>
        </font>
       </property>
-      <item>
-       <property name="text">
-        <string>Test1</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>sfagd</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Test23</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Test2</string>
-       </property>
-      </item>
+     </widget>
+    </item>
+    <item row="0" column="1" colspan="2">
+     <widget class="QLabel" name="label">
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>14</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Traffic signs:</string>
+      </property>
      </widget>
     </item>
    </layout>
