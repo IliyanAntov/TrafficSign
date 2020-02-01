@@ -19,8 +19,6 @@ from GUI_logic.LoginDialog import LoginDialog
 from GUI_logic.SetSpeedLimitDialog import SetSpeedLimitDialog
 from GUI_logic.SetAliasDialog import SetAliasDialog
 
-
-
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()

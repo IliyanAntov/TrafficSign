@@ -14,9 +14,15 @@ from DataExchange.Connection import Connection
 from GUI_logic.MainWindow import MainWindow
 from GUI_logic.LoginDialog import LoginDialog
 from GUI_logic.SetSpeedLimitDialog import SetSpeedLimitDialog
+import ctypes
 
 
 if __name__ == '__main__':
+
+    myappid = u'mycompany.myproduct.subproduct.version' # arbitrary string
+    ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(myappid)
+
+
     app = QApplication(sys.argv)
     login = LoginDialog()
     result = login.exec_()
