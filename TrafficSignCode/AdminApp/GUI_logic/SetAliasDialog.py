@@ -11,28 +11,28 @@ from PyQt5.QtCore import pyqtSlot, Qt, QRegExp
 from GUI.MainWindow.MainWindow import Ui_MainWindow
 from GUI.SetSpeedLimitDialog.SetSpeedLimitDialog import Ui_SetSpeedLimitDialog
 from GUI.LoginDialog.LoginDialog import Ui_LoginDialog
+from GUI.SetAliasDialog.SetAliasDialog import Ui_SetAliasDialog
 from DataExchange.DataExchange import DataExchange
 from DataExchange.Connection import Connection
 
-class SetSpeedLimitDialog(QDialog):
+class SetAliasDialog(QDialog):
     def __init__(self, target):
         super().__init__()
         self.target = target
-        self.ui = Ui_SetSpeedLimitDialog()
+        self.ui = Ui_SetAliasDialog()
         self.ui.setupUi(self)
         self.connection = DataExchange()
         self.SetupFunctionality()
     
     def SetupFunctionality(self):
-        inputRegEx = QRegExp("[1-9]\d{0,2}")
-        validator = QRegExpValidator(inputRegEx)
-        self.ui.SpeedLimitTextBox.setValidator(validator)
-        self.ui.ConfirmButton.clicked.connect(self.SetSpeedLimit)
+        self.ui.CurrentNameTextBox.setText(self.target)
+        self.ui.ConfirmButton.clicked.connect(self.SetAlias)
         self.ui.CancelButton.clicked.connect(self.QuitDialog)
  
-    def SetSpeedLimit(self):
-        speedLimit = self.ui.SpeedLimitTextBox.text()
-        self.connection.SetSpeedLimit(Connection().knownDevices[self.target], speedLimit)
+    def SetAlias(self):
+        IMEI = Connection().knownDevices.pop(self.target)
+        newName = self.ui.NewNameTextBox.text()
+        Connection().knownDevices[newName] = IMEI
         self.accept()
 
     def QuitDialog(self):

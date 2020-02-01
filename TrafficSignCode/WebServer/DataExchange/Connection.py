@@ -7,7 +7,8 @@ import time
 
 class Connection():
 
-    deviceList = {"TestDevice1": 'glupost'}
+    deviceList = {"5432552352345": 'glupost',
+                  "7223462356245": 'pak glupost'}
 
     @staticmethod
     def SendMessage(sock, data):

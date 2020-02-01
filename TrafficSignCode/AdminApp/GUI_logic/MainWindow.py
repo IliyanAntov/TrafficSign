@@ -11,11 +11,13 @@ from PyQt5.QtGui import QIcon, QFont, QRegExpValidator
 from PyQt5.QtCore import pyqtSlot, Qt, QRegExp
 from GUI.MainWindow.MainWindow import Ui_MainWindow
 from GUI.SetSpeedLimitDialog.SetSpeedLimitDialog import Ui_SetSpeedLimitDialog
+from GUI.SetAliasDialog.SetAliasDialog import Ui_SetAliasDialog
 from GUI.LoginDialog.LoginDialog import Ui_LoginDialog
 from DataExchange.DataExchange import DataExchange
 from DataExchange.Connection import Connection
 from GUI_logic.LoginDialog import LoginDialog
 from GUI_logic.SetSpeedLimitDialog import SetSpeedLimitDialog
+from GUI_logic.SetAliasDialog import SetAliasDialog
 
 
 
@@ -23,7 +25,6 @@ class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
 
-        self.knownDevices = {}
         self.LoadKnownDevices()
         
         self.ui = Ui_MainWindow()
@@ -36,7 +37,7 @@ class MainWindow(QMainWindow):
     def SetupButtons(self):
         self.ui.SetSpeedLimitButton.clicked.connect(self.ShowSetSpeedLimitDialog)
         self.ui.RefreshButton.clicked.connect(self.UpdateDeviceList)
-        self.ui.SetListEntryAliasButton.clicked.connect(self.UpdateDeviceAlias)
+        self.ui.SetListEntryAliasButton.clicked.connect(self.ShowSetAliasDialog)
 
     def AdjustUI(self):
         self.setStyleSheet( """ QListWidget:item:selected:active {
@@ -50,6 +51,7 @@ class MainWindow(QMainWindow):
                                 """
                                 )
 
+
     def UpdateDeviceList(self):
         DataExchange().GetDevices()
         self.ui.DeviceList.setDisabled(True)
@@ -61,39 +63,32 @@ class MainWindow(QMainWindow):
     
         self.ui.DeviceList.setDisabled(False)
 
-    def UpdateDeviceAlias(self):
-        pass
+    def GenerateDeviceList(self):
+        deviceList = []
+        for device in Connection().deviceList:
+            device = device.decode('utf-8')
+            if device not in Connection().knownDevices.values():
+                Connection().knownDevices[device] = device
+
+            deviceList.append(list(Connection().knownDevices.keys())[list(Connection().knownDevices.values()).index(device)])
+
+        return deviceList
 
 
     def LoadKnownDevices(self):
         with open("./GUI_logic/DeviceAliases.yaml", 'r') as stream:
             try:
-                self.knownDevices = yaml.safe_load(stream)
+                loaded = yaml.safe_load(stream)
+                for key, value in loaded.items():
+                    Connection().knownDevices[key] = value
+
+                print(Connection().knownDevices)
             except yaml.YAMLError as exc:
                 print(exc)
-        print(self.knownDevices)
 
     def SaveKnownDevices(self):
         with open("./GUI_logic/DeviceAliases.yaml", 'w', encoding='utf-8') as outfile:
-            yaml.dump(self.knownDevices, outfile, default_flow_style=False, allow_unicode=True)
-            print('success')
-
-
-    def GenerateDeviceList(self):
-        deviceList = []
-        for device in Connection().deviceList:
-            device = device.decode('utf-8')
-            if not self.knownDevices:
-                self.knownDevices = {}
-
-            if device not in self.knownDevices:
-                self.knownDevices[device] = device
-
-            deviceList.append(self.knownDevices[device])
-
-
-        return deviceList
-
+            yaml.dump(Connection().knownDevices, outfile, default_flow_style=False, allow_unicode=True)
 
 
     def ShowSetSpeedLimitDialog(self):
@@ -104,6 +99,17 @@ class MainWindow(QMainWindow):
         else:
             pass
 
+    def ShowSetAliasDialog(self):
+        selectedDevice = self.GetSelectedDevice()
+        if (selectedDevice):
+            self.setAliasDialog = SetAliasDialog(selectedDevice)
+            result = self.setAliasDialog.exec_()
+            if(result == QDialog.Accepted):
+                self.UpdateDeviceList()
+        else:
+            pass
+
+
     def GetSelectedDevice(self):
         deviceList = self.ui.DeviceList.selectedItems()
         if (len(deviceList) > 0):
@@ -111,14 +117,15 @@ class MainWindow(QMainWindow):
         else:
             return None
 
+
     def keyPressEvent(self, event):
         if event.key() == Qt.Key_Escape:
             self.SaveKnownDevices()
             Connection().Close()
             self.close()
-        if event.key() == Qt.Key_Enter:
-            self.ConnectClick()
 
     def closeEvent(self, event):
-        print('close')
+        self.SaveKnownDevices()
+        Connection().Close()
+        self.close()
 
