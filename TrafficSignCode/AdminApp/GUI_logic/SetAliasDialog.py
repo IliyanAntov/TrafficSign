@@ -25,6 +25,7 @@ class SetAliasDialog(QDialog):
         self.SetupFunctionality()
     
     def SetupFunctionality(self):
+        self.setWindowIcon(QIcon('./GUI/images/icon.png'))
         self.ui.CurrentNameTextBox.setText(self.target)
         self.ui.NewNameTextBox.setFocus()
         self.ui.ConfirmButton.clicked.connect(self.SetAlias)

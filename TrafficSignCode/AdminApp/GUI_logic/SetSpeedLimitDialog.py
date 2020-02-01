@@ -25,6 +25,7 @@ class SetSpeedLimitDialog(QDialog):
         self.SetupFunctionality()
     
     def SetupFunctionality(self):
+        self.setWindowIcon(QIcon('./GUI/images/icon.png'))
         inputRegEx = QRegExp("[1-9]\d{0,2}")
         validator = QRegExpValidator(inputRegEx)
         self.ui.SpeedLimitTextBox.setValidator(validator)

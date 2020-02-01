@@ -29,6 +29,7 @@ class LoginDialog(QDialog):
         self.DisableInput()
         self.ui.connectButton.clicked.connect(self.ConnectClick)  
 
+        self.setWindowIcon(QIcon('./GUI/images/icon.png'))
         #DELETE LATER
         self.ui.usernameTextBox.setText('admin')
         self.ui.passwordTextBox.setText('1234')

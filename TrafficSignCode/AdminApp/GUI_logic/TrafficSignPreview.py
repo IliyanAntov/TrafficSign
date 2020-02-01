@@ -25,6 +25,7 @@ class TrafficSignPreview(QDialog):
         self.SetupFunctionality()
     
     def SetupFunctionality(self):
+        self.setWindowIcon(QIcon('./GUI/images/icon.png'))
         pixmap = QPixmap(self.image)
         self.ui.TrafficSignImage.setPixmap(pixmap)
 

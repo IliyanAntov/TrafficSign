@@ -50,6 +50,7 @@ class MainWindow(QMainWindow):
                                 }
                                 """
                                 )
+        self.setWindowIcon(QIcon('./GUI/images/icon.png'))
 
 
     def UpdateDeviceList(self):
