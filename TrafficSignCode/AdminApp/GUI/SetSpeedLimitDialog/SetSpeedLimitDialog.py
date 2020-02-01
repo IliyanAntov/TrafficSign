@@ -13,7 +13,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_SetSpeedLimitDialog(object):
     def setupUi(self, SetSpeedLimitDialog):
         SetSpeedLimitDialog.setObjectName("SetSpeedLimitDialog")
-        SetSpeedLimitDialog.resize(262, 128)
+        SetSpeedLimitDialog.resize(266, 164)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -46,6 +46,9 @@ class Ui_SetSpeedLimitDialog(object):
         self.verticalLayout.addLayout(self.horizontalLayout_2)
         spacerItem1 = QtWidgets.QSpacerItem(0, 0, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
         self.verticalLayout.addItem(spacerItem1)
+        self.PreviewButton = QtWidgets.QPushButton(SetSpeedLimitDialog)
+        self.PreviewButton.setObjectName("PreviewButton")
+        self.verticalLayout.addWidget(self.PreviewButton)
         self.horizontalLayout = QtWidgets.QHBoxLayout()
         self.horizontalLayout.setObjectName("horizontalLayout")
         self.ConfirmButton = QtWidgets.QPushButton(SetSpeedLimitDialog)
@@ -63,6 +66,7 @@ class Ui_SetSpeedLimitDialog(object):
         _translate = QtCore.QCoreApplication.translate
         SetSpeedLimitDialog.setWindowTitle(_translate("SetSpeedLimitDialog", "Set speed limit"))
         self.SpeedLimitLabel.setText(_translate("SetSpeedLimitDialog", "Set speed limit:"))
+        self.PreviewButton.setText(_translate("SetSpeedLimitDialog", "Preview speed limit sign"))
         self.ConfirmButton.setText(_translate("SetSpeedLimitDialog", "Confirm"))
         self.CancelButton.setText(_translate("SetSpeedLimitDialog", "Cancel"))
 

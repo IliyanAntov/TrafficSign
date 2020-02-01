@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>262</width>
-    <height>128</height>
+    <width>266</width>
+    <height>164</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -78,6 +78,13 @@
       </size>
      </property>
     </spacer>
+   </item>
+   <item>
+    <widget class="QPushButton" name="PreviewButton">
+     <property name="text">
+      <string>Preview speed limit sign</string>
+     </property>
+    </widget>
    </item>
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
