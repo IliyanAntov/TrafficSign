@@ -13,11 +13,13 @@ from GUI.MainWindow.MainWindow import Ui_MainWindow
 from GUI.SetSpeedLimitDialog.SetSpeedLimitDialog import Ui_SetSpeedLimitDialog
 from GUI.SetAliasDialog.SetAliasDialog import Ui_SetAliasDialog
 from GUI.LoginDialog.LoginDialog import Ui_LoginDialog
+from GUI.DetailsDialog.DetailsDialog import Ui_DetailsDialog
 from DataExchange.DataExchange import DataExchange
 from DataExchange.Connection import Connection
 from GUI_logic.LoginDialog import LoginDialog
 from GUI_logic.SetSpeedLimitDialog import SetSpeedLimitDialog
 from GUI_logic.SetAliasDialog import SetAliasDialog
+from GUI_logic.DetailsDialog import DetailsDialog
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -36,6 +38,7 @@ class MainWindow(QMainWindow):
         self.ui.SetSpeedLimitButton.clicked.connect(self.ShowSetSpeedLimitDialog)
         self.ui.RefreshButton.clicked.connect(self.UpdateDeviceList)
         self.ui.SetListEntryAliasButton.clicked.connect(self.ShowSetAliasDialog)
+        self.ui.DetailsButton.clicked.connect(self.ShowDetailsDialog)
 
     def AdjustUI(self):
         self.setStyleSheet( """ QListWidget:item:selected:active {
@@ -107,6 +110,24 @@ class MainWindow(QMainWindow):
                 self.UpdateDeviceList()
         else:
             pass
+
+    def ShowDetailsDialog(self):
+        alias = self.GetSelectedDevice()
+        IMEI = Connection().knownDevices[alias]
+        incoming = self.connection.GetDeviceDetails(IMEI)
+        if(incoming == 'Unreachable'):
+            return
+        details = incoming.split(' ')
+        status = details[0]
+        if(status == 'unk'):
+            status = 'No information'
+        elif(status == 'spd'):
+            status = "Speed limit"
+        value = details[1]
+        if(value == 'unk'):
+            value = 'No information'
+        self.detailsDialog = DetailsDialog(alias, IMEI, status, value)
+        result = self.detailsDialog.exec_()
 
 
     def GetSelectedDevice(self):

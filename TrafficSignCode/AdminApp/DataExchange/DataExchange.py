@@ -48,6 +48,11 @@ class DataExchange():
             device = Connection().ReceiveMessage()
             Connection().deviceList.append(device)
 
+    def GetDeviceDetails(self, target):
+        Connection().SendMessage(str.encode("GET details " + target))
+        details = Connection().ReceiveMessage().decode('utf-8')
+        return details
+
     def SetSpeedLimit(self, target, speedLimit):
         Connection().SendMessage(str.encode("SET " + target +  " speed " + speedLimit))
 

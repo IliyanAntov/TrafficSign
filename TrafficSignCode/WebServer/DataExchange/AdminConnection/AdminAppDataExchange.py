@@ -34,19 +34,26 @@ class AdminAppDataExchange(Thread):
         if(len(commands) > 1):
             request = commands.pop(0)
             if(request == "GET"):
-                self.HandleGetRequest(commands[0])
+                self.HandleGetRequest(commands)
             elif(request == "SET"):
                 self.HandleSetRequest(commands)
         else:
             print("Something went wrong")
     
     def HandleGetRequest(self, request):
-        if(request == "devices"):
+        if(request[0] == "devices"):
             devicesLength = len(Connection().deviceList)
             Connection().SendMessage(self.socket, str.encode(str(devicesLength), encoding="utf-8"))
             for i in Connection().deviceList:
                 Connection().SendMessage(self.socket, str.encode(str(i), encoding="utf-8"))
             return
+        elif(request[0] == "details"):
+            targetIMEI = request[1]
+            details = Connection().SendGetRequest(targetIMEI)
+            if not details:
+                details = b'Unreachable'
+            Connection().SendMessage(self.socket, details)
+
         else:
             print('Unknown request')
             return

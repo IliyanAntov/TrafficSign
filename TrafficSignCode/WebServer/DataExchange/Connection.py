@@ -60,5 +60,24 @@ class Connection():
             print("Requested device not found")
             return
 
+    @staticmethod
+    def SendGetRequest(targetIMEI):
+        if(targetIMEI in Connection().deviceList):
+            deviceSocket = Connection().deviceList[targetIMEI]
+            deviceSocket.send(str.encode("GET dtl\n"))
 
+            ready = select.select([deviceSocket], [], [], 5)
+
+            if ready[0]:
+                data = deviceSocket.recv(20)
+                print(data.decode('utf-8'))
+                return data
+            else:
+                print("Error, device not responding")
+                Connection().deviceList.pop(targetIMEI)
+                return None
+
+        else:
+            print("Requested device not found")
+            return None
 

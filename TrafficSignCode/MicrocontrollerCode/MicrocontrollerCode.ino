@@ -33,11 +33,11 @@ void setup() {
 
   InitSerial();
 
-  //ConnectToServer();
+  ConnectToServer();
 
   InitMatrix();
-  delay(500);
-  matrix.fillScreen(matrix.Color333(0, 0, 0));
+  // delay(500);
+  // matrix.fillScreen(matrix.Color333(0, 0, 0));
 
   // for(int i = 0; i < 200; i++){
   //   VisualizeSpeedLimit(i);
@@ -49,13 +49,13 @@ void setup() {
 
 void loop() {
 
-  // while(client.connected()){
-  //   if(client.available()){
-  //     ReadCommand();
-  //   }
-  // }
-  // RestartModule();
-  // ConnectToServer();
+  while(client.connected()){
+    if(client.available()){
+      ReadCommand();
+    }
+  }
+  RestartModule();
+  ConnectToServer();
 }
 
 void RestartModule() {
@@ -133,7 +133,7 @@ char value[4];
 int index = 0;
 char current;
 
-char currentState[8];
+char currentState[8] = {"unk unk"};
 
 void ReadCommand(){
   current = (char) client.read();
@@ -195,7 +195,6 @@ void HandleGet(){
   if(strcmp(request, "dtl") == 0){
     client.print(currentState);
   }
-
   else{
     return;
   }
@@ -216,7 +215,6 @@ int ReadSpeed(){
   while(client.available()){
     client.read();
   }
-
   return atoi(value);
 }
 
@@ -226,12 +224,12 @@ void ChangeCurrentState(){
   for(; i < 3; i++){
     currentState[i] = request[i];
   }
-  currentState[3] = ' ';
-
+  currentState[i] = ' ';
+  i++;
   for(; i < (strlen(value) + 4); i++){
-    currentState[i] = value[i];
+    currentState[i] = value[i-4];
   }
-  currentState[i+1] = '\0';
+  currentState[i] = '\0';
   return;
 }
 
