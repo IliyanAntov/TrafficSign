@@ -38,7 +38,7 @@ void setup() {
   InitMatrix();
   //delay(500);
   matrix.fillScreen(matrix.Color333(0, 0, 0));
-  //VisualizeForwardOnlyWarning();
+  //VisualizeLeftOnlyWarning();
   // for(int i = 0; i < 200; i++){
   //   VisualizeSpeedLimit(i);
   //   delay(500);
@@ -239,14 +239,14 @@ void VisualizeSpeedLimit(int speedLimit){
   matrix.drawCircle(16, 16, 15, matrix.Color333(7, 0, 0));
   matrix.drawCircle(16, 16, 14, matrix.Color333(7, 0, 0));
 
-  matrix.drawPixel(4, 8, matrix.Color333(7, 0, 0));
-  matrix.drawPixel(4, 24, matrix.Color333(7, 0, 0));
-  matrix.drawPixel(8, 4, matrix.Color333(7, 0, 0));
-  matrix.drawPixel(8, 28, matrix.Color333(7, 0, 0));
-  matrix.drawPixel(28, 8, matrix.Color333(7, 0, 0));
-  matrix.drawPixel(28, 24, matrix.Color333(7, 0, 0));
-  matrix.drawPixel(24, 4, matrix.Color333(7, 0, 0));
-  matrix.drawPixel(24, 28, matrix.Color333(7, 0, 0));
+  matrix.drawPixel(4, 8,    matrix.Color333(7, 0, 0));
+  matrix.drawPixel(4, 24,   matrix.Color333(7, 0, 0));
+  matrix.drawPixel(8, 4,    matrix.Color333(7, 0, 0));
+  matrix.drawPixel(8, 28,   matrix.Color333(7, 0, 0));
+  matrix.drawPixel(28, 8,   matrix.Color333(7, 0, 0));
+  matrix.drawPixel(28, 24,  matrix.Color333(7, 0, 0));
+  matrix.drawPixel(24, 4,   matrix.Color333(7, 0, 0));
+  matrix.drawPixel(24, 28,  matrix.Color333(7, 0, 0));
 
   matrix.setTextColor(matrix.Color333(7, 7, 7));
 
@@ -299,14 +299,14 @@ void VisualizeNoEntryWarning(){
   matrix.drawCircle(16, 16, 15, matrix.Color333(7, 0, 0));
   matrix.drawCircle(16, 16, 14, matrix.Color333(7, 0, 0));
 
-  matrix.drawPixel(4, 8, matrix.Color333(7, 0, 0));
-  matrix.drawPixel(4, 24, matrix.Color333(7, 0, 0));
-  matrix.drawPixel(8, 4, matrix.Color333(7, 0, 0));
-  matrix.drawPixel(8, 28, matrix.Color333(7, 0, 0));
-  matrix.drawPixel(28, 8, matrix.Color333(7, 0, 0));
-  matrix.drawPixel(28, 24, matrix.Color333(7, 0, 0));
-  matrix.drawPixel(24, 4, matrix.Color333(7, 0, 0));
-  matrix.drawPixel(24, 28, matrix.Color333(7, 0, 0));
+  matrix.drawPixel(4, 8,    matrix.Color333(7, 0, 0));
+  matrix.drawPixel(4, 24,   matrix.Color333(7, 0, 0));
+  matrix.drawPixel(8, 4,    matrix.Color333(7, 0, 0));
+  matrix.drawPixel(8, 28,   matrix.Color333(7, 0, 0));
+  matrix.drawPixel(28, 8,   matrix.Color333(7, 0, 0));
+  matrix.drawPixel(28, 24,  matrix.Color333(7, 0, 0));
+  matrix.drawPixel(24, 4,   matrix.Color333(7, 0, 0));
+  matrix.drawPixel(24, 28,  matrix.Color333(7, 0, 0));
 
   matrix.fillRect(6, 14, 21, 5, matrix.Color333(7, 7, 7));
 
@@ -335,4 +335,58 @@ void VisualizeForwardOnlyWarning(){
   matrix.fillRect(15, 7, 3, 2, matrix.Color333(7, 7, 7));
   matrix.drawPixel(16, 6, matrix.Color333(7, 7, 7));
 
+}
+
+void VisualizeRightOnlyWarning(){
+  matrix.fillScreen(matrix.Color333(0, 0, 0));
+
+  matrix.drawCircle(16, 16, 15, matrix.Color333(0, 0, 7));
+  matrix.drawCircle(16, 16, 14, matrix.Color333(0, 0, 7));
+
+  matrix.drawPixel(4, 8,    matrix.Color333(0, 0, 7));
+  matrix.drawPixel(4, 24,   matrix.Color333(0, 0, 7));
+  matrix.drawPixel(8, 4,    matrix.Color333(0, 0, 7));
+  matrix.drawPixel(8, 28,   matrix.Color333(0, 0, 7));
+  matrix.drawPixel(28, 8,   matrix.Color333(0, 0, 7));
+  matrix.drawPixel(28, 24,  matrix.Color333(0, 0, 7));
+  matrix.drawPixel(24, 4,   matrix.Color333(0, 0, 7));
+  matrix.drawPixel(24, 28,  matrix.Color333(0, 0, 7));
+
+
+  matrix.fillRect(12, 13, 3, 12, matrix.Color333(7, 7, 7));
+  matrix.fillRect(13, 12, 4, 2, matrix.Color333(7, 7, 7));
+  matrix.fillRect(14, 11, 3, 1, matrix.Color333(7, 7, 7));
+
+  matrix.fillRect(17, 8, 1, 9, matrix.Color333(7, 7, 7));
+  matrix.fillRect(18, 9, 2, 7, matrix.Color333(7, 7, 7));
+  matrix.fillRect(20, 10, 2, 5, matrix.Color333(7, 7, 7));
+  matrix.fillRect(22, 11, 2, 3, matrix.Color333(7, 7, 7));
+  matrix.drawPixel(24, 12, matrix.Color333(7, 7, 7));
+}
+
+void VisualizeLeftOnlyWarning(){
+  matrix.fillScreen(matrix.Color333(0, 0, 0));
+
+  matrix.drawCircle(16, 16, 15, matrix.Color333(0, 0, 7));
+  matrix.drawCircle(16, 16, 14, matrix.Color333(0, 0, 7));
+
+  matrix.drawPixel(4, 8,    matrix.Color333(0, 0, 7));
+  matrix.drawPixel(4, 24,   matrix.Color333(0, 0, 7));
+  matrix.drawPixel(8, 4,    matrix.Color333(0, 0, 7));
+  matrix.drawPixel(8, 28,   matrix.Color333(0, 0, 7));
+  matrix.drawPixel(28, 8,   matrix.Color333(0, 0, 7));
+  matrix.drawPixel(28, 24,  matrix.Color333(0, 0, 7));
+  matrix.drawPixel(24, 4,   matrix.Color333(0, 0, 7));
+  matrix.drawPixel(24, 28,  matrix.Color333(0, 0, 7));
+
+
+  matrix.fillRect(18, 13, 3, 12, matrix.Color333(7, 7, 7));
+  matrix.fillRect(16, 12, 4, 2, matrix.Color333(7, 7, 7));
+  matrix.fillRect(16, 11, 3, 1, matrix.Color333(7, 7, 7));
+
+  matrix.fillRect(15, 8, 1, 9, matrix.Color333(7, 7, 7));
+  matrix.fillRect(13, 9, 2, 7, matrix.Color333(7, 7, 7));
+  matrix.fillRect(11, 10, 2, 5, matrix.Color333(7, 7, 7));
+  matrix.fillRect(9, 11, 2, 3, matrix.Color333(7, 7, 7));
+  matrix.drawPixel(8, 12, matrix.Color333(7, 7, 7));
 }
