@@ -49,7 +49,7 @@ class AdminAppDataExchange(Thread):
             return
         elif(request[0] == "details"):
             targetIMEI = request[1]
-            details = Connection().SendGetRequest(targetIMEI)
+            details = Connection().SendGetRequest(targetIMEI, 'dtl')
             if not details:
                 details = b'Unreachable'
             Connection().SendMessage(self.socket, details)
@@ -62,10 +62,9 @@ class AdminAppDataExchange(Thread):
     def HandleSetRequest(self, commands):
         targetIMEI = commands.pop(0)
         request = commands.pop(0)
-        if(request == "speed"):
-            amount = commands.pop(0)
-        
-        Connection().SendSetRequest(targetIMEI, request, amount)
+        value = commands.pop(0)
+
+        Connection().SendSetRequest(targetIMEI, request, value)
         
 
 

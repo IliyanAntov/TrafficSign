@@ -20,6 +20,7 @@ from GUI_logic.LoginDialog import LoginDialog
 from GUI_logic.SetSpeedLimitDialog import SetSpeedLimitDialog
 from GUI_logic.SetAliasDialog import SetAliasDialog
 from GUI_logic.DetailsDialog import DetailsDialog
+from GUI_logic.SetWarningDialog import SetWarningDialog
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -39,6 +40,7 @@ class MainWindow(QMainWindow):
         self.ui.RefreshButton.clicked.connect(self.UpdateDeviceList)
         self.ui.SetListEntryAliasButton.clicked.connect(self.ShowSetAliasDialog)
         self.ui.DetailsButton.clicked.connect(self.ShowDetailsDialog)
+        self.ui.SetWarningButton.clicked.connect(self.ShowSetWarningDialog)
 
     def AdjustUI(self):
         self.setStyleSheet( """ QListWidget:item:selected:active {
@@ -101,6 +103,14 @@ class MainWindow(QMainWindow):
         else:
             pass
 
+    def ShowSetWarningDialog(self):
+        selectedDevice = self.GetSelectedDevice()
+        if (selectedDevice):
+            self.setWarningDialog = SetWarningDialog(selectedDevice)
+            self.setWarningDialog.show()
+        else:
+            pass
+      
     def ShowSetAliasDialog(self):
         selectedDevice = self.GetSelectedDevice()
         if (selectedDevice):
@@ -113,22 +123,45 @@ class MainWindow(QMainWindow):
 
     def ShowDetailsDialog(self):
         alias = self.GetSelectedDevice()
-        IMEI = Connection().knownDevices[alias]
-        incoming = self.connection.GetDeviceDetails(IMEI)
-        if(incoming == 'Unreachable'):
-            return
-        details = incoming.split(' ')
-        status = details[0]
-        if(status == 'unk'):
-            status = 'No information'
-        elif(status == 'spd'):
-            status = "Speed limit"
-        value = details[1]
-        if(value == 'unk'):
-            value = 'No information'
-        self.detailsDialog = DetailsDialog(alias, IMEI, status, value)
-        result = self.detailsDialog.exec_()
+        if(alias):
+            IMEI = Connection().knownDevices[alias]
+            incoming = self.connection.GetDeviceDetails(IMEI)
+            if(incoming == 'Unreachable'):
+                return
+            details = incoming.split(' ')
+            status = self.ConvertStatus(details[0])
+            value = self.ConvertValue(details[1])
+            if(value == 'unk'):
+                value = 'No information'
+            self.detailsDialog = DetailsDialog(alias, IMEI, status, value)
+            result = self.detailsDialog.exec_()
+        else:
+            pass
+  
 
+    def ConvertStatus(self, status):
+        if(status == 'unk'):
+            return 'No information'
+        elif(status == 'spd'):
+            return "Speed limit"
+        elif(status == 'wrn'):
+            return "Warning"
+
+    def ConvertValue(self, value):
+        if(value == "gnr"):
+            return "General warning"
+        elif(value == "tfl"):
+            return "Traffic light"
+        elif(value == "nen"):
+            return "No entry"
+        elif(value == "fon"):
+            return "Forward only"
+        elif(value == "lon"):
+            return "Left only"
+        elif(value  == "ron"):
+            return "Right only"
+        else:
+            return value
 
     def GetSelectedDevice(self):
         deviceList = self.ui.DeviceList.selectedItems()

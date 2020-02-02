@@ -33,11 +33,11 @@ void setup() {
 
   InitSerial();
 
-  //ConnectToServer();
+  ConnectToServer();
 
   InitMatrix();
   //delay(500);
-  matrix.fillScreen(matrix.Color333(0, 0, 0));
+  //matrix.fillScreen(matrix.Color333(0, 0, 0));
   //VisualizeLeftOnlyWarning();
   // for(int i = 0; i < 200; i++){
   //   VisualizeSpeedLimit(i);
@@ -49,13 +49,13 @@ void setup() {
 
 void loop() {
 
-  // while(client.connected()){
-  //   if(client.available()){
-  //     ReadCommand();
-  //   }
-  // }
-  // RestartModule();
-  // ConnectToServer();
+  while(client.connected()){
+    if(client.available()){
+      ReadCommand();
+    }
+  }
+  RestartModule();
+  ConnectToServer();
 }
 
 void RestartModule() {
@@ -180,15 +180,19 @@ void ReadCommand(){
 }
 
 void HandleSet(){
+  ReadValue();
   if(strcmp(request, "spd") == 0){
-    int limit = ReadSpeed();
+    int limit = ConvertSpeed();
     VisualizeSpeedLimit(limit);
-    ChangeCurrentState();
-    client.print('k');
+  }
+  else if(strcmp(request, "wrn") == 0){
+    VisualizeWarning();
   }
   else{
     return;
   }
+  ChangeCurrentState();
+  client.print('k');
 }
 
 void HandleGet(){
@@ -200,7 +204,11 @@ void HandleGet(){
   }
 }
 
-int ReadSpeed(){
+int ConvertSpeed(){
+  return atoi(value);
+}
+
+void ReadValue(){
   current = (char) client.read();
   while(current != '\n' && current != ' '){
     value[index] = current;
@@ -215,7 +223,6 @@ int ReadSpeed(){
   while(client.available()){
     client.read();
   }
-  return atoi(value);
 }
 
 void ChangeCurrentState(){
@@ -232,6 +239,8 @@ void ChangeCurrentState(){
   currentState[i] = '\0';
   return;
 }
+
+
 
 void VisualizeSpeedLimit(int speedLimit){
   matrix.fillScreen(matrix.Color333(0, 0, 0));
@@ -272,6 +281,40 @@ void VisualizeSpeedLimit(int speedLimit){
   }
   matrix.println(speedLimit);
 }
+
+
+
+void VisualizeWarning(){
+  if(strcmp(value, "gnr") == 0){
+    VisualizeGeneralWarning();
+    return;
+  }
+  else if(strcmp(value, "tfl") == 0){
+    VisualizeTrafficLightWarning();
+    return;
+  }
+  else if(strcmp(value, "nen") == 0){
+    VisualizeNoEntryWarning();
+    return;
+  }
+  else if(strcmp(value, "fon") == 0){
+    VisualizeForwardOnlyWarning();
+    return;
+  }
+  else if(strcmp(value, "lon") == 0){
+    VisualizeLeftOnlyWarning();
+    return;
+  }
+  else if(strcmp(value, "ron") == 0){
+    VisualizeRightOnlyWarning();
+    return;
+  }
+  else{
+    return;
+  }
+
+}
+
 
 void VisualizeGeneralWarning(){
   matrix.fillScreen(matrix.Color333(0, 0, 0));

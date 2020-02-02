@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>560</width>
+    <width>656</width>
     <height>340</height>
    </rect>
   </property>
@@ -45,6 +45,22 @@
           </size>
          </property>
         </spacer>
+       </item>
+       <item>
+        <widget class="QLabel" name="label">
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Set warning:</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
        </item>
        <item>
         <widget class="QComboBox" name="SelectionBox">
@@ -96,14 +112,32 @@
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout_2">
          <item>
-          <widget class="QPushButton" name="ConfirmButton_2">
+          <widget class="QPushButton" name="ConfirmButton">
+           <property name="minimumSize">
+            <size>
+             <width>150</width>
+             <height>0</height>
+            </size>
+           </property>
            <property name="text">
             <string>Confirm</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="CancelButton_2">
+          <widget class="QPushButton" name="CancelButton">
+           <property name="minimumSize">
+            <size>
+             <width>150</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>320</width>
+             <height>16777215</height>
+            </size>
+           </property>
            <property name="text">
             <string>Cancel</string>
            </property>
@@ -123,13 +157,13 @@
        </property>
        <property name="minimumSize">
         <size>
-         <width>330</width>
+         <width>320</width>
          <height>320</height>
         </size>
        </property>
        <property name="maximumSize">
         <size>
-         <width>330</width>
+         <width>320</width>
          <height>320</height>
         </size>
        </property>
@@ -137,7 +171,7 @@
         <string>Traffic sign image</string>
        </property>
        <property name="margin">
-        <number>10</number>
+        <number>0</number>
        </property>
       </widget>
      </item>

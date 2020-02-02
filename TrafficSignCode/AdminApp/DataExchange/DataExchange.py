@@ -56,6 +56,9 @@ class DataExchange():
     def SetSpeedLimit(self, target, speedLimit):
         Connection().SendMessage(str.encode("SET " + target +  " speed " + speedLimit))
 
+    def SetWarning(self, target, request):
+        Connection.SendMessage(str.encode("SET " + target + " warning " + request))
+
     def WaitForData(self):
         ready = select.select([Connection().client_socket], [], [], 2)
         if ready[0]:

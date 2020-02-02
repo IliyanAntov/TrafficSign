@@ -6,6 +6,10 @@ wrn = warning (Red triangle)
 Warnings:
     >gnr = general (exclamation mark)
     >tfl = traffic light
+    >nen = no entry
+    >fon = forward only
+    >lon = left only
+    >ron = right only
 
 GET:
 dtl = details

@@ -36,14 +36,14 @@ class Connection():
         return buf
 
     @staticmethod
-    def SendSetRequest(targetIMEI, request, amount):
+    def SendSetRequest(targetIMEI, request, value):
         if(targetIMEI in Connection().deviceList):
             deviceSocket = Connection().deviceList[targetIMEI]
-            if(request == 'speed'):
-                request = 'spd'
-            elif(request == 'warning'):
-                request = 'wrn'
-            toSend = "SET " + request + " " + amount + "\n"
+
+            request = Connection().CompressRequest(request)
+            value = Connection().CompressValue(value)
+
+            toSend = "SET " + request + " " + value + "\n"
             print(toSend)
             deviceSocket.send(str.encode(toSend))
             
@@ -60,17 +60,42 @@ class Connection():
             print("Requested device not found")
             return
 
+
     @staticmethod
-    def SendGetRequest(targetIMEI):
+    def CompressRequest(request):
+        if(request == 'speed'):
+            return 'spd'
+        elif(request == 'warning'):
+            return 'wrn'
+
+    @staticmethod
+    def CompressValue(value):
+        if(value == "GeneralWarning"):
+            return "gnr"
+        elif(value == "TrafficLight"):
+            return "tfl"
+        elif(value == "NoEntry"):
+            return "nen"
+        elif(value == "ForwardOnly"):
+            return "fon"
+        elif(value == "LeftOnly"):
+            return "lon"
+        elif(value  == "RightOnly"):
+            return "ron"
+        else:
+            return value
+
+
+    @staticmethod
+    def SendGetRequest(targetIMEI, request):
         if(targetIMEI in Connection().deviceList):
             deviceSocket = Connection().deviceList[targetIMEI]
-            deviceSocket.send(str.encode("GET dtl\n"))
+            deviceSocket.send(str.encode("GET " + request + "\n"))
 
             ready = select.select([deviceSocket], [], [], 5)
 
             if ready[0]:
                 data = deviceSocket.recv(20)
-                print(data.decode('utf-8'))
                 return data
             else:
                 print("Error, device not responding")
