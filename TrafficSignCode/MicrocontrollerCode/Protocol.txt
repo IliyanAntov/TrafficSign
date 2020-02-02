@@ -1,8 +1,11 @@
 Server -> uC
 
 SET:
-spd = speed
-wrn = warning
+spd = speed (Red circle)
+wrn = warning (Red triangle)
+Warnings:
+    >gnr = general (exclamation mark)
+    >tfl = traffic light
 
 GET:
 dtl = details

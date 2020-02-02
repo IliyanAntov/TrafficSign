@@ -33,12 +33,12 @@ void setup() {
 
   InitSerial();
 
-  ConnectToServer();
+  //ConnectToServer();
 
   InitMatrix();
-  // delay(500);
-  // matrix.fillScreen(matrix.Color333(0, 0, 0));
-
+  //delay(500);
+  matrix.fillScreen(matrix.Color333(0, 0, 0));
+  //VisualizeForwardOnlyWarning();
   // for(int i = 0; i < 200; i++){
   //   VisualizeSpeedLimit(i);
   //   delay(500);
@@ -49,13 +49,13 @@ void setup() {
 
 void loop() {
 
-  while(client.connected()){
-    if(client.available()){
-      ReadCommand();
-    }
-  }
-  RestartModule();
-  ConnectToServer();
+  // while(client.connected()){
+  //   if(client.available()){
+  //     ReadCommand();
+  //   }
+  // }
+  // RestartModule();
+  // ConnectToServer();
 }
 
 void RestartModule() {
@@ -238,11 +238,11 @@ void VisualizeSpeedLimit(int speedLimit){
 
   matrix.drawCircle(16, 16, 15, matrix.Color333(7, 0, 0));
   matrix.drawCircle(16, 16, 14, matrix.Color333(7, 0, 0));
+
   matrix.drawPixel(4, 8, matrix.Color333(7, 0, 0));
   matrix.drawPixel(4, 24, matrix.Color333(7, 0, 0));
   matrix.drawPixel(8, 4, matrix.Color333(7, 0, 0));
   matrix.drawPixel(8, 28, matrix.Color333(7, 0, 0));
-
   matrix.drawPixel(28, 8, matrix.Color333(7, 0, 0));
   matrix.drawPixel(28, 24, matrix.Color333(7, 0, 0));
   matrix.drawPixel(24, 4, matrix.Color333(7, 0, 0));
@@ -260,10 +260,10 @@ void VisualizeSpeedLimit(int speedLimit){
       matrix.setCursor(5, 9);
     }
     else if(speedLimit%10 == 1){
-      matrix.setCursor(6, 9);
+      matrix.setCursor(7, 9);
     }
     else{
-      matrix.setCursor(5, 9);
+      matrix.setCursor(6, 9);
     }
   }
   else{
@@ -271,4 +271,68 @@ void VisualizeSpeedLimit(int speedLimit){
     matrix.setCursor(8, 13);
   }
   matrix.println(speedLimit);
+}
+
+void VisualizeGeneralWarning(){
+  matrix.fillScreen(matrix.Color333(0, 0, 0));
+
+  matrix.drawTriangle(1, 31, 16, 0, 31, 31, matrix.Color333(7, 0, 0));
+  
+  matrix.drawRect(15, 11, 3, 12, matrix.Color333(7, 7, 7));
+  matrix.drawRect(15, 26, 3, 3, matrix.Color333(7, 7, 7));
+}
+
+void VisualizeTrafficLightWarning(){
+  matrix.fillScreen(matrix.Color333(0, 0, 0));
+
+  matrix.drawTriangle(1, 31, 16, 0, 31, 31, matrix.Color333(7, 0, 0));
+
+  matrix.fillCircle(16, 14, 2, matrix.Color333(7, 0, 0));
+  matrix.fillCircle(16, 20, 2, matrix.Color333(7, 7, 0));
+  matrix.fillCircle(16, 26, 2, matrix.Color333(0, 7, 0));
+
+}
+
+void VisualizeNoEntryWarning(){
+  matrix.fillScreen(matrix.Color333(0, 0, 0));
+
+  matrix.drawCircle(16, 16, 15, matrix.Color333(7, 0, 0));
+  matrix.drawCircle(16, 16, 14, matrix.Color333(7, 0, 0));
+
+  matrix.drawPixel(4, 8, matrix.Color333(7, 0, 0));
+  matrix.drawPixel(4, 24, matrix.Color333(7, 0, 0));
+  matrix.drawPixel(8, 4, matrix.Color333(7, 0, 0));
+  matrix.drawPixel(8, 28, matrix.Color333(7, 0, 0));
+  matrix.drawPixel(28, 8, matrix.Color333(7, 0, 0));
+  matrix.drawPixel(28, 24, matrix.Color333(7, 0, 0));
+  matrix.drawPixel(24, 4, matrix.Color333(7, 0, 0));
+  matrix.drawPixel(24, 28, matrix.Color333(7, 0, 0));
+
+  matrix.fillRect(6, 14, 21, 5, matrix.Color333(7, 7, 7));
+
+}
+
+void VisualizeForwardOnlyWarning(){
+  matrix.fillScreen(matrix.Color333(0, 0, 0));
+
+  matrix.drawCircle(16, 16, 15, matrix.Color333(0, 0, 7));
+  matrix.drawCircle(16, 16, 14, matrix.Color333(0, 0, 7));
+
+  matrix.drawPixel(4, 8,    matrix.Color333(0, 0, 7));
+  matrix.drawPixel(4, 24,   matrix.Color333(0, 0, 7));
+  matrix.drawPixel(8, 4,    matrix.Color333(0, 0, 7));
+  matrix.drawPixel(8, 28,   matrix.Color333(0, 0, 7));
+  matrix.drawPixel(28, 8,   matrix.Color333(0, 0, 7));
+  matrix.drawPixel(28, 24,  matrix.Color333(0, 0, 7));
+  matrix.drawPixel(24, 4,   matrix.Color333(0, 0, 7));
+  matrix.drawPixel(24, 28,  matrix.Color333(0, 0, 7));
+
+  matrix.fillRect(15, 14, 3, 13, matrix.Color333(7, 7, 7));
+
+  matrix.fillRect(12, 13, 9, 1, matrix.Color333(7, 7, 7));
+  matrix.fillRect(13, 11, 7, 2, matrix.Color333(7, 7, 7));
+  matrix.fillRect(14, 9, 5, 2, matrix.Color333(7, 7, 7));
+  matrix.fillRect(15, 7, 3, 2, matrix.Color333(7, 7, 7));
+  matrix.drawPixel(16, 6, matrix.Color333(7, 7, 7));
+
 }
