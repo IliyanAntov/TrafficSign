@@ -66,6 +66,11 @@
         <widget class="QComboBox" name="SelectionBox">
          <item>
           <property name="text">
+           <string>Stop sign</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
            <string>General warning</string>
           </property>
          </item>

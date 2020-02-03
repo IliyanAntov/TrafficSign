@@ -148,7 +148,9 @@ class MainWindow(QMainWindow):
             return "Warning"
 
     def ConvertValue(self, value):
-        if(value == "gnr"):
+        if(value == "stp"):
+            return "Stop sign"
+        elif(value == "gnr"):
             return "General warning"
         elif(value == "tfl"):
             return "Traffic light"

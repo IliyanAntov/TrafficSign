@@ -70,7 +70,9 @@ class Connection():
 
     @staticmethod
     def CompressValue(value):
-        if(value == "GeneralWarning"):
+        if(value == "StopSign"):
+            return "stp"
+        elif(value == "GeneralWarning"):
             return "gnr"
         elif(value == "TrafficLight"):
             return "tfl"

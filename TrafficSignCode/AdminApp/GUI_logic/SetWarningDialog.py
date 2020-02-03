@@ -35,7 +35,9 @@ class SetWarningDialog(QDialog):
 
     def GetCurrentSelection(self):
         selection = str(self.ui.SelectionBox.currentText())
-        if(selection == "General warning"):
+        if(selection == "Stop sign"):
+            return "StopSign"
+        elif(selection == "General warning"):
             return "GeneralWarning"
         elif(selection == "Traffic light"):
             return "TrafficLight"

@@ -4,7 +4,8 @@ SET:
 spd = speed (Red circle)
 wrn = warning (Red triangle)
 Warnings:
-    >gnr = general (exclamation mark)
+    >stp = stop sign
+    >gnr = general warning (exclamation mark)
     >tfl = traffic light
     >nen = no entry
     >fon = forward only

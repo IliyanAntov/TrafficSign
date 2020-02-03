@@ -36,7 +36,7 @@ void setup() {
   ConnectToServer();
 
   InitMatrix();
-  //delay(500);
+
   //matrix.fillScreen(matrix.Color333(0, 0, 0));
   //VisualizeLeftOnlyWarning();
   // for(int i = 0; i < 200; i++){
@@ -285,7 +285,12 @@ void VisualizeSpeedLimit(int speedLimit){
 
 
 void VisualizeWarning(){
-  if(strcmp(value, "gnr") == 0){
+  if(strcmp(value, "stp") == 0){
+    VisualizeStopSignWarning();
+    return;
+  }
+
+  else if(strcmp(value, "gnr") == 0){
     VisualizeGeneralWarning();
     return;
   }
@@ -315,6 +320,49 @@ void VisualizeWarning(){
 
 }
 
+
+void VisualizeStopSignWarning(){
+  matrix.fillScreen(matrix.Color333(0, 0, 0));
+
+  matrix.fillRect(9, 0, 14, 2, matrix.Color333(7, 0, 0));
+  matrix.fillRect(9, 30, 14, 2, matrix.Color333(7, 0, 0));
+  matrix.fillRect(0, 9, 2, 14, matrix.Color333(7, 0, 0));
+  matrix.fillRect(30, 9, 2, 14, matrix.Color333(7, 0, 0));
+
+  matrix.drawLine(0, 9, 9, 0, matrix.Color333(7, 0, 0));
+  matrix.drawLine(1, 9, 9, 1, matrix.Color333(7, 0, 0));
+  matrix.drawLine(22, 0, 31, 9, matrix.Color333(7, 0, 0));
+  matrix.drawLine(22, 1, 30, 9, matrix.Color333(7, 0, 0));
+
+  matrix.drawLine(0, 22, 9, 31, matrix.Color333(7, 0, 0));
+  matrix.drawLine(1, 22, 9, 30, matrix.Color333(7, 0, 0));
+  matrix.drawLine(22, 30, 30, 22, matrix.Color333(7, 0, 0));
+  matrix.drawLine(22, 31, 31, 22, matrix.Color333(7, 0, 0));
+  
+  //S
+  matrix.fillRect(4, 11, 4, 2, matrix.Color333(7, 7, 7));
+  matrix.fillRect(3, 12, 2, 4, matrix.Color333(7, 7, 7));
+  matrix.fillRect(4, 15, 4, 2, matrix.Color333(7, 7, 7));
+  matrix.fillRect(7, 16, 2, 4, matrix.Color333(7, 7, 7));
+  matrix.fillRect(4, 19, 4, 2, matrix.Color333(7, 7, 7));
+
+  //T
+  matrix.fillRect(9, 11, 6, 2, matrix.Color333(7, 7, 7));
+  matrix.fillRect(11, 13, 2, 8, matrix.Color333(7, 7, 7));
+
+  //O
+  matrix.fillRect(17, 11, 4, 2, matrix.Color333(7, 7, 7));
+  matrix.fillRect(16, 12, 2, 8, matrix.Color333(7, 7, 7));
+  matrix.fillRect(17, 19, 4, 2, matrix.Color333(7, 7, 7));
+  matrix.fillRect(20, 12, 2, 8, matrix.Color333(7, 7, 7));
+
+  //P
+  matrix.fillRect(23, 11, 5, 2, matrix.Color333(7, 7, 7));
+  matrix.fillRect(27, 12, 2, 5, matrix.Color333(7, 7, 7));
+  matrix.fillRect(23, 16, 5, 2, matrix.Color333(7, 7, 7));
+  matrix.fillRect(23, 11, 2, 10, matrix.Color333(7, 7, 7));
+
+}
 
 void VisualizeGeneralWarning(){
   matrix.fillScreen(matrix.Color333(0, 0, 0));
