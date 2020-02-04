@@ -61,9 +61,12 @@ class LoginDialog(QDialog):
             self.accept()
         elif (data == 'nauth'):
             QMessageBox.warning(self, "Error", "Wrong username or password")
-        else:
+        elif (data == 'refuse'):
             print("Too many login attempts")
             QMessageBox.warning(self, "Error", "Too many login attempts", QMessageBox.Ok)
+            self.reject()
+        else:
+            QMessageBox.warning(self, "Error", "Something went wrong", QMessageBox.Ok)
             self.reject()
 
     def TryConnect(self): #TODO: fix

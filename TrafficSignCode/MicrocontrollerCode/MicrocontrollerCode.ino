@@ -22,7 +22,7 @@ const int defaultSpeedLimit = 50;
 #include <TinyGsmClient.h>
 
 // Server details
-const char server[] = "37.157.168.186";
+const char server[] = "3.125.80.10";
 const int port = 19119;
 
 RGBmatrixPanel matrix(A, B, C, D, CLK, LAT, OE, false);

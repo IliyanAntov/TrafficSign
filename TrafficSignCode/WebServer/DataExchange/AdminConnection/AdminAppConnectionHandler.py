@@ -31,15 +31,22 @@ class AdminAppConnectionHandler():
                 connectionAttemptsCount+=1
                 if(connectionAttemptsCount > maxConnectionAttempts):
                     print("Too many login attempts, closing connection...")
+                    Connection().SendMessage(self.adminSocket, b"refuse")
                     self.adminSocket.close()
                     return False
+                else:
+                    Connection().SendMessage(self.adminSocket, b"nauth")
             elif(returnCode == 1): #Username and password correct
                 print("Authenticated")
+                Connection().SendMessage(self.adminSocket, b"auth")
                 adminThread = AdminAppDataExchange(self.adminSocket)
                 adminThread.start()
                 return True
             elif(returnCode == 2): #Connection closed by client
                 print("Connection closed by remote client")
+                return False
+            else:
+                self.adminSocket.close()
                 return False
 
     def AuthenticateUser(self):
@@ -52,12 +59,10 @@ class AdminAppConnectionHandler():
         if (username and password) != None:
             if (username == b"admin" and password == b"1234"):
                 print("Client at ",self.adminAddress, " authorized")
-                Connection().SendMessage(self.adminSocket, b"auth")
                 return 1 #Username and password correct
             else:
                 print("Client at ",self.adminAddress, " not authorized")
-                Connection().SendMessage(self.adminSocket, b"nauth")
                 return 0 #Username or password incorrect
         else:
             print("Something went wrong...")
-            self.adminSocket.close()
+            return 3 #Something went wrong
