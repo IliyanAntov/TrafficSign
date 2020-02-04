@@ -14,10 +14,12 @@ class DataExchange():
 
     def __init__(self):
         super().__init__()
+        self.serverAddress = "localhost"
+        self.serverPort = 26418
 
     def AttemptConnect(self):
         try:
-            Connection().client_socket.connect(("localhost", 8220))
+            Connection().client_socket.connect((self.serverAddress, self.serverPort))
             print("Connection successful")
             return True
         except:

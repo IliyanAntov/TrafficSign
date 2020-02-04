@@ -12,9 +12,11 @@ class AdminAppConnectionHandler():
 
     def __init__(self):
         super().__init__()
+        self.address = '0.0.0.0'
+        self.port = 26418
         self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-        self.socket.bind(('localhost', 8220))
+        self.socket.bind((self.address, self.port))
         self.socket.listen(5)
 
     def WaitForConnection(self):

@@ -23,7 +23,7 @@ const int defaultSpeedLimit = 50;
 
 // Server details
 const char server[] = "37.157.168.186";
-const int port = 65432;
+const int port = 19119;
 
 RGBmatrixPanel matrix(A, B, C, D, CLK, LAT, OE, false);
 TinyGsm modem(SerialAT);
