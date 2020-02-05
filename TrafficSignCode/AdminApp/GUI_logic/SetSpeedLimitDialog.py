@@ -36,12 +36,15 @@ class SetSpeedLimitDialog(QDialog):
  
     def SetSpeedLimit(self):
         speedLimit = self.ui.SpeedLimitTextBox.text()
-        response = self.connection.SetSpeedLimit(Connection().knownDevices[self.target], speedLimit)
-        result = self.HandleResponse(response)
-        if(result):
-            self.accept()
+        if(speedLimit == ''):
+            QMessageBox.warning(self, "Error", "Please input speed limit", QMessageBox.Ok)
         else:
-            self.reject()
+            response = self.connection.SetSpeedLimit(Connection().knownDevices[self.target], speedLimit)
+            result = self.HandleResponse(response)
+            if(result):
+                self.accept()
+            else:
+                self.reject()
 
     def HandleResponse(self, response):
         if(response == 'nosend'):

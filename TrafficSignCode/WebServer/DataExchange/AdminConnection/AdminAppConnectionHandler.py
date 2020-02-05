@@ -1,4 +1,5 @@
 import socket
+import ssl
 import sys
 import select
 import struct
@@ -22,6 +23,13 @@ class AdminAppConnectionHandler():
     def WaitForConnection(self):
         print ("Listening for client . . .")
         self.adminSocket, self.adminAddress = self.socket.accept()
+        self.adminSocket = ssl.wrap_socket( self.adminSocket,
+                                            server_side=True,
+                                            certfile="./DataExchange/Certificates/TrafficSignAppAdminConnectionCert.pem",
+                                            keyfile="./DataExchange/Certificates/TrafficSignAppAdminConnectionKey.pem",
+                                            ssl_version=ssl.PROTOCOL_TLS)
+
+
         print ("Connected to client at ", self.adminAddress)
         maxConnectionAttempts = 1
         connectionAttemptsCount = 1

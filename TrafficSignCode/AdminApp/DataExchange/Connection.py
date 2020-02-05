@@ -1,4 +1,5 @@
 import socket
+import ssl
 import time
 import sys
 import select
@@ -14,8 +15,12 @@ from GUI.LoginDialog.LoginDialog import Ui_LoginDialog
 
 
 class Connection():
-
-    client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    unwrapped = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    #client_socket = unwrapped
+    client_socket = ssl.wrap_socket(unwrapped,
+                           ca_certs="./DataExchange/Certificates/TrafficSignAppAdminConnectionCert.pem",
+                           cert_reqs=ssl.CERT_REQUIRED)
+    client_socket.settimeout(3)
     deviceList = [] #device IMEIs
     knownDevices = {} #key == Alias, value == IMEI
     
