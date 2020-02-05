@@ -61,11 +61,9 @@ class SetWarningDialog(QDialog):
 
 
     def SetWarning(self):
-        print(self.currentSelection)
         self.connection.SetWarning(Connection().knownDevices[self.target], self.currentSelection)
         self.accept()
-        # self.connection.SetSpeedLimit(Connection().knownDevices[self.target], speedLimit)
-        # self.accept()
+
 
     def QuitDialog(self):
         self.reject() 

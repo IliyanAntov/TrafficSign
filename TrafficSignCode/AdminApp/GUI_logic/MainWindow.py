@@ -34,6 +34,7 @@ class MainWindow(QMainWindow):
         self.SetupButtons()
         self.AdjustUI()
         self.connection = DataExchange()
+        self.UpdateDeviceList()
 
     def SetupButtons(self):
         self.ui.SetSpeedLimitButton.clicked.connect(self.ShowSetSpeedLimitDialog)
@@ -126,7 +127,9 @@ class MainWindow(QMainWindow):
         if(alias):
             IMEI = Connection().knownDevices[alias]
             incoming = self.connection.GetDeviceDetails(IMEI)
-            if(incoming == 'Unreachable'):
+            if(incoming == 'error'):
+                print('No response')
+                QMessageBox.warning(self, "Error", "Traffic sign didn't respond", QMessageBox.Ok)
                 return
             details = incoming.split(' ')
             status = self.ConvertStatus(details[0])

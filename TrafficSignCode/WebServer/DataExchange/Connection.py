@@ -45,7 +45,10 @@ class Connection():
 
             toSend = "SET " + request + " " + value + "\n"
             print(toSend)
-            deviceSocket.send(str.encode(toSend))
+            try:
+                deviceSocket.send(str.encode(toSend))
+            except:
+                return None
             
             ready = select.select([deviceSocket], [], [], 5)
 
@@ -92,7 +95,12 @@ class Connection():
     def SendGetRequest(targetIMEI, request):
         if(targetIMEI in Connection().deviceList):
             deviceSocket = Connection().deviceList[targetIMEI]
-            deviceSocket.send(str.encode("GET " + request + "\n"))
+            try:
+                deviceSocket.send(str.encode("GET " + request + "\n"))
+            except:
+                print("Requested device not found")
+                return None
+
 
             ready = select.select([deviceSocket], [], [], 5)
 
@@ -103,8 +111,4 @@ class Connection():
                 print("Error, device not responding")
                 Connection().deviceList.pop(targetIMEI)
                 return None
-
-        else:
-            print("Requested device not found")
-            return None
 

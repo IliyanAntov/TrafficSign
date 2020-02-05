@@ -14,7 +14,8 @@ class DataExchange():
 
     def __init__(self):
         super().__init__()
-        self.serverAddress = "3.125.80.10"
+        #self.serverAddress = "3.125.80.10"
+        self.serverAddress = "localhost"
         self.serverPort = 26418
 
     def AttemptConnect(self):
@@ -60,6 +61,7 @@ class DataExchange():
 
     def SetWarning(self, target, request):
         Connection.SendMessage(str.encode("SET " + target + " warning " + request))
+
 
     def WaitForData(self):
         ready = select.select([Connection().client_socket], [], [], 2)

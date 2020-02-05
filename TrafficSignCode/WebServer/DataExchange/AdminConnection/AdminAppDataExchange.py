@@ -23,11 +23,12 @@ class AdminAppDataExchange(Thread):
             data = Connection().ReceiveMessage(self.socket)
             print(data)
             if(data == None):
-                break
+                print('Closing thread...')
+                self.socket.close()
+                return
             else:
                 self.HandleUserRequest(data.decode('utf-8'))
                 #data = str.decode(data, 'utf-8')
-        self.socket.close()
 
     def HandleUserRequest(self, data):
         commands = data.split(' ')
@@ -47,11 +48,12 @@ class AdminAppDataExchange(Thread):
             for i in Connection().deviceList:
                 Connection().SendMessage(self.socket, str.encode(str(i), encoding="utf-8"))
             return
+
         elif(request[0] == "details"):
             targetIMEI = request[1]
             details = Connection().SendGetRequest(targetIMEI, 'dtl')
             if not details:
-                details = b'Unreachable'
+                details = b'error'
             Connection().SendMessage(self.socket, details)
 
         else:
