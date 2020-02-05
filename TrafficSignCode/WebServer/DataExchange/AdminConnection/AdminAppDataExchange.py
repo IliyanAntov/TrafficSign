@@ -66,7 +66,8 @@ class AdminAppDataExchange(Thread):
         request = commands.pop(0)
         value = commands.pop(0)
 
-        Connection().SendSetRequest(targetIMEI, request, value)
+        response = Connection().SendSetRequest(targetIMEI, request, value)
+        Connection().SendMessage(self.socket, str.encode(response))
         
 
 
