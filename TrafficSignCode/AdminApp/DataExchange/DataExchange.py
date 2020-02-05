@@ -58,6 +58,8 @@ class DataExchange():
 
     def SetSpeedLimit(self, target, speedLimit):
         Connection().SendMessage(str.encode("SET " + target +  " speed " + speedLimit))
+        response = Connection().ReceiveMessage().decode('utf-8')
+        return response
 
     def SetWarning(self, target, request):
         Connection().SendMessage(str.encode("SET " + target + " warning " + request))

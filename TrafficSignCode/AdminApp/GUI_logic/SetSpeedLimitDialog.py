@@ -36,8 +36,26 @@ class SetSpeedLimitDialog(QDialog):
  
     def SetSpeedLimit(self):
         speedLimit = self.ui.SpeedLimitTextBox.text()
-        self.connection.SetSpeedLimit(Connection().knownDevices[self.target], speedLimit)
-        self.accept()
+        response = self.connection.SetSpeedLimit(Connection().knownDevices[self.target], speedLimit)
+        result = self.HandleResponse(response)
+        if(result):
+            self.accept()
+        else:
+            self.reject()
+
+    def HandleResponse(self, response):
+        if(response == 'nosend'):
+            QMessageBox.warning(self, "Error", "Couldn't send message to device", QMessageBox.Ok)
+            return False
+        elif(response == 'notfound'):
+            QMessageBox.warning(self, "Error", "Requested device not found", QMessageBox.Ok)
+            return False
+        elif(response == 'noresp'):
+            QMessageBox.warning(self, "Error", "Device didn't respond", QMessageBox.Ok)
+            return False
+        elif(response == 'success'):
+            QMessageBox.information(self, "Success", "Successfuly sent request to device", QMessageBox.Ok)
+            return True
 
     def DisplayPreview(self):
         self.previewDialog = TrafficSignPreview('./GUI/images/SpeedLimit.png')
