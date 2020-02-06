@@ -1,6 +1,5 @@
 import hashlib
 import os
-import binascii
 import yaml
 
 users = {}
@@ -37,7 +36,7 @@ while(username != "--save--"):
         'salt': salt,
         'password': passwordHash
     }
-    
+
     print("OK")
     print()
     username = input("Username: ")
