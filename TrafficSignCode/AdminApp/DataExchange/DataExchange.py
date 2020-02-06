@@ -14,8 +14,7 @@ class DataExchange():
 
     def __init__(self):
         super().__init__()
-        #self.serverAddress = "3.125.80.10"
-        self.serverAddress = "localhost"
+        self.serverAddress = "3.125.80.10"
         self.serverPort = 26418
 
     def AttemptConnect(self):

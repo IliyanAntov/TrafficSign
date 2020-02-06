@@ -20,7 +20,7 @@ class Connection():
     client_socket = ssl.wrap_socket(unwrapped,
                            ca_certs="./DataExchange/Certificates/TrafficSignAppAdminConnectionCert.pem",
                            cert_reqs=ssl.CERT_REQUIRED)
-    client_socket.settimeout(3)
+    client_socket.settimeout(10)
     deviceList = [] #device IMEIs
     knownDevices = {} #key == Alias, value == IMEI
     
