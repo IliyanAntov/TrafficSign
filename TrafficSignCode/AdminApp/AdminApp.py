@@ -19,7 +19,7 @@ import ctypes
 
 if __name__ == '__main__':
 
-    myappid = u'mycompany.myproduct.subproduct.version' # arbitrary string
+    myappid = u'TrafficSignAppCompany.TrafficSignApp' # arbitrary string
     ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(myappid)
 
 
