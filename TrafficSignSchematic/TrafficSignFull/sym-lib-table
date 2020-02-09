@@ -2,4 +2,5 @@
   (lib (name SIM800L)(type Legacy)(uri ${KIPRJMOD}/SIM800L.LIB)(options "")(descr ""))
   (lib (name TrafficSign-rescue)(type Legacy)(uri ${KIPRJMOD}/TrafficSign-rescue.lib)(options "")(descr ""))
   (lib (name CustomSymbols)(type Legacy)(uri ${KIPRJMOD}/CustomSymbols.lib)(options "")(descr ""))
+  (lib (name TrafficSignPCB-rescue)(type Legacy)(uri C:/Users/SoMe0nE/Desktop/TrafficSign/TrafficSignSchematic/TrafficSignPCB/TrafficSignPCB-rescue.lib)(options "")(descr ""))
 )
