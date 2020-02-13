@@ -64,7 +64,7 @@ L Device:C C7
 U 1 1 5E2FC6B7
 P 10475 5775
 F 0 "C7" H 10575 5825 50  0000 L CNN
-F 1 "100n" H 10575 5750 50  0000 L CNN
+F 1 "100nF" H 10575 5750 50  0000 L CNN
 F 2 "Capacitor_THT:C_Disc_D4.3mm_W1.9mm_P5.00mm" H 10513 5625 50  0001 C CNN
 F 3 "https://store.comet.bg/Catalogue/Product/5920/" H 10475 5775 50  0001 C CNN
 	1    10475 5775
@@ -85,7 +85,7 @@ L Device:C C6
 U 1 1 5E2B96D7
 P 10475 4475
 F 0 "C6" H 10575 4525 50  0000 L CNN
-F 1 "100n" H 10575 4450 50  0000 L CNN
+F 1 "100nF" H 10575 4450 50  0000 L CNN
 F 2 "Capacitor_THT:C_Disc_D4.3mm_W1.9mm_P5.00mm" H 10513 4325 50  0001 C CNN
 F 3 "https://store.comet.bg/Catalogue/Product/5920/" H 10475 4475 50  0001 C CNN
 	1    10475 4475
@@ -615,8 +615,8 @@ $Comp
 L Device:CP COUT1
 U 1 1 5DFA6ACC
 P 9975 4475
-F 0 "COUT1" H 10093 4521 50  0000 L CNN
-F 1 "470uF" H 10093 4430 50  0000 L CNN
+F 0 "COUT1" H 10075 4475 50  0000 L CNN
+F 1 "16V/470uF" H 10000 4375 50  0000 L CNN
 F 2 "Capacitor_THT:CP_Radial_D8.0mm_P3.50mm" H 10013 4325 50  0001 C CNN
 F 3 "https://store.comet.bg/Catalogue/Product/36876/" H 9975 4475 50  0001 C CNN
 	1    9975 4475
@@ -656,7 +656,7 @@ L Device:CP CIN2
 U 1 1 5E3391F1
 P 7975 5675
 F 0 "CIN2" H 7675 5725 50  0000 L CNN
-F 1 "680uF" H 7625 5625 50  0000 L CNN
+F 1 "35V/680uF" H 7425 5625 50  0000 L CNN
 F 2 "Capacitor_THT:CP_Radial_D10.0mm_P5.00mm" H 8013 5525 50  0001 C CNN
 F 3 "https://store.comet.bg/Catalogue/Product/44664/" H 7975 5675 50  0001 C CNN
 	1    7975 5675
@@ -760,8 +760,8 @@ $Comp
 L Device:CP COUT2
 U 1 1 5E2070F5
 P 9975 5775
-F 0 "COUT2" H 10093 5821 50  0000 L CNN
-F 1 "330uF" H 10093 5730 50  0000 L CNN
+F 0 "COUT2" H 10075 5775 50  0000 L CNN
+F 1 "25V/330uF" H 10000 5675 50  0000 L CNN
 F 2 "Capacitor_THT:CP_Radial_D8.0mm_P3.50mm" H 10013 5625 50  0001 C CNN
 F 3 "https://store.comet.bg/Catalogue/Product/7086/" H 9975 5775 50  0001 C CNN
 	1    9975 5775
@@ -826,10 +826,6 @@ Wire Wire Line
 Connection ~ 7975 4075
 Wire Wire Line
 	7575 4075 7975 4075
-Wire Wire Line
-	8575 3225 8625 3225
-Wire Wire Line
-	8575 3575 8575 3225
 Connection ~ 7975 4675
 Connection ~ 8725 4675
 Wire Wire Line
@@ -900,7 +896,7 @@ L Device:CP CIN1
 U 1 1 5DFA53B3
 P 7975 4375
 F 0 "CIN1" H 7675 4425 50  0000 L CNN
-F 1 "680uF" H 7625 4325 50  0000 L CNN
+F 1 "35V/680uF" H 7425 4325 50  0000 L CNN
 F 2 "Capacitor_THT:CP_Radial_D10.0mm_P5.00mm" H 8013 4225 50  0001 C CNN
 F 3 "https://store.comet.bg/Catalogue/Product/44664/" H 7975 4375 50  0001 C CNN
 	1    7975 4375
@@ -928,7 +924,7 @@ L Device:R R2
 U 1 1 5DF907CE
 P 8775 3575
 F 0 "R2" V 8568 3575 50  0000 C CNN
-F 1 "2.2k/1%" V 8659 3575 50  0000 C CNN
+F 1 "2.21k/1%" V 8659 3575 50  0000 C CNN
 F 2 "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal" V 8705 3575 50  0001 C CNN
 F 3 "https://store.comet.bg/Catalogue/Product/5041342/" H 8775 3575 50  0001 C CNN
 	1    8775 3575
@@ -1155,130 +1151,13 @@ F 3 "https://store.comet.bg/Catalogue/Product/5920/" H 2875 6650 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 Wire Notes Line
-	7050 2250 7050 6300
-Wire Notes Line
 	7050 6300 10950 6300
 Wire Notes Line
-	10950 6300 10950 2250
-$Comp
-L Connector_Generic:Conn_01x04 J3
-U 1 1 5E26C348
-P 9850 2775
-F 0 "J3" H 9800 3125 50  0000 L CNN
-F 1 "Power input" H 9700 3025 50  0000 L CNN
-F 2 "Connector_Molex:Molex_KK-396_A-41791-0004_1x04_P3.96mm_Vertical" H 9850 2775 50  0001 C CNN
-F 3 "https://store.comet.bg/Catalogue/Product/25223/" H 9850 2775 50  0001 C CNN
-	1    9850 2775
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	9650 2675 9550 2675
-Wire Wire Line
-	9650 2775 9550 2775
-Wire Wire Line
-	9650 2875 9550 2875
-Wire Wire Line
-	9650 2975 9550 2975
-Wire Wire Line
-	9550 2875 9550 2975
-Wire Wire Line
-	9550 2975 9450 2975
-Connection ~ 9550 2975
-Wire Wire Line
-	9550 2775 9550 2675
-Wire Wire Line
-	9550 2675 9450 2675
-Connection ~ 9550 2675
-$Comp
-L power:GND #PWR0106
-U 1 1 5E43D1EE
-P 9450 2975
-F 0 "#PWR0106" H 9450 2725 50  0001 C CNN
-F 1 "GND" H 9455 2802 50  0000 C CNN
-F 2 "" H 9450 2975 50  0001 C CNN
-F 3 "" H 9450 2975 50  0001 C CNN
-	1    9450 2975
-	1    0    0    -1  
-$EndComp
-$Comp
-L power:+12V #PWR0107
-U 1 1 5E463591
-P 9450 2675
-F 0 "#PWR0107" H 9450 2525 50  0001 C CNN
-F 1 "+12V" H 9465 2848 50  0000 C CNN
-F 2 "" H 9450 2675 50  0001 C CNN
-F 3 "" H 9450 2675 50  0001 C CNN
-	1    9450 2675
-	1    0    0    -1  
-$EndComp
-Text Notes 10175 2425 0    75   Italic 15
+	10950 6300 10950 2350
+Text Notes 10175 2525 0    75   Italic 15
 Power Block
-Text GLabel 7375 3100 0    50   Input ~ 0
-BAT-
-Text GLabel 7375 2625 0    50   Input ~ 0
-BAT+
-Wire Wire Line
-	7625 3100 7625 3075
-Connection ~ 7625 3100
-Wire Wire Line
-	7625 3100 7375 3100
-Connection ~ 7625 2625
-Wire Wire Line
-	7625 2625 7375 2625
 Wire Notes Line
-	10950 2250 7050 2250
-Wire Wire Line
-	7625 3125 7625 3100
-$Comp
-L power:GND #PWR0124
-U 1 1 5E1818BD
-P 7625 3125
-F 0 "#PWR0124" H 7625 2875 50  0001 C CNN
-F 1 "GND" H 7700 2950 50  0000 R CNN
-F 2 "" H 7625 3125 50  0001 C CNN
-F 3 "" H 7625 3125 50  0001 C CNN
-	1    7625 3125
-	1    0    0    -1  
-$EndComp
-$Comp
-L Switch:SW_DIP_x01 SW1
-U 1 1 5E329055
-P 7975 2625
-F 0 "SW1" H 7975 2892 50  0000 C CNN
-F 1 "Power switch" H 7975 2801 50  0000 C CNN
-F 2 "" H 7975 2625 50  0001 C CNN
-F 3 "~" H 7975 2625 50  0001 C CNN
-	1    7975 2625
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	8275 2625 8375 2625
-Wire Wire Line
-	7675 2625 7625 2625
-$Comp
-L power:+12V #PWR0125
-U 1 1 5E174F0C
-P 8375 2625
-F 0 "#PWR0125" H 8375 2475 50  0001 C CNN
-F 1 "+12V" H 8275 2800 50  0000 L CNN
-F 2 "" H 8375 2625 50  0001 C CNN
-F 3 "" H 8375 2625 50  0001 C CNN
-	1    8375 2625
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	7625 2625 7625 2675
-$Comp
-L Device:Battery BT1
-U 1 1 5E200195
-P 7625 2875
-F 0 "BT1" H 7350 2925 50  0000 L CNN
-F 1 "12V" H 7350 2825 50  0000 L CNN
-F 2 "" V 7625 2935 50  0001 C CNN
-F 3 "~" V 7625 2935 50  0001 C CNN
-	1    7625 2875
-	1    0    0    -1  
-$EndComp
+	10950 2350 7050 2350
 Text GLabel 9750 1225 2    50   Input ~ 0
 BAT+
 Text GLabel 9750 1550 2    50   Input ~ 0
@@ -1305,4 +1184,74 @@ Wire Notes Line
 	10075 925  7875 925 
 Text Notes 9275 1075 0    75   Italic 15
 Charge Block
+Text GLabel 7525 3225 0    50   Input ~ 0
+BAT-
+Text GLabel 7525 2750 0    50   Input ~ 0
+BAT+
+Wire Wire Line
+	7775 3225 7775 3200
+Connection ~ 7775 3225
+Wire Wire Line
+	7775 3225 7525 3225
+Connection ~ 7775 2750
+Wire Wire Line
+	7775 2750 7525 2750
+Wire Wire Line
+	7775 3250 7775 3225
+$Comp
+L power:GND #PWR0124
+U 1 1 5E1818BD
+P 7775 3250
+F 0 "#PWR0124" H 7775 3000 50  0001 C CNN
+F 1 "GND" H 7850 3075 50  0000 R CNN
+F 2 "" H 7775 3250 50  0001 C CNN
+F 3 "" H 7775 3250 50  0001 C CNN
+	1    7775 3250
+	1    0    0    -1  
+$EndComp
+$Comp
+L Switch:SW_DIP_x01 SW1
+U 1 1 5E329055
+P 8125 2750
+F 0 "SW1" H 8125 3017 50  0000 C CNN
+F 1 "Power switch" H 8125 2926 50  0000 C CNN
+F 2 "" H 8125 2750 50  0001 C CNN
+F 3 "~" H 8125 2750 50  0001 C CNN
+	1    8125 2750
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	8425 2750 8525 2750
+Wire Wire Line
+	7825 2750 7775 2750
+$Comp
+L power:+12V #PWR0125
+U 1 1 5E174F0C
+P 8525 2750
+F 0 "#PWR0125" H 8525 2600 50  0001 C CNN
+F 1 "+12V" H 8425 2925 50  0000 L CNN
+F 2 "" H 8525 2750 50  0001 C CNN
+F 3 "" H 8525 2750 50  0001 C CNN
+	1    8525 2750
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7775 2750 7775 2800
+$Comp
+L Device:Battery BT1
+U 1 1 5E200195
+P 7775 3000
+F 0 "BT1" H 7500 3050 50  0000 L CNN
+F 1 "12V/14Ah" H 7275 2950 50  0000 L CNN
+F 2 "" V 7775 3060 50  0001 C CNN
+F 3 "~" V 7775 3060 50  0001 C CNN
+	1    7775 3000
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	8575 3575 8575 3225
+Wire Wire Line
+	8575 3225 8625 3225
+Wire Notes Line
+	7050 2350 7050 6300
 $EndSCHEMATC
