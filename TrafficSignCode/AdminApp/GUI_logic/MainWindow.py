@@ -1,22 +1,14 @@
-import socket
-import time
-import sys
-import select
-import struct
-import threading
+
 import yaml
-# from PyQt5.QtWidgets import QApplication, QWidget
-from PyQt5.QtWidgets import *
-from PyQt5.QtGui import QIcon, QFont, QRegExpValidator
-from PyQt5.QtCore import pyqtSlot, Qt, QRegExp
+from PyQt5.QtWidgets import QMainWindow, QDialog, QMessageBox
+from PyQt5.QtGui import QIcon
+from PyQt5.QtCore import Qt
+
 from GUI.MainWindow.MainWindow import Ui_MainWindow
-from GUI.SetSpeedLimitDialog.SetSpeedLimitDialog import Ui_SetSpeedLimitDialog
-from GUI.SetAliasDialog.SetAliasDialog import Ui_SetAliasDialog
-from GUI.LoginDialog.LoginDialog import Ui_LoginDialog
-from GUI.DetailsDialog.DetailsDialog import Ui_DetailsDialog
+
 from DataExchange.DataExchange import DataExchange
 from DataExchange.Connection import Connection
-from GUI_logic.LoginDialog import LoginDialog
+
 from GUI_logic.SetSpeedLimitDialog import SetSpeedLimitDialog
 from GUI_logic.SetAliasDialog import SetAliasDialog
 from GUI_logic.DetailsDialog import DetailsDialog

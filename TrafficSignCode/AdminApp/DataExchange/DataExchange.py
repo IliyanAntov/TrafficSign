@@ -1,12 +1,6 @@
 import socket
 import time
-import sys
 import select
-import struct
-# from PyQt5.QtWidgets import QApplication, QWidget
-from PyQt5.QtWidgets import *
-from PyQt5.QtGui import QIcon, QFont, QRegExpValidator
-from PyQt5.QtCore import pyqtSlot, Qt, QRegExp
 from DataExchange.Connection import Connection
 
 

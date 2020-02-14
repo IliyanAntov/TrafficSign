@@ -1,10 +1,5 @@
 import socket
 import ssl
-import sys
-import select
-import struct
-import threading
-import time
 import yaml
 import hashlib
 from DataExchange.Connection import Connection

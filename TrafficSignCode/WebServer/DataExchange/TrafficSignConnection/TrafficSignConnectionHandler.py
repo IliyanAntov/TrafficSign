@@ -1,10 +1,5 @@
 import socket
-import sys
-import select
-import struct
-import threading
-import time
-from DataExchange.Connection import Connection
+
 from DataExchange.TrafficSignConnection.TrafficSignDataExchange import TrafficSignDataExchange
 
 class TrafficSignConnectionHandler():

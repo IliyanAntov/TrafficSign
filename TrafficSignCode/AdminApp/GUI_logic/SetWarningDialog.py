@@ -1,18 +1,9 @@
-import socket
-import time
-import sys
-import select
-import struct
-import threading
-# from PyQt5.QtWidgets import QApplication, QWidget
-from PyQt5.QtWidgets import *
-from PyQt5.QtGui import QIcon, QFont, QRegExpValidator, QPixmap
-from PyQt5.QtCore import pyqtSlot, Qt, QRegExp
-from GUI.MainWindow.MainWindow import Ui_MainWindow
-from GUI.SetSpeedLimitDialog.SetSpeedLimitDialog import Ui_SetSpeedLimitDialog
-from GUI.LoginDialog.LoginDialog import Ui_LoginDialog
+from PyQt5.QtWidgets import QDialog, QMessageBox
+from PyQt5.QtGui import QIcon, QRegExpValidator, QPixmap
+from PyQt5.QtCore import QRegExp
+
 from GUI.SetWarningDialog.SetWarningDialog import Ui_SetWarningDialog
-from GUI_logic.TrafficSignPreview import TrafficSignPreview
+
 from DataExchange.DataExchange import DataExchange
 from DataExchange.Connection import Connection
 

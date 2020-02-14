@@ -36,14 +36,6 @@ void setup() {
   ConnectToServer();
 
   InitMatrix();
-
-  //matrix.fillScreen(matrix.Color333(0, 0, 0));
-  //VisualizeLeftOnlyWarning();
-  // for(int i = 0; i < 200; i++){
-  //   VisualizeSpeedLimit(i);
-  //   delay(500);
-  // }
-  //matrix.fillScreen(matrix.Color333(0, 0, 0));
   
 }
 

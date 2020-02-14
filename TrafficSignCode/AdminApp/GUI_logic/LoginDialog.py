@@ -1,15 +1,6 @@
-import socket
-import time
-import sys
-import select
-import struct
-import threading
-# from PyQt5.QtWidgets import QApplication, QWidget
-from PyQt5.QtWidgets import *
-from PyQt5.QtGui import QIcon, QFont, QRegExpValidator
-from PyQt5.QtCore import pyqtSlot, Qt, QRegExp
-from GUI.MainWindow.MainWindow import Ui_MainWindow
-from GUI.SetSpeedLimitDialog.SetSpeedLimitDialog import Ui_SetSpeedLimitDialog
+from PyQt5.QtWidgets import QDialog, QMessageBox, QLineEdit
+from PyQt5.QtGui import QIcon
+from PyQt5.QtCore import Qt
 from GUI.LoginDialog.LoginDialog import Ui_LoginDialog
 from DataExchange.DataExchange import DataExchange
 from DataExchange.Connection import Connection
@@ -63,8 +54,7 @@ class LoginDialog(QDialog):
             self.EnableInput()
             self.ui.connectButton.setText('Login')
             return True
-
-    @pyqtSlot()
+            
     def ConnectClick(self):
         if not self.connected:
             self.connected = self.TryConnect()

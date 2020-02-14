@@ -1,17 +1,7 @@
 import socket
 import ssl
 import time
-import sys
-import select
 import struct
-import threading
-# from PyQt5.QtWidgets import QApplication, QWidget
-from PyQt5.QtWidgets import *
-from PyQt5.QtGui import QIcon, QFont, QRegExpValidator
-from PyQt5.QtCore import pyqtSlot, Qt, QRegExp
-from GUI.MainWindow.MainWindow import Ui_MainWindow
-from GUI.SetSpeedLimitDialog.SetSpeedLimitDialog import Ui_SetSpeedLimitDialog
-from GUI.LoginDialog.LoginDialog import Ui_LoginDialog
 
 
 class Connection():

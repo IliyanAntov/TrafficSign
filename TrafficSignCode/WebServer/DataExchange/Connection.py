@@ -1,9 +1,6 @@
 import socket
-import sys
 import select
 import struct
-import threading
-import time
 
 class Connection():
 
