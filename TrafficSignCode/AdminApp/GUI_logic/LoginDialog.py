@@ -14,28 +14,27 @@ class LoginDialog(QDialog):
         self.connection = DataExchange()
         self.InitUI()
         self.connected = False
-        
+
     def InitUI(self):
-        self.ui.passwordTextBox.setEchoMode(QLineEdit.Password) #Mask password input
+        self.ui.passwordTextBox.setEchoMode(QLineEdit.Password)  # Mask password input
         self.DisableInput()
-        self.ui.connectButton.clicked.connect(self.ConnectClick)  
+        self.ui.connectButton.clicked.connect(self.ConnectClick)
 
-        self.setWindowIcon(QIcon('./GUI/images/icon.png'))
-        #DELETE LATER
-        self.ui.usernameTextBox.setText('admin')
-        self.ui.passwordTextBox.setText('1234')
-
+        self.setWindowIcon(QIcon("./GUI/images/icon.png"))
+        # DELETE LATER
+        self.ui.usernameTextBox.setText("admin")
+        self.ui.passwordTextBox.setText("1234")
 
     def EnableInput(self):
         self.ui.usernameTextBox.setDisabled(False)
         self.ui.passwordTextBox.setDisabled(False)
-        #self.ui.connectButton.setDisabled(False)
+        # self.ui.connectButton.setDisabled(False)
 
     def DisableInput(self):
         self.ui.usernameTextBox.setDisabled(True)
         self.ui.passwordTextBox.setDisabled(True)
-        #self.ui.connectButton.setDisabled(True)
-    
+        # self.ui.connectButton.setDisabled(True)
+
     def KeyPressEvent(self, event):
         if event.key() == Qt.Key_Escape:
             self.connection.Close()
@@ -43,18 +42,23 @@ class LoginDialog(QDialog):
         if event.key() == Qt.Key_Enter:
             self.ConnectClick()
 
-    def TryConnect(self): #TODO: fix
+    def TryConnect(self):  # TODO: fix
         if not self.connection.AttemptConnect():
-            reply = QMessageBox.question(self, "Error", "Could not connect to the server", QMessageBox.Retry | QMessageBox.Cancel)
-            if(reply == QMessageBox.Retry):
+            reply = QMessageBox.question(
+                self,
+                "Error",
+                "Could not connect to the server",
+                QMessageBox.Retry | QMessageBox.Cancel,
+            )
+            if reply == QMessageBox.Retry:
                 return self.TryConnect()
-            elif(reply == QMessageBox.Cancel):
+            elif reply == QMessageBox.Cancel:
                 return False
         else:
             self.EnableInput()
-            self.ui.connectButton.setText('Login')
+            self.ui.connectButton.setText("Login")
             return True
-            
+
     def ConnectClick(self):
         if not self.connected:
             self.connected = self.TryConnect()
@@ -63,15 +67,19 @@ class LoginDialog(QDialog):
             password = self.ui.passwordTextBox.text()
             data = self.connection.AttemptLogin(username, password)
             print(data)
-            if (data == 'auth'):
+            if data == "auth":
                 self.accept()
-            elif (data == 'nauth'):
+            elif data == "nauth":
                 QMessageBox.warning(self, "Error", "Wrong username or password")
-            elif (data == 'refuse'):
+            elif data == "refuse":
                 print("Too many login attempts")
-                QMessageBox.warning(self, "Error", "Too many login attempts", QMessageBox.Ok)
+                QMessageBox.warning(
+                    self, "Error", "Too many login attempts", QMessageBox.Ok
+                )
                 self.reject()
             else:
-                QMessageBox.warning(self, "Error", "Something went wrong", QMessageBox.Ok)
+                QMessageBox.warning(
+                    self, "Error", "Something went wrong", QMessageBox.Ok
+                )
                 self.reject()
 

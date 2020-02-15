@@ -6,7 +6,6 @@ from DataExchange.Connection import Connection
 
 
 class AdminAppDataExchange(Thread):
-
     def __init__(self, socket):
         super().__init__()
         self.socket = socket
@@ -18,44 +17,47 @@ class AdminAppDataExchange(Thread):
         while True:
             data = Connection().ReceiveMessage(self.socket)
             print(data)
-            if(data == None):
-                print('Closing thread...')
+            if data == None:
+                print("Closing thread...")
                 self.socket.close()
                 return
             else:
-                self.HandleUserRequest(data.decode('utf-8'))
-                #data = str.decode(data, 'utf-8')
+                self.HandleUserRequest(data.decode("utf-8"))
+                # data = str.decode(data, 'utf-8')
 
     def HandleUserRequest(self, data):
-        commands = data.split(' ')
-        if(len(commands) > 1):
+        commands = data.split(" ")
+        if len(commands) > 1:
             request = commands.pop(0)
-            if(request == "GET"):
+            if request == "GET":
                 self.HandleGetRequest(commands)
-            elif(request == "SET"):
+            elif request == "SET":
                 self.HandleSetRequest(commands)
         else:
             print("Something went wrong")
-    
+
     def HandleGetRequest(self, request):
-        if(request[0] == "devices"):
+        if request[0] == "devices":
             devicesLength = len(Connection().deviceList)
-            Connection().SendMessage(self.socket, str.encode(str(devicesLength), encoding="utf-8"))
+            Connection().SendMessage(
+                self.socket, str.encode(str(devicesLength), encoding="utf-8")
+            )
             for i in Connection().deviceList:
-                Connection().SendMessage(self.socket, str.encode(str(i), encoding="utf-8"))
+                Connection().SendMessage(
+                    self.socket, str.encode(str(i), encoding="utf-8")
+                )
             return
 
-        elif(request[0] == "details"):
+        elif request[0] == "details":
             targetIMEI = request[1]
-            details = Connection().SendGetRequest(targetIMEI, 'dtl')
+            details = Connection().SendGetRequest(targetIMEI, "dtl")
             if not details:
-                details = b'error'
+                details = b"error"
             Connection().SendMessage(self.socket, details)
 
         else:
-            print('Unknown request')
+            print("Unknown request")
             return
-        
 
     def HandleSetRequest(self, commands):
         targetIMEI = commands.pop(0)
@@ -64,7 +66,4 @@ class AdminAppDataExchange(Thread):
 
         response = Connection().SendSetRequest(targetIMEI, request, value)
         Connection().SendMessage(self.socket, str.encode(response))
-        
 
-
-    

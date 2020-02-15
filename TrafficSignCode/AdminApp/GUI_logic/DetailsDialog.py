@@ -13,14 +13,14 @@ class DetailsDialog(QDialog):
         self.ui = Ui_DetailsDialog()
         self.ui.setupUi(self)
         self.SetupFunctionality()
-    
+
     def SetupFunctionality(self):
-        self.setWindowIcon(QIcon('./GUI/images/icon.png'))
+        self.setWindowIcon(QIcon("./GUI/images/icon.png"))
         self.ui.CurrentAliasLabel.setText(self.alias)
         self.ui.IMEILabel.setText(self.IMEI)
         self.ui.StatusLabel.setText(self.status)
         self.ui.ValueLabel.setText(self.value)
         self.ui.CloseButton.clicked.connect(self.QuitDialog)
- 
+
     def QuitDialog(self):
-        self.reject() 
+        self.reject()

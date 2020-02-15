@@ -4,8 +4,7 @@ import select
 from DataExchange.Connection import Connection
 
 
-class DataExchange():
-
+class DataExchange:
     def __init__(self):
         super().__init__()
         self.serverAddress = "3.125.80.10"
@@ -34,35 +33,35 @@ class DataExchange():
         if not data:
             Connection().Close()
         else:
-            return data   
+            return data
 
     def GetDevices(self):
         Connection().SendMessage(str.encode("GET devices"))
         deviceLen = Connection().ReceiveMessage()
         Connection().deviceList.clear()
-        for i in range (int(deviceLen)):
+        for i in range(int(deviceLen)):
             device = Connection().ReceiveMessage()
             Connection().deviceList.append(device)
 
     def GetDeviceDetails(self, target):
         Connection().SendMessage(str.encode("GET details " + target))
-        details = Connection().ReceiveMessage().decode('utf-8')
+        details = Connection().ReceiveMessage().decode("utf-8")
         return details
 
     def SetSpeedLimit(self, target, speedLimit):
-        Connection().SendMessage(str.encode("SET " + target +  " speed " + speedLimit))
-        response = Connection().ReceiveMessage().decode('utf-8')
+        Connection().SendMessage(str.encode("SET " + target + " speed " + speedLimit))
+        response = Connection().ReceiveMessage().decode("utf-8")
         return response
 
     def SetWarning(self, target, request):
         Connection().SendMessage(str.encode("SET " + target + " warning " + request))
-        response = Connection().ReceiveMessage().decode('utf-8')
+        response = Connection().ReceiveMessage().decode("utf-8")
         return response
 
     def WaitForData(self):
         ready = select.select([Connection().client_socket], [], [], 2)
         if ready[0]:
-            data = Connection().ReceiveMessage().decode('utf-8')
+            data = Connection().ReceiveMessage().decode("utf-8")
             return data
         else:
             print("Connection timeout")

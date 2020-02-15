@@ -1,7 +1,12 @@
 {
-    "python.pythonPath": "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\Python36_64\\python.exe",
-    "python.autoComplete.extraPaths": [
-        "./AdminApp", "D:\\Programs\\Python\\Lib\\site-packages"
-    ],
-    "python.linting.enabled": false
+  "python.pythonPath": "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\Python36_64\\python.exe",
+  "python.autoComplete.extraPaths": [
+    "./AdminApp",
+    "D:\\Programs\\Python\\Lib\\site-packages"
+  ],
+  "python.linting.enabled": false,
+  "editor.tokenColorCustomizations": {
+    "comments": "#da1515"
+  },
+  "python.formatting.provider": "black"
 }

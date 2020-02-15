@@ -1,4 +1,3 @@
-
 import yaml
 from PyQt5.QtWidgets import QMainWindow, QDialog, QMessageBox
 from PyQt5.QtGui import QIcon
@@ -14,15 +13,16 @@ from GUI_logic.SetAliasDialog import SetAliasDialog
 from GUI_logic.DetailsDialog import DetailsDialog
 from GUI_logic.SetWarningDialog import SetWarningDialog
 
+
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
 
         self.LoadKnownDevices()
-        
+
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
-        
+
         self.SetupButtons()
         self.AdjustUI()
         self.connection = DataExchange()
@@ -36,7 +36,8 @@ class MainWindow(QMainWindow):
         self.ui.SetWarningButton.clicked.connect(self.ShowSetWarningDialog)
 
     def AdjustUI(self):
-        self.setStyleSheet( """ QListWidget:item:selected:active {
+        self.setStyleSheet(
+            """ QListWidget:item:selected:active {
                                      background: dodgerblue;
                                      color: white;
                                 }
@@ -45,9 +46,8 @@ class MainWindow(QMainWindow):
                                      color: white;
                                 }
                                 """
-                                )
-        self.setWindowIcon(QIcon('./GUI/images/icon.png'))
-
+        )
+        self.setWindowIcon(QIcon("./GUI/images/icon.png"))
 
     def UpdateDeviceList(self):
         DataExchange().GetDevices()
@@ -57,23 +57,26 @@ class MainWindow(QMainWindow):
         deviceList = self.GenerateDeviceList()
         for device in deviceList:
             self.ui.DeviceList.addItem(device)
-    
+
         self.ui.DeviceList.setDisabled(False)
 
     def GenerateDeviceList(self):
         deviceList = []
         for device in Connection().deviceList:
-            device = device.decode('utf-8')
+            device = device.decode("utf-8")
             if device not in Connection().knownDevices.values():
                 Connection().knownDevices[device] = device
 
-            deviceList.append(list(Connection().knownDevices.keys())[list(Connection().knownDevices.values()).index(device)])
+            deviceList.append(
+                list(Connection().knownDevices.keys())[
+                    list(Connection().knownDevices.values()).index(device)
+                ]
+            )
 
         return deviceList
 
-
     def LoadKnownDevices(self):
-        with open("./GUI_logic/DeviceAliases.yaml", 'r') as stream:
+        with open("./GUI_logic/DeviceAliases.yaml", "r") as stream:
             try:
                 loaded = yaml.safe_load(stream)
                 for key, value in loaded.items():
@@ -84,13 +87,17 @@ class MainWindow(QMainWindow):
                 print(exc)
 
     def SaveKnownDevices(self):
-        with open("./GUI_logic/DeviceAliases.yaml", 'w', encoding='utf-8') as outfile:
-            yaml.dump(Connection().knownDevices, outfile, default_flow_style=False, allow_unicode=True)
-
+        with open("./GUI_logic/DeviceAliases.yaml", "w", encoding="utf-8") as outfile:
+            yaml.dump(
+                Connection().knownDevices,
+                outfile,
+                default_flow_style=False,
+                allow_unicode=True,
+            )
 
     def ShowSetSpeedLimitDialog(self):
         selectedDevice = self.GetSelectedDevice()
-        if (selectedDevice):
+        if selectedDevice:
             self.setSpeedLimitDialog = SetSpeedLimitDialog(selectedDevice)
             self.setSpeedLimitDialog.show()
         else:
@@ -98,75 +105,75 @@ class MainWindow(QMainWindow):
 
     def ShowSetWarningDialog(self):
         selectedDevice = self.GetSelectedDevice()
-        if (selectedDevice):
+        if selectedDevice:
             self.setWarningDialog = SetWarningDialog(selectedDevice)
             self.setWarningDialog.show()
         else:
             pass
-      
+
     def ShowSetAliasDialog(self):
         selectedDevice = self.GetSelectedDevice()
-        if (selectedDevice):
+        if selectedDevice:
             self.setAliasDialog = SetAliasDialog(selectedDevice)
             result = self.setAliasDialog.exec_()
-            if(result == QDialog.Accepted):
+            if result == QDialog.Accepted:
                 self.UpdateDeviceList()
         else:
             pass
 
     def ShowDetailsDialog(self):
         alias = self.GetSelectedDevice()
-        if(alias):
+        if alias:
             IMEI = Connection().knownDevices[alias]
             incoming = self.connection.GetDeviceDetails(IMEI)
-            if(incoming == 'error'):
-                print('No response')
-                QMessageBox.warning(self, "Error", "Traffic sign didn't respond", QMessageBox.Ok)
+            if incoming == "error":
+                print("No response")
+                QMessageBox.warning(
+                    self, "Error", "Traffic sign didn't respond", QMessageBox.Ok
+                )
                 return
-            details = incoming.split(' ')
+            details = incoming.split(" ")
             status = self.ConvertStatus(details[0])
             value = self.ConvertValue(details[1])
-            if(value == 'unk'):
-                value = 'No information'
+            if value == "unk":
+                value = "No information"
             self.detailsDialog = DetailsDialog(alias, IMEI, status, value)
             result = self.detailsDialog.exec_()
         else:
             pass
-  
 
     def ConvertStatus(self, status):
-        if(status == 'unk'):
-            return 'No information'
-        elif(status == 'spd'):
+        if status == "unk":
+            return "No information"
+        elif status == "spd":
             return "Speed limit"
-        elif(status == 'wrn'):
+        elif status == "wrn":
             return "Warning"
 
     def ConvertValue(self, value):
-        if(value == "stp"):
+        if value == "stp":
             return "Stop sign"
-        elif(value == "gnr"):
+        elif value == "gnr":
             return "General warning"
-        elif(value == "tfl"):
+        elif value == "tfl":
             return "Traffic light"
-        elif(value == "nen"):
+        elif value == "nen":
             return "No entry"
-        elif(value == "fon"):
+        elif value == "fon":
             return "Forward only"
-        elif(value == "lon"):
+        elif value == "lon":
             return "Left only"
-        elif(value  == "ron"):
+        elif value == "ron":
             return "Right only"
         else:
             return value
 
     def GetSelectedDevice(self):
         deviceList = self.ui.DeviceList.selectedItems()
-        if (len(deviceList) > 0):
+        if len(deviceList) > 0:
             return deviceList[0].text()
         else:
             return None
-
 
     def keyPressEvent(self, event):
         if event.key() == Qt.Key_Escape:
