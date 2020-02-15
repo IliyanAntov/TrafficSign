@@ -5,46 +5,74 @@ from GUI.LoginDialog.LoginDialog import Ui_LoginDialog
 from DataExchange.DataExchange import DataExchange
 from DataExchange.Connection import Connection
 
-
+# This class is responsible for:
+#  - Defining the logic behind the "Login" dialog window
+#  - Displaying the GUI of the window
+#  - Sending the appropriate requests to the web servers via the DataExchange() class
 class LoginDialog(QDialog):
+
+    # Constructor method
     def __init__(self):
         super().__init__()
+        # Create a UI object
         self.ui = Ui_LoginDialog()
+        # Setup and display the default GUI of the window
         self.ui.setupUi(self)
-        self.connection = DataExchange()
-        self.InitUI()
-        self.connected = False
+        # Create a DataExchange() object
+        self.dataExchange = DataExchange()
+        # Alter the GUI as needed
+        self.AlterGUI()
+        self.connected = False  # Current connection status
 
-    def InitUI(self):
-        self.ui.passwordTextBox.setEchoMode(QLineEdit.Password)  # Mask password input
+    # Alters the required GUI elements
+    def AlterGUI(self):
+        # Mask password input
+        self.ui.passwordTextBox.setEchoMode(QLineEdit.Password)
+        # Disable the username and password input
         self.DisableInput()
+        # Connect the connect button to the ConnectClick() method
         self.ui.connectButton.clicked.connect(self.ConnectClick)
-
+        # Set the appropriate window icon
         self.setWindowIcon(QIcon("./GUI/images/icon.png"))
+
         # DELETE LATER
         self.ui.usernameTextBox.setText("admin")
         self.ui.passwordTextBox.setText("1234")
 
+    # Enables the username and password input
     def EnableInput(self):
+        # Enable the text boxes
         self.ui.usernameTextBox.setDisabled(False)
         self.ui.passwordTextBox.setDisabled(False)
-        # self.ui.connectButton.setDisabled(False)
 
+    # Disables the username and password input
     def DisableInput(self):
+        # Disable the text boxes
         self.ui.usernameTextBox.setDisabled(True)
         self.ui.passwordTextBox.setDisabled(True)
-        # self.ui.connectButton.setDisabled(True)
 
-    def KeyPressEvent(self, event):
+    # Handles key press shortcuts
+    def keyPressEvent(self, event):
+        # If [ESC] is clicked -> close the window
         if event.key() == Qt.Key_Escape:
-            self.connection.Close()
+            try:
+                # Close the connection, if available
+                Connection().Close()
+            except:
+                pass
+            # Return the QDialog.Rejected value and close the dialog window
             self.reject()
+        # If [ENTER] is clicked -> attempt to connect
         if event.key() == Qt.Key_Enter:
+            # Try to connect/login to the server
             self.ConnectClick()
 
-    def TryConnect(self):  # TODO: fix
-        if not self.connection.AttemptConnect():
-            reply = QMessageBox.question(
+    # Tries to establish a connection to the web server
+    def TryConnect(self):
+        # Attempt to connect
+        if not self.dataExchange.AttemptConnect():
+            # Display an error if the connection was unsuccessful
+            reply = QMessageBox.critical(
                 self,
                 "Error",
                 "Could not connect to the server",
@@ -65,7 +93,7 @@ class LoginDialog(QDialog):
         else:
             username = self.ui.usernameTextBox.text()
             password = self.ui.passwordTextBox.text()
-            data = self.connection.AttemptLogin(username, password)
+            data = self.dataExchange.AttemptLogin(username, password)
             print(data)
             if data == "auth":
                 self.accept()

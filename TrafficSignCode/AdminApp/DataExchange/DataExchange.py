@@ -13,9 +13,9 @@ class DataExchange:
     def __init__(self):
         super().__init__()
         self.serverAddress = (
-            "3.125.80.10"  # The static public IPv4 address of the web server
+            "3.125.80.10"  # Static public IPv4 address of the web server
         )
-        self.serverPort = 26418  # The application port
+        self.serverPort = 26418  # Application port
 
     # Attempts to establish a connection to the web server
     def AttemptConnect(self):

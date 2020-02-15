@@ -38,8 +38,10 @@ class AdminAppConnectionHandler:
         )
 
         self.adminSocket = context.wrap_socket(self.adminSocket, server_side=True)
-
         print("Connected to client at ", self.adminAddress)
+        return True
+
+    def WaitForLogin(self):
         maxConnectionAttempts = 5
         connectionAttemptsCount = 1
         while True:

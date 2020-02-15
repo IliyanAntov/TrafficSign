@@ -9,13 +9,15 @@ from DataExchange.AdminConnection.AdminAppConnectionHandler import (
 
 
 def HandleAdminConnections():
-    while True:
-        adminConnection = adminConnections.WaitForConnection()
+    connected = adminConnections.WaitForConnection()
+    threading.Thread(target=HandleAdminConnections).start()
 
 
 def HandleDeviceConnections():
-    while True:
-        deviceConnection = deviceConnections.WaitForConnection()
+    connected = deviceConnections.WaitForConnection()
+    threading.Thread(target=HandleDeviceConnections).start()
+    if connected:
+        deviceConnections.WaitForLogin()
 
 
 if __name__ == "__main__":
