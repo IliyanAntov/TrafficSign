@@ -23,4 +23,4 @@ class DetailsDialog(QDialog):
         self.ui.CloseButton.clicked.connect(self.QuitDialog)
 
     def QuitDialog(self):
-        self.reject()
+        self.accept()

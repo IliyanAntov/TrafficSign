@@ -63,7 +63,6 @@ class MainWindow(QMainWindow):
     def GenerateDeviceList(self):
         deviceList = []
         for device in Connection().deviceList:
-            device = device.decode("utf-8")
             if device not in Connection().knownDevices.values():
                 Connection().knownDevices[device] = device
 
@@ -99,7 +98,15 @@ class MainWindow(QMainWindow):
         selectedDevice = self.GetSelectedDevice()
         if selectedDevice:
             self.setSpeedLimitDialog = SetSpeedLimitDialog(selectedDevice)
-            self.setSpeedLimitDialog.show()
+            result = self.setSpeedLimitDialog.exec_()
+            if result == QDialog.Rejected:
+                QMessageBox.warning(
+                    self,
+                    "Error",
+                    "Lost connection to the web server, closing...",
+                    QMessageBox.Ok,
+                )
+                self.Exit()
         else:
             pass
 
@@ -107,7 +114,15 @@ class MainWindow(QMainWindow):
         selectedDevice = self.GetSelectedDevice()
         if selectedDevice:
             self.setWarningDialog = SetWarningDialog(selectedDevice)
-            self.setWarningDialog.show()
+            result = self.setWarningDialog.exec_()
+            if result == QDialog.Rejected:
+                QMessageBox.warning(
+                    self,
+                    "Error",
+                    "Lost connection to the web server, closing...",
+                    QMessageBox.Ok,
+                )
+                self.Exit()
         else:
             pass
 
@@ -126,7 +141,16 @@ class MainWindow(QMainWindow):
         if alias:
             IMEI = Connection().knownDevices[alias]
             incoming = self.connection.GetDeviceDetails(IMEI)
-            if incoming == "error":
+            if incoming == "nocon" or incoming == "timeout":
+                QMessageBox.warning(
+                    self,
+                    "Error",
+                    "Lost connection to the web server, closing...",
+                    QMessageBox.Ok,
+                )
+                self.Exit()
+                return
+            elif incoming == "error":
                 print("No response")
                 QMessageBox.warning(
                     self, "Error", "Traffic sign didn't respond", QMessageBox.Ok
@@ -177,12 +201,9 @@ class MainWindow(QMainWindow):
 
     def keyPressEvent(self, event):
         if event.key() == Qt.Key_Escape:
-            self.SaveKnownDevices()
-            Connection().Close()
-            self.close()
+            self.Exit()
 
-    def closeEvent(self, event):
+    def Exit(self):
         self.SaveKnownDevices()
         Connection().Close()
         self.close()
-

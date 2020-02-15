@@ -32,13 +32,12 @@ class AdminAppConnectionHandler:
         self.adminSocket, self.adminAddress = self.socket.accept()
 
         context = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
-        context.load_cert_chain(certfile="./DataExchange/Certificates/TrafficSignAppAdminConnectionCert.pem",
-            keyfile="./DataExchange/Certificates/TrafficSignAppAdminConnectionKey.pem")
-
-        self.adminSocket = context.wrap_socket(
-            self.adminSocket,
-            server_side=True
+        context.load_cert_chain(
+            certfile="./DataExchange/Certificates/TrafficSignAppAdminConnectionCert.pem",
+            keyfile="./DataExchange/Certificates/TrafficSignAppAdminConnectionKey.pem",
         )
+
+        self.adminSocket = context.wrap_socket(self.adminSocket, server_side=True)
 
         print("Connected to client at ", self.adminAddress)
         maxConnectionAttempts = 5

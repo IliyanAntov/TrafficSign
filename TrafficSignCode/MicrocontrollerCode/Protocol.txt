@@ -1,16 +1,40 @@
+Admin app -> Server
+
+"GET ":
+    1)  "devices"
+        {response}: 
+            [message 0]: <Number of available devices>
+            [message 1-n]: <Device IMEI>
+    2)  "details <IMEI>"
+        {response}:
+            [message 0]: <Device details string>
+
+"SET <Target device IMEI> ":
+    1)  "speed <Speed limit>" 
+        {response}:
+            [message 0]: <Response message>
+    2)  "warning <Warning sign>"
+        {response}:
+            [message 0]: <Response message>
+
+
+
+
+
+
 Server -> uC
 
 SET:
-spd = speed (Red circle)
-wrn = warning (Red triangle)
-Warnings:
-    >stp = stop sign
-    >gnr = general warning (exclamation mark)
-    >tfl = traffic light
-    >nen = no entry
-    >fon = forward only
-    >lon = left only
-    >ron = right only
+    spd = speed (Red circle)
+    wrn = warning (Red triangle)
+    Warnings:
+        >stp = stop sign
+        >gnr = general warning (exclamation mark)
+        >tfl = traffic light
+        >nen = no entry
+        >fon = forward only
+        >lon = left only
+        >ron = right only
 
 GET:
 dtl = details

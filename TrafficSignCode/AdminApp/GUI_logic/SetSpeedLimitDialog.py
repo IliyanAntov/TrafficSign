@@ -39,13 +39,15 @@ class SetSpeedLimitDialog(QDialog):
                 Connection().knownDevices[self.target], speedLimit
             )
             result = self.HandleResponse(response)
-            if result:
+            if result != None:
                 self.accept()
             else:
                 self.reject()
 
     def HandleResponse(self, response):
-        if response == "nosend":
+        if response == "nocon" or response == "timeout":
+            return None
+        elif response == "nosend":
             QMessageBox.warning(
                 self, "Error", "Couldn't send message to device", QMessageBox.Ok
             )
@@ -66,7 +68,7 @@ class SetSpeedLimitDialog(QDialog):
 
     def DisplayPreview(self):
         self.previewDialog = TrafficSignPreview("./GUI/images/SpeedLimit.png")
-        self.previewDialog.show()
+        self.previewDialog.exec_()
 
     def QuitDialog(self):
-        self.reject()
+        self.accept()

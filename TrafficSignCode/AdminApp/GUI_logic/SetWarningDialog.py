@@ -56,13 +56,15 @@ class SetWarningDialog(QDialog):
             Connection().knownDevices[self.target], self.currentSelection
         )
         result = self.HandleResponse(response)
-        if result:
+        if result != None:
             self.accept()
         else:
             self.reject()
 
     def HandleResponse(self, response):
-        if response == "nosend":
+        if response == "nocon" or response == "timeout":
+            return None
+        elif response == "nosend":
             QMessageBox.warning(
                 self, "Error", "Couldn't send message to device", QMessageBox.Ok
             )
@@ -82,4 +84,4 @@ class SetWarningDialog(QDialog):
             return True
 
     def QuitDialog(self):
-        self.reject()
+        self.accept()
