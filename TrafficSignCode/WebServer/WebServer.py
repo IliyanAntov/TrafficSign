@@ -8,16 +8,16 @@ from DataExchange.AdminConnection.AdminAppConnectionHandler import (
 )
 
 
-def HandleAdminConnections():
-    connected = adminConnections.WaitForConnection()
-    threading.Thread(target=HandleAdminConnections).start()
-
-
 def HandleDeviceConnections():
     connected = deviceConnections.WaitForConnection()
     threading.Thread(target=HandleDeviceConnections).start()
+
+
+def HandleAdminConnections():
+    connected = adminConnections.WaitForConnection()
+    threading.Thread(target=HandleAdminConnections).start()
     if connected:
-        deviceConnections.WaitForLogin()
+        adminConnections.WaitForLogin()
 
 
 if __name__ == "__main__":
