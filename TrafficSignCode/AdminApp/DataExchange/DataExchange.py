@@ -48,7 +48,7 @@ class DataExchange:
         # Wait for a response from the web server
         data = self.WaitForData()
         if not data:
-            # If no response is recieved, close the connection
+            # If no response is received, close the connection
             Connection().Close()
         else:
             # Return the response
@@ -58,14 +58,14 @@ class DataExchange:
     def GetDevices(self):
         # Send the "GET devices" request message
         Connection().SendMessage(str.encode("GET devices"))
-        # Recieve the number of available devices
+        # Receive the number of available devices
         deviceLen = self.WaitForData()
         # Clear the device list
         Connection().deviceList.clear()
         if deviceLen:
-            # Recieve all available devices
+            # Receive all available devices
             for i in range(int(deviceLen)):
-                # Recieve the device IMEI
+                # Receive the device IMEI
                 device = self.WaitForData()
                 # Add it to the device list
                 Connection().deviceList.append(device)
@@ -74,7 +74,7 @@ class DataExchange:
     def GetDeviceDetails(self, target):
         # Send the "GET details <IMEI>" request message
         Connection().SendMessage(str.encode("GET details " + target))
-        # Recieve the device details message
+        # Receive the device details message
         details = self.WaitForData()
         # Return the details message
         return details
@@ -83,7 +83,7 @@ class DataExchange:
     def SetSpeedLimit(self, target, speedLimit):
         # Send the "SET <Target device IMEI> speed <Speed limit>" request message
         Connection().SendMessage(str.encode("SET " + target + " speed " + speedLimit))
-        # Recieve the server response message
+        # Receive the server response message
         response = self.WaitForData()
         # Return the response
         return response
@@ -105,7 +105,7 @@ class DataExchange:
             try:
                 # Read the available message
                 data = Connection().ReceiveMessage().decode("utf-8")
-                # Return the recieved message
+                # Return the received message
                 return data
             except:
                 print("Lost connection to the server")

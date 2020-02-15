@@ -43,11 +43,11 @@ class Connection:
     @staticmethod
     def ReceiveMessage():
         # Receive the message length
-        lengthbuf = Connection().ReceiveAll(4)
-        if not lengthbuf:
+        bufferLength = Connection().ReceiveAll(4)
+        if not bufferLength:
             return None
         # Unpack the length
-        (length,) = struct.unpack("!I", lengthbuf)
+        (length,) = struct.unpack("!I", bufferLength)
         # Receive the whole message
         return Connection().ReceiveAll(length)
 
@@ -55,19 +55,19 @@ class Connection:
     @staticmethod
     def ReceiveAll(count):
         # Create a byte buffer to store the message
-        buf = b""
+        buffer = b""
         # Receive <count> bytes
         while count:
             # Receive all currently available bytes (max <count>)
-            newbuf = Connection().client_socket.recv(count)
-            if not newbuf:
+            newBuffer = Connection().client_socket.recv(count)
+            if not newBuffer:
                 return None
             # Write to the buffer
-            buf += newbuf
+            buffer += newBuffer
             # Substract the length of the received bytes from the expected amount
-            count -= len(newbuf)
+            count -= len(newBuffer)
         # Return the message
-        return buf
+        return buffer
 
     # Closes the socket to the server
     @staticmethod

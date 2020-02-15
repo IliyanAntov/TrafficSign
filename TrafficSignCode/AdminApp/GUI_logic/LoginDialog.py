@@ -21,16 +21,16 @@ class LoginDialog(QDialog):
         # Create a DataExchange() object
         self.dataExchange = DataExchange()
         # Alter the GUI as needed
-        self.AlterGUI()
+        self.AdjustGUI()
         self.connected = False  # Current connection status
 
     # Alters the required GUI elements
-    def AlterGUI(self):
+    def AdjustGUI(self):
         # Mask password input
         self.ui.passwordTextBox.setEchoMode(QLineEdit.Password)
         # Disable the username and password input
         self.DisableInput()
-        # Connect the connect button to the ConnectClick() method
+        # Connect the button to the appropriate method
         self.ui.connectButton.clicked.connect(self.ConnectClick)
         # Set the appropriate window icon
         self.setWindowIcon(QIcon("./GUI/images/icon.png"))
@@ -69,45 +69,71 @@ class LoginDialog(QDialog):
 
     # Tries to establish a connection to the web server
     def TryConnect(self):
-        # Attempt to connect
+        # Attempt to connect to the web server
+        #
+        # If the connection is unsuccessful:
         if not self.dataExchange.AttemptConnect():
-            # Display an error if the connection was unsuccessful
+            # Display an error message box
             reply = QMessageBox.critical(
                 self,
                 "Error",
                 "Could not connect to the server",
                 QMessageBox.Retry | QMessageBox.Cancel,
             )
+            # Retry the connection if the retry button is clicked
             if reply == QMessageBox.Retry:
                 return self.TryConnect()
+            # Close the message box if the cancel button is clicked
             elif reply == QMessageBox.Cancel:
                 return False
+
+        # If the connection is successful:
         else:
+            # Enable the username and password input
             self.EnableInput()
+            # Change the connect button text
             self.ui.connectButton.setText("Login")
             return True
 
+    # Attempts to connect to the web server if a connection is not established
+    # Sends the entered login information if a connection is established
     def ConnectClick(self):
+        # Not connected:
         if not self.connected:
             self.connected = self.TryConnect()
+        # Connected:
         else:
-            username = self.ui.usernameTextBox.text()
-            password = self.ui.passwordTextBox.text()
+            username = self.ui.usernameTextBox.text()  # Entered username
+            password = self.ui.passwordTextBox.text()  # Entered password
+            # Try to login with the given credentials
             data = self.dataExchange.AttemptLogin(username, password)
-            print(data)
+
+            # If the server accepted the login information:
             if data == "auth":
+                # Return the QDialog.Accepted value and close the dialog window
                 self.accept()
+
+            # If the server did not accept the login information:
             elif data == "nauth":
+                # Display a warning message box
                 QMessageBox.warning(self, "Error", "Wrong username or password")
+
+            # If the server refused the connection because of too many login attempts:
             elif data == "refuse":
                 print("Too many login attempts")
-                QMessageBox.warning(
+                # Display an error message box
+                QMessageBox.critical(
                     self, "Error", "Too many login attempts", QMessageBox.Ok
                 )
+                # Return the QDialog.Rejected value and close the dialog window
                 self.reject()
+
+            # If something went horribly wrong:
             else:
-                QMessageBox.warning(
+                # Display an error message box
+                QMessageBox.critical(
                     self, "Error", "Something went wrong", QMessageBox.Ok
                 )
+                # Return the QDialog.Rejected value and close the dialog window
                 self.reject()
 

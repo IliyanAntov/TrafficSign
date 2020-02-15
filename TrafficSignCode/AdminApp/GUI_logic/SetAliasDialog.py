@@ -30,9 +30,17 @@ class SetAliasDialog(QDialog):
     def SetAlias(self):
         newName = self.ui.NewNameTextBox.text()
         if newName != "":
-            IMEI = Connection().knownDevices.pop(self.target)
-            Connection().knownDevices[newName] = IMEI
-            self.accept()
+            if newName in Connection().knownDevices.keys():
+                QMessageBox.warning(
+                    self,
+                    "Error",
+                    "Alias already exists, please enter a unique device alias",
+                    QMessageBox.Ok,
+                )
+            else:
+                IMEI = Connection().knownDevices.pop(self.target)
+                Connection().knownDevices[newName] = IMEI
+                self.accept()
         else:
             QMessageBox.warning(
                 self, "Error", "Please enter device alias", QMessageBox.Ok

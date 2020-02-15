@@ -30,7 +30,7 @@ class DetailsDialog(QDialog):
         self.ui.IMEILabel.setText(self.IMEI)
         self.ui.StatusLabel.setText(self.status)
         self.ui.ValueLabel.setText(self.value)
-        # Connect the close button to the QuitDialog() method
+        # Connect the button to the appropriate method
         self.ui.CloseButton.clicked.connect(self.QuitDialog)
 
     # Closes the dialog
