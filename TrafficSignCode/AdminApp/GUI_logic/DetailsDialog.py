@@ -13,12 +13,12 @@ class DetailsDialog(QDialog):
         self.alias = alias  # The device's alias
         self.IMEI = IMEI  # The device's IMEI
         self.status = status  # The device's current display status
-        self.value = value  # The device's current speed limit / warning value
+        self.value = value  # The device's current speed limit/warning value
         # Create a UI object
         self.ui = Ui_DetailsDialog()
         # Setup and display the default GUI of the window
         self.ui.setupUi(self)
-        # Setup the functionality of this window
+        # Setup the custom functionality of this window
         self.SetupFunctionality()
 
     # Alters the required GUI elements and configures the button actions
