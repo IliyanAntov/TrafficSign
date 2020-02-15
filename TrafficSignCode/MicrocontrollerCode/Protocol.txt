@@ -24,20 +24,19 @@ Admin app -> Server
 
 Server -> uC
 
-SET:
-    spd = speed (Red circle)
-    wrn = warning (Red triangle)
-    Warnings:
-        >stp = stop sign
-        >gnr = general warning (exclamation mark)
-        >tfl = traffic light
-        >nen = no entry
-        >fon = forward only
-        >lon = left only
-        >ron = right only
+"SET ":
+    1)  "spd <Speed limit>" = speed limit traffic sign (Red circle)
+    2)  "wrn <Warning sign>" = warning traffic sign
+            -"stp" = Stop sign
+            -"gnr" = General warning (exclamation mark)
+            -"tfl" = Traffic light
+            -"nen" = No entry
+            -"fon" = Forward only
+            -"lon" = Left only
+            -"ron" = Right only
 
-GET:
-dtl = details
+"GET ":
+    1)  "dtl" = device details
 
 
 
