@@ -29,7 +29,7 @@ class AdminAppConnectionHandler:
 
     def WaitForConnection(self):
         print("Listening for client . . .")
-        self.adminSocket, self.adminAddress = self.socket.accept()
+        adminSocket, adminAddress = self.socket.accept()
 
         context = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
         context.load_cert_chain(
@@ -37,43 +37,43 @@ class AdminAppConnectionHandler:
             keyfile="./DataExchange/Certificates/TrafficSignAppAdminConnectionKey.pem",
         )
 
-        self.adminSocket = context.wrap_socket(self.adminSocket, server_side=True)
-        print("Connected to client at ", self.adminAddress)
-        return True
+        adminSocket = context.wrap_socket(adminSocket, server_side=True)
+        print("Connected to client at ", adminAddress)
+        return (adminSocket, adminAddress)
 
-    def WaitForLogin(self):
+    def WaitForLogin(self, adminSocket, adminAddress):
         maxConnectionAttempts = 5
         connectionAttemptsCount = 1
         while True:
-            returnCode = self.AuthenticateUser()
+            returnCode = self.AuthenticateUser(adminSocket, adminAddress)
             if returnCode == 0:  # Username or password incorrect
                 connectionAttemptsCount += 1
                 if connectionAttemptsCount > maxConnectionAttempts:
                     print("Too many login attempts, closing connection...")
-                    Connection().SendMessage(self.adminSocket, b"refuse")
-                    self.adminSocket.close()
+                    Connection().SendMessage(adminSocket, b"refuse")
+                    adminSocket.close()
                     return False
                 else:
-                    Connection().SendMessage(self.adminSocket, b"nauth")
+                    Connection().SendMessage(adminSocket, b"nauth")
             elif returnCode == 1:  # Username and password correct
                 print("Authenticated")
-                Connection().SendMessage(self.adminSocket, b"auth")
-                adminThread = AdminAppDataExchange(self.adminSocket)
+                Connection().SendMessage(adminSocket, b"auth")
+                adminThread = AdminAppDataExchange(adminSocket)
                 adminThread.start()
                 return True
             elif returnCode == 2:  # Connection closed by client
                 print("Connection closed by remote client")
                 return False
             else:
-                self.adminSocket.close()
+                adminSocket.close()
                 return False
 
-    def AuthenticateUser(self):
-        username = Connection().ReceiveMessage(self.adminSocket)
+    def AuthenticateUser(self, adminSocket, adminAddress):
+        username = Connection().ReceiveMessage(adminSocket)
         if username == None:
             return 2  # Connection closed by client
 
-        password = Connection().ReceiveMessage(self.adminSocket)
+        password = Connection().ReceiveMessage(adminSocket)
         username = username.decode()
         password = password.decode()
 
@@ -87,10 +87,10 @@ class AdminAppConnectionHandler:
         newHash = self.GetPasswordHash(password, salt)
 
         if newHash == knownHash:
-            print("Client at ", self.adminAddress, " authorized")
+            print("Client at ", adminAddress, " authorized")
             return 1  # Username and password correct
         else:
-            print("Client at ", self.adminAddress, " not authorized")
+            print("Client at ", adminAddress, " not authorized")
             return 0  # Username or password incorrect
 
     def GetPasswordHash(self, password, salt):

@@ -14,10 +14,10 @@ def HandleDeviceConnections():
 
 
 def HandleAdminConnections():
-    connected = adminConnections.WaitForConnection()
+    adminSocketTuple = adminConnections.WaitForConnection()
     threading.Thread(target=HandleAdminConnections).start()
-    if connected:
-        adminConnections.WaitForLogin()
+    if adminSocketTuple:
+        adminConnections.WaitForLogin(adminSocketTuple[0], adminSocketTuple[1])
 
 
 if __name__ == "__main__":
