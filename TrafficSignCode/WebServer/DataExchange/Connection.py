@@ -21,7 +21,7 @@ class Connection:
 
     # Receives a message from the the socket
     @staticmethod
-    def ReceiveMessage():
+    def ReceiveMessage(sock):
         # Receive the message length
         bufferLength = Connection().ReceiveAll(sock, 4)
         if not bufferLength:
