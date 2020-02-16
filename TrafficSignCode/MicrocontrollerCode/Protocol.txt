@@ -9,20 +9,29 @@ Admin app -> Server
         {response}:
             [message 0]: <Device details string>
 
-"SET <Target device IMEI> ":
-    1)  "speed <Speed limit>" 
+"SET <IMEI> ":
+    1)  "speed <speed limit>" 
         {response}:
-            [message 0]: <Response message>
-    2)  "warning <Warning sign>"
+            [message 0]: <Confirmation message>
+    2)  "warning <warning sign>"
         {response}:
-            [message 0]: <Response message>
+            [message 0]: <Confirmation message>
+
 
 
 Server -> uC
 
+"GET ":
+    1)  "dtl" = device details
+        {response}:
+            [message 0]: <Device details string>
+
 "SET ":
-    1)  "spd <Speed limit>" = speed limit traffic sign (Red circle)
-    2)  "wrn <Warning sign>" = warning traffic sign
+    1)  "spd <speed limit>"
+        {response}:
+            [message 0]: <Confirmation message>
+
+    2)  "wrn <warning sign code>"
             -"stp" = Stop sign
             -"gnr" = General warning (exclamation mark)
             -"tfl" = Traffic light
@@ -30,6 +39,5 @@ Server -> uC
             -"fon" = Forward only
             -"lon" = Left only
             -"ron" = Right only
-
-"GET ":
-    1)  "dtl" = device details
+        {response}:
+            [message 0]: <Confirmation message>

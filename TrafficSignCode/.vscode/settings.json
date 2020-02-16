@@ -8,5 +8,6 @@
   "editor.tokenColorCustomizations": {
     "comments": "#da1515"
   },
-  "python.formatting.provider": "black"
+  "python.formatting.provider": "black",
+  "cSpell.enabled": false
 }
