@@ -219,12 +219,21 @@ class MainWindow(QMainWindow):
                 # Exit the application
                 self.Exit()
             # If there is a problem with the device connection:
-            elif incoming == "error":
+            elif incoming == "nosend":
                 # Display a warning message
                 QMessageBox.warning(
-                    self, "Error", "Traffic sign didn't respond", QMessageBox.Ok,
+                    self, "Error", "Couldn't send message to device", QMessageBox.Ok
                 )
-            # If the request to the device was successful:
+            elif incoming == "notfound":
+                # Display a warning message
+                QMessageBox.warning(
+                    self, "Error", "Requested device not found", QMessageBox.Ok
+                )
+            elif incoming == "noresp":
+                # Display a warning message
+                QMessageBox.warning(
+                    self, "Error", "Device didn't respond", QMessageBox.Ok
+                )
             else:
                 # Split the response into separate items
                 details = incoming.split(" ")
@@ -237,6 +246,7 @@ class MainWindow(QMainWindow):
                 self.detailsDialog = DetailsDialog(selectedDevice, IMEI, status, value)
                 # Display the dialog
                 self.detailsDialog.exec_()
+                return True
         # If a device is not selected:
         else:
             # Do nothing
