@@ -56,12 +56,23 @@ class SetWarningDialog(QDialog):
     def GetCurrentSelection(self):
         # Get the currently selected item value
         selection = str(self.ui.SelectionBox.currentText())
-        try:
-            # Remove the spaces from the selected string
-            # (Create a file-name-appropriate value)
-            selection = selection.replace(" ", "")
-            return selection
-        except:
+        # Remove the spaces from the selected string
+        # (Create a file-name-appropriate value)
+        if selection == "Stop sign":
+            return "StopSign"
+        elif selection == "General warning":
+            return "GeneralWarning"
+        elif selection == "Traffic light":
+            return "TrafficLight"
+        elif selection == "No entry":
+            return "NoEntry"
+        elif selection == "Forward only":
+            return "ForwardOnly"
+        elif selection == "Left only":
+            return "LeftOnly"
+        elif selection == "Right only":
+            return "RightOnly"
+        else:
             return None
 
     # Sends a request to the web server with the warning sign selected by the user
