@@ -301,6 +301,11 @@ class MainWindow(QMainWindow):
             # Exit the application
             self.Exit()
 
+    # Handles the event that occurs when the window
+    def closeEvent(self, event):
+        # Close the window
+        self.Exit()
+
     # Saves device aliases and closes the application
     def Exit(self):
         # Save all new and previous device aliases to the file

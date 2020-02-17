@@ -62,7 +62,6 @@ class AdminAppConnectionHandler:
         # Create a protected SSL/TLS TCP socket (server side)
         adminSocket = context.wrap_socket(adminSocket, server_side=True)
         print("Connected to client at ", adminAddress)
-
         # Return the socket and address of the connection
         return (adminSocket, adminAddress)
 

@@ -2,7 +2,11 @@ import socket
 import select
 import struct
 
-
+# This class is responsible for:
+#  - Keeping a list of all available traffic sign devices and their sockets
+#  - Sending messages to the admin applications in the correct format
+#  - Receiving messages from the admin applications
+#  - Sending messages to the traffic sign devices in the correct format
 class Connection:
 
     # Traffic sign device list
@@ -56,24 +60,19 @@ class Connection:
         if targetIMEI in Connection().deviceList.keys():
             # Get the device socket
             deviceSocket = Connection().deviceList[targetIMEI]
-
             # Compress the request and value into the required format for traffic sign device messages
             request = Connection().CompressRequest(request)
             value = Connection().CompressValue(value)
-
             # Generate the string that is going to be sent to the device
             toSend = "SET " + request + " " + value + "\n"
             print(toSend)
-
             try:
                 # Send the request to the appropriate socket
                 deviceSocket.send(str.encode(toSend))
             except:
                 return "nosend"
-
             # Wait for device response; timeout after 5 seconds
             ready = select.select([deviceSocket], [], [], 5)
-
             if ready[0]:
                 # Read the acknowledgement
                 data = deviceSocket.recv(2)
