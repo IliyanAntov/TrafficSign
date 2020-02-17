@@ -30,6 +30,14 @@ const char server[] = "3.125.80.10";
 // Connection port
 const int port = 19119;
 
+char command[4];  // Last received command
+char request[4];  // Last received request
+char value[4];    // Last received value
+int index = 0;    // Index (Used for loops)
+char current;     // Current char (Used for reading from the serial port)
+
+char currentState[8] = {"unk unk"};  // Current device state (Default)
+
 // LED matrix object (RGBmatrixPanel.h library)
 RGBmatrixPanel matrix(A, B, C, D, CLK, LAT, OE, false);
 // GPRS modem object (TinyGsmClient.h library)
@@ -182,14 +190,6 @@ void InitMatrix() {
   matrix.println(F("..."));
 }
 
-char command[4];  // Last received command
-char request[4];  // Last received request
-char value[4];    // Last received value
-int index = 0;    // Index (Used for loops)
-char current;     // Current char (Used for reading from the serial port)
-
-char currentState[8] = {"unk unk"};  // Current device state (Default)
-
 // Reads a request received from the web server
 void ReadRequest() {
   // Read the incoming command:
@@ -313,12 +313,6 @@ void HandleGet() {
   }
 }
 
-// Converts the request value to integer
-int ConvertSpeed() {
-  // Returns the received value converted to int
-  return atoi(value);
-}
-
 // Reads the value at the end of a SET request
 void ReadValue() {
   // Read the first character
@@ -348,6 +342,12 @@ void ReadValue() {
   while (client.available()) {
     client.read();
   }
+}
+
+// Converts the request value to integer
+int ConvertSpeed() {
+  // Returns the received value converted to int
+  return atoi(value);
 }
 
 // Changes the device state to reflect the currently visualized information

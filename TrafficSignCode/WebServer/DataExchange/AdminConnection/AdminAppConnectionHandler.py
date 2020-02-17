@@ -56,8 +56,8 @@ class AdminAppConnectionHandler:
         )
         # Load the certificate and private key used for the admin application connection
         context.load_cert_chain(
-            certfile="./DataExchange/Certificates/TrafficSignAppAdminConnectionCert.pem",
-            keyfile="./DataExchange/Certificates/TrafficSignAppAdminConnectionKey.pem",
+            certfile="../Secrets/Certificates/TrafficSignAppAdminConnectionCert.pem",
+            keyfile="../Secrets/Certificates/TrafficSignAppAdminConnectionKey.pem",
         )
         # Create a protected SSL/TLS TCP socket (server side)
         adminSocket = context.wrap_socket(adminSocket, server_side=True)
