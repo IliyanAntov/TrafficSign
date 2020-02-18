@@ -36,7 +36,7 @@ class MainWindow(QMainWindow):
         # Initially update the device list
         self.UpdateDeviceList()
 
-    # Alters the required GUI elements and connects the buttons to their appropriate methods
+    # Alters the required GUI elements and configures the button actions
     def SetupFunctionality(self):
         # Set the background color of the selected device from the list
         self.setStyleSheet(

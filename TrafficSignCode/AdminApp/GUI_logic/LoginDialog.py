@@ -24,7 +24,7 @@ class LoginDialog(QDialog):
         self.SetupFunctionality()
         self.connected = False  # Current connection status
 
-    # Alters the required GUI elements
+    # Alters the required GUI elements and configures the button actions
     def SetupFunctionality(self):
         # Mask password input
         self.ui.passwordTextBox.setEchoMode(QLineEdit.Password)
