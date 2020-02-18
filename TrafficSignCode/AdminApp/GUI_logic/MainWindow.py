@@ -29,25 +29,15 @@ class MainWindow(QMainWindow):
         self.ui = Ui_MainWindow()
         # Setup and display the default GUI of the window
         self.ui.setupUi(self)
-        # Setup the button functionality
-        self.SetupButtons()
-        # Alter the GUI as needed
-        self.AdjustGUI()
+        # Setup the custom functionality of this window
+        self.SetupFunctionality()
         # Create a DataExchange() object
         self.dataExchange = DataExchange()
         # Initially update the device list
         self.UpdateDeviceList()
 
-    # Connects the buttons to their appropriate methods
-    def SetupButtons(self):
-        self.ui.SetSpeedLimitButton.clicked.connect(self.ShowSetSpeedLimitDialog)
-        self.ui.RefreshButton.clicked.connect(self.UpdateDeviceList)
-        self.ui.SetListEntryAliasButton.clicked.connect(self.ShowSetAliasDialog)
-        self.ui.DetailsButton.clicked.connect(self.ShowDetailsDialog)
-        self.ui.SetWarningButton.clicked.connect(self.ShowSetWarningDialog)
-
-    # Alters the required GUI elements
-    def AdjustGUI(self):
+    # Alters the required GUI elements and connects the buttons to their appropriate methods
+    def SetupFunctionality(self):
         # Set the background color of the selected device from the list
         self.setStyleSheet(
             """ QListWidget:item:selected:active {
@@ -62,6 +52,13 @@ class MainWindow(QMainWindow):
         )
         # Set the appropriate window icon
         self.setWindowIcon(QIcon("./GUI/images/icon.png"))
+
+        self.ui.SetSpeedLimitButton.clicked.connect(self.ShowSetSpeedLimitDialog)
+        self.ui.RefreshButton.clicked.connect(self.UpdateDeviceList)
+        self.ui.SetListEntryAliasButton.clicked.connect(self.ShowSetAliasDialog)
+        self.ui.DetailsButton.clicked.connect(self.ShowDetailsDialog)
+        self.ui.SetWarningButton.clicked.connect(self.ShowSetWarningDialog)
+
 
     # Requests information from the web server and updates the devices in the displayed device list
     def UpdateDeviceList(self):

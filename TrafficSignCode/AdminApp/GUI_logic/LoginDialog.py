@@ -20,12 +20,12 @@ class LoginDialog(QDialog):
         self.ui.setupUi(self)
         # Create a DataExchange() object
         self.dataExchange = DataExchange()
-        # Alter the GUI as needed
-        self.AdjustGUI()
+        # Setup the custom functionality of this window
+        self.SetupFunctionality()
         self.connected = False  # Current connection status
 
     # Alters the required GUI elements
-    def AdjustGUI(self):
+    def SetupFunctionality(self):
         # Mask password input
         self.ui.passwordTextBox.setEchoMode(QLineEdit.Password)
         # Disable the username and password input
