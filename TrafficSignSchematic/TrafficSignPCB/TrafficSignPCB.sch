@@ -4,9 +4,9 @@ EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
 Sheet 1 1
-Title ""
-Date ""
-Rev ""
+Title "Traffic sign PCB schematic"
+Date "2020-02-15"
+Rev "1"
 Comp ""
 Comment1 ""
 Comment2 ""
@@ -1130,18 +1130,16 @@ F 3 "https://store.comet.bg/Catalogue/Product/5920/" H 2875 6650 50  0001 C CNN
 $EndComp
 Wire Notes Line
 	7050 6300 10950 6300
-Wire Notes Line
-	10950 6300 10950 2850
-Text Notes 10150 3050 0    75   Italic 15
+Text Notes 10150 2775 0    75   Italic 15
 Power Block
 Wire Notes Line
-	10950 2850 7050 2850
+	10950 2575 7050 2575
 Wire Wire Line
 	8575 3575 8575 3225
 Wire Wire Line
 	8575 3225 8625 3225
 Wire Notes Line
-	7050 2850 7050 6300
+	7050 2575 7050 6300
 $Comp
 L Device:R R7
 U 1 1 5E490DB1
@@ -1203,4 +1201,57 @@ F 3 "" H 4500 1850 50  0001 C CNN
 $EndComp
 Wire Wire Line
 	4750 1450 4750 1950
+Wire Notes Line
+	10950 6300 10950 2575
+$Comp
+L power:GND #PWR0124
+U 1 1 5E500F33
+P 7475 3250
+F 0 "#PWR0124" H 7475 3000 50  0001 C CNN
+F 1 "GND" H 7480 3077 50  0000 C CNN
+F 2 "" H 7475 3250 50  0001 C CNN
+F 3 "" H 7475 3250 50  0001 C CNN
+	1    7475 3250
+	1    0    0    -1  
+$EndComp
+Connection ~ 7575 2950
+Wire Wire Line
+	7575 2950 7475 2950
+Wire Wire Line
+	7575 3050 7575 2950
+Connection ~ 7575 3250
+Wire Wire Line
+	7575 3250 7475 3250
+Wire Wire Line
+	7575 3150 7575 3250
+Wire Wire Line
+	7675 3250 7575 3250
+Wire Wire Line
+	7675 3150 7575 3150
+Wire Wire Line
+	7675 3050 7575 3050
+Wire Wire Line
+	7675 2950 7575 2950
+$Comp
+L Connector_Generic:Conn_01x04 J3
+U 1 1 5E500F43
+P 7875 3050
+F 0 "J3" H 7825 3400 50  0000 L CNN
+F 1 "Power In" H 7675 3300 50  0000 L CNN
+F 2 "Connector_Molex:Molex_KK-396_A-41791-0004_1x04_P3.96mm_Vertical" H 7875 3050 50  0001 C CNN
+F 3 "https://store.comet.bg/Catalogue/Product/25223/" H 7875 3050 50  0001 C CNN
+	1    7875 3050
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+12V #PWR?
+U 1 1 5E568067
+P 7475 2950
+F 0 "#PWR?" H 7475 2800 50  0001 C CNN
+F 1 "+12V" H 7490 3123 50  0000 C CNN
+F 2 "" H 7475 2950 50  0001 C CNN
+F 3 "" H 7475 2950 50  0001 C CNN
+	1    7475 2950
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC
