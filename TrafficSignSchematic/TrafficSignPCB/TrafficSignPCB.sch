@@ -14,1167 +14,1193 @@ Comment3 ""
 Comment4 ""
 $EndDescr
 $Comp
-L Connector_Generic:Conn_01x16 J1
-U 1 1 5DF93F79
-P 4600 4275
-F 0 "J1" H 4518 3250 50  0000 C CNN
-F 1 "IDC connector" H 4518 3341 50  0000 C CNN
-F 2 "Connector_IDC:IDC-Header_2x08_P2.54mm_Vertical" H 4600 4275 50  0001 C CNN
-F 3 "~" H 4600 4275 50  0001 C CNN
-	1    4600 4275
-	1    0    0    1   
-$EndComp
-Text GLabel 4300 4975 0    50   Input ~ 0
-R0
-Text GLabel 4300 4875 0    50   Input ~ 0
-G0
-Text GLabel 4300 4775 0    50   Input ~ 0
-B0
-Text GLabel 4300 4575 0    50   Input ~ 0
-R1
-Text GLabel 4300 4475 0    50   Input ~ 0
-G1
-Text GLabel 4300 4375 0    50   Input ~ 0
-B1
-Text GLabel 4300 4175 0    50   Input ~ 0
-A
-Text GLabel 4300 4075 0    50   Input ~ 0
-B
-Text GLabel 4300 3975 0    50   Input ~ 0
-C
-Text GLabel 4300 3875 0    50   Input ~ 0
-D
-Wire Wire Line
-	4400 3575 4300 3575
-Wire Wire Line
-	4300 3675 4400 3675
-Wire Wire Line
-	4300 3775 4400 3775
-Wire Wire Line
-	4300 3875 4400 3875
-Wire Wire Line
-	4300 3975 4400 3975
-Wire Wire Line
-	4300 4075 4400 4075
-Wire Wire Line
-	4300 4175 4400 4175
-Wire Wire Line
-	4300 4375 4400 4375
-Wire Wire Line
-	4300 4475 4400 4475
-Wire Wire Line
-	4300 4575 4400 4575
-Wire Wire Line
-	4300 4775 4400 4775
-Wire Wire Line
-	4300 4875 4400 4875
-Wire Wire Line
-	4300 4975 4400 4975
-Text GLabel 4300 3575 0    50   Input ~ 0
-OE
-Text GLabel 4300 3675 0    50   Input ~ 0
-STB
-Text GLabel 4300 3775 0    50   Input ~ 0
-CLK
-$Comp
-L Regulator_Switching:LM2596S-ADJ VR1
-U 1 1 5E041BCD
-P 8600 2900
-F 0 "VR1" H 8600 3267 50  0000 C CNN
-F 1 "LM2596S-ADJ" H 8600 3176 50  0000 C CNN
-F 2 "Package_TO_SOT_SMD:TO-263-5_TabPin3" H 8650 2650 50  0001 L CIN
-F 3 "https://store.comet.bg/Catalogue/Product/16564/" H 8600 2900 50  0001 C CNN
-	1    8600 2900
-	1    0    0    -1  
-$EndComp
-$Comp
-L Device:R R1
-U 1 1 5DF8F28A
-P 8250 2300
-F 0 "R1" V 8043 2300 50  0000 C CNN
-F 1 "1k/1%" V 8134 2300 50  0000 C CNN
-F 2 "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal" V 8180 2300 50  0001 C CNN
-F 3 "https://store.comet.bg/Catalogue/Product/6406/" H 8250 2300 50  0001 C CNN
-	1    8250 2300
-	0    1    1    0   
-$EndComp
-$Comp
-L Device:R R2
-U 1 1 5DF907CE
-P 8650 2300
-F 0 "R2" V 8443 2300 50  0000 C CNN
-F 1 "2.2k/1%" V 8534 2300 50  0000 C CNN
-F 2 "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal" V 8580 2300 50  0001 C CNN
-F 3 "https://store.comet.bg/Catalogue/Product/5041342/" H 8650 2300 50  0001 C CNN
-	1    8650 2300
-	0    1    1    0   
-$EndComp
-NoConn ~ 6000 2250
-NoConn ~ 6000 2350
-NoConn ~ 6000 2450
-NoConn ~ 6000 2550
-NoConn ~ 6000 2650
-NoConn ~ 6000 2750
-$Comp
-L TrafficSignPCB-rescue:SIM800L-SIM800L U2
-U 1 1 5DF831F1
-P 5350 2500
-F 0 "U2" H 5050 3100 60  0000 C CNN
-F 1 "SIM800L" H 5150 3000 60  0000 C CNN
-F 2 "SIM800:Sim800L" H 5650 2350 60  0001 C CNN
-F 3 "https://img.filipeflop.com/files/download/Datasheet_SIM800L.pdf" H 5650 2350 60  0001 C CNN
-	1    5350 2500
-	1    0    0    -1  
-$EndComp
-$Comp
-L Device:CP CIN1
-U 1 1 5DFA53B3
-P 7850 3100
-F 0 "CIN1" H 7550 3150 50  0000 L CNN
-F 1 "680uF" H 7500 3050 50  0000 L CNN
-F 2 "Capacitor_THT:CP_Radial_D10.0mm_P5.00mm" H 7888 2950 50  0001 C CNN
-F 3 "https://store.comet.bg/Catalogue/Product/44664/" H 7850 3100 50  0001 C CNN
-	1    7850 3100
-	1    0    0    -1  
-$EndComp
-$Comp
-L Device:C CFF1
-U 1 1 5DFA831C
-P 8650 1950
-F 0 "CFF1" V 8398 1950 50  0000 C CNN
-F 1 "10nF" V 8489 1950 50  0000 C CNN
-F 2 "Capacitor_THT:C_Disc_D4.3mm_W1.9mm_P5.00mm" H 8688 1800 50  0001 C CNN
-F 3 "https://store.comet.bg/Catalogue/Product/5919/" H 8650 1950 50  0001 C CNN
-	1    8650 1950
-	0    1    1    0   
-$EndComp
-Wire Wire Line
-	8600 3200 8600 3400
-Wire Wire Line
-	8050 3000 8100 3000
-Wire Wire Line
-	8050 3400 8600 3400
-Wire Wire Line
-	8050 3000 8050 3400
-Wire Wire Line
-	7850 3400 8050 3400
-Connection ~ 8050 3400
-Wire Wire Line
-	7850 3250 7850 3400
-Wire Wire Line
-	7450 3400 7850 3400
-Wire Wire Line
-	9100 2800 9100 2450
-Wire Wire Line
-	9100 2450 8450 2450
-Wire Wire Line
-	8400 2300 8450 2300
-Wire Wire Line
-	8450 2300 8450 2450
-Wire Wire Line
-	8450 2300 8500 2300
-Connection ~ 8450 2300
-Wire Wire Line
-	8100 2300 7050 2300
-Wire Wire Line
-	7050 2300 7050 3650
-Wire Wire Line
-	9100 3000 9250 3000
-$Comp
-L Device:D_Schottky D1
-U 1 1 5DFADDFD
-P 9250 3200
-F 0 "D1" V 9204 3279 50  0000 L CNN
-F 1 "100V/5A" V 9295 3279 50  0000 L CNN
-F 2 "Diode_THT:D_DO-27_P12.70mm_Horizontal" H 9250 3200 50  0001 C CNN
-F 3 "https://store.comet.bg/Catalogue/Product/9381/" H 9250 3200 50  0001 C CNN
-	1    9250 3200
-	0    1    1    0   
-$EndComp
-Wire Wire Line
-	9250 3000 9250 3050
-Connection ~ 9250 3000
-Wire Wire Line
-	9250 3000 9400 3000
-Wire Wire Line
-	9250 3350 9250 3400
-Wire Wire Line
-	9250 3400 8600 3400
-Connection ~ 8600 3400
-Connection ~ 7850 3400
-Wire Wire Line
-	8450 2300 8450 1950
-Wire Wire Line
-	8450 1950 8500 1950
-Wire Wire Line
-	7450 2800 7850 2800
-Connection ~ 7850 2800
-Wire Wire Line
-	7850 2800 8100 2800
-Wire Wire Line
-	7850 2950 7850 2800
-Wire Wire Line
-	9850 3000 9850 3050
-Wire Wire Line
-	9700 3000 9850 3000
-Wire Wire Line
-	9250 3400 9850 3400
-Wire Wire Line
-	9850 3400 9850 3350
-Connection ~ 9250 3400
-Wire Wire Line
-	9850 3000 10350 3000
-Connection ~ 9850 3000
-Wire Wire Line
-	9850 3400 10350 3400
-Connection ~ 9850 3400
-Wire Wire Line
-	8800 1950 8850 1950
-Wire Wire Line
-	8850 1950 8850 2300
-Wire Wire Line
-	8850 2300 8800 2300
-Wire Wire Line
-	8850 2300 9850 2300
-Wire Wire Line
-	9850 2300 9850 3000
-Connection ~ 8850 2300
-Wire Wire Line
-	8600 3650 8600 3400
-Wire Wire Line
-	7050 3650 8600 3650
-$Comp
-L Device:L L1
-U 1 1 5E02F62B
-P 9550 3000
-F 0 "L1" V 9740 3000 50  0000 C CNN
-F 1 "33uH" V 9649 3000 50  0000 C CNN
-F 2 "Inductor_SMD:L_Bourns_SDR1806" H 9550 3000 50  0001 C CNN
-F 3 "https://store.comet.bg/Catalogue/Product/15514/" H 9550 3000 50  0001 C CNN
-	1    9550 3000
-	0    -1   -1   0   
-$EndComp
-$Comp
-L Device:Antenna AE1
-U 1 1 5E0362F2
-P 4650 1900
-F 0 "AE1" H 4500 2150 50  0000 L CNN
-F 1 "Antenna" H 4500 2050 50  0000 L CNN
-F 2 "Connector_Coaxial:SMA_Amphenol_901-144_Vertical" H 4650 1900 50  0001 C CNN
-F 3 "https://store.comet.bg/Catalogue/Product/51344/" H 4650 1900 50  0001 C CNN
-	1    4650 1900
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	4650 2100 4650 2200
-Wire Wire Line
-	4650 2200 4750 2200
-Wire Wire Line
-	4250 2500 4750 2500
-$Comp
-L Regulator_Switching:LM2596S-5 VR2
-U 1 1 5E1D68D4
-P 8600 4650
-F 0 "VR2" H 8600 5017 50  0000 C CNN
-F 1 "LM2596S-5" H 8600 4926 50  0000 C CNN
-F 2 "Package_TO_SOT_SMD:TO-263-5_TabPin3" H 8650 4400 50  0001 L CIN
-F 3 "https://store.comet.bg/Catalogue/Product/16565/" H 8600 4650 50  0001 C CNN
-	1    8600 4650
-	1    0    0    -1  
-$EndComp
-$Comp
-L Device:CP COUT2
-U 1 1 5E2070F5
-P 9850 4950
-F 0 "COUT2" H 9968 4996 50  0000 L CNN
-F 1 "330uF" H 9968 4905 50  0000 L CNN
-F 2 "Capacitor_THT:CP_Radial_D8.0mm_P3.50mm" H 9888 4800 50  0001 C CNN
-F 3 "https://store.comet.bg/Catalogue/Product/7086/" H 9850 4950 50  0001 C CNN
-	1    9850 4950
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	8600 4950 8600 5150
-Wire Wire Line
-	8050 4750 8100 4750
-Wire Wire Line
-	8050 5150 8600 5150
-Wire Wire Line
-	8050 4750 8050 5150
-Wire Wire Line
-	7850 5150 8050 5150
-Connection ~ 8050 5150
-Wire Wire Line
-	7850 5000 7850 5150
-Wire Wire Line
-	7450 5150 7850 5150
-Wire Wire Line
-	9100 4750 9250 4750
-$Comp
-L Device:D_Schottky D2
-U 1 1 5E207114
-P 9250 4950
-F 0 "D2" V 9204 5029 50  0000 L CNN
-F 1 "100V/5A" V 9295 5029 50  0000 L CNN
-F 2 "Diode_THT:D_DO-27_P12.70mm_Horizontal" H 9250 4950 50  0001 C CNN
-F 3 "https://store.comet.bg/Catalogue/Product/9381/" H 9250 4950 50  0001 C CNN
-	1    9250 4950
-	0    1    1    0   
-$EndComp
-Wire Wire Line
-	9250 4750 9250 4800
-Connection ~ 9250 4750
-Wire Wire Line
-	9250 4750 9400 4750
-Wire Wire Line
-	9250 5100 9250 5150
-Wire Wire Line
-	9250 5150 8600 5150
-Connection ~ 8600 5150
-Connection ~ 7850 5150
-Wire Wire Line
-	7450 4550 7850 4550
-Connection ~ 7850 4550
-Wire Wire Line
-	7850 4550 8100 4550
-Wire Wire Line
-	7850 4700 7850 4550
-Wire Wire Line
-	9850 4750 9850 4800
-Wire Wire Line
-	9700 4750 9850 4750
-Wire Wire Line
-	9250 5150 9850 5150
-Wire Wire Line
-	9850 5150 9850 5100
-Connection ~ 9250 5150
-Wire Wire Line
-	9850 4750 10350 4750
-Connection ~ 9850 4750
-Wire Wire Line
-	9850 5150 10350 5150
-Connection ~ 9850 5150
-$Comp
-L Device:L L2
-U 1 1 5E20713A
-P 9550 4750
-F 0 "L2" V 9740 4750 50  0000 C CNN
-F 1 "33uH" V 9649 4750 50  0000 C CNN
-F 2 "Inductor_SMD:L_Bourns_SDR1806" H 9550 4750 50  0001 C CNN
-F 3 "https://store.comet.bg/Catalogue/Product/15514/" H 9550 4750 50  0001 C CNN
-	1    9550 4750
-	0    -1   -1   0   
-$EndComp
-Wire Wire Line
-	9850 4500 9100 4500
-Wire Wire Line
-	9100 4550 9100 4500
-Wire Wire Line
-	9850 4500 9850 4750
-Text Notes 10400 5150 0    50   ~ 0
-OUT-
-Text Notes 10400 4750 0    50   ~ 0
-OUT+
-Text Notes 10400 3000 0    50   ~ 0
-OUT+
-Text Notes 10400 3400 0    50   ~ 0
-OUT-
-Text Notes 7500 4550 0    50   ~ 0
-IN+
-Text Notes 7500 5150 0    50   ~ 0
-IN-
-Text Notes 7500 2800 0    50   ~ 0
-IN+
-Text Notes 7500 3400 0    50   ~ 0
-IN-
-$Comp
-L Device:CP CIN2
-U 1 1 5E3391F1
-P 7850 4850
-F 0 "CIN2" H 7550 4900 50  0000 L CNN
-F 1 "680uF" H 7500 4800 50  0000 L CNN
-F 2 "Capacitor_THT:CP_Radial_D10.0mm_P5.00mm" H 7888 4700 50  0001 C CNN
-F 3 "https://store.comet.bg/Catalogue/Product/44664/" H 7850 4850 50  0001 C CNN
-	1    7850 4850
-	1    0    0    -1  
-$EndComp
-$Comp
-L Connector_Generic:Conn_01x04 J2
-U 1 1 5E3512ED
-P 5500 3700
-F 0 "J2" H 5450 4050 50  0000 L CNN
-F 1 "3.96mm pitch 4-pin polarized connector" H 5300 3950 50  0000 L CNN
-F 2 "Connector_Molex:Molex_KK-396_A-41791-0004_1x04_P3.96mm_Vertical" H 5500 3700 50  0001 C CNN
-F 3 "https://store.comet.bg/Catalogue/Product/25223/" H 5500 3700 50  0001 C CNN
-	1    5500 3700
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	5300 3600 5200 3600
-Wire Wire Line
-	5300 3700 5200 3700
-Wire Wire Line
-	5300 3800 5200 3800
-Wire Wire Line
-	5300 3900 5200 3900
-Wire Wire Line
-	5200 3800 5200 3900
-Wire Wire Line
-	5200 3900 5100 3900
-Connection ~ 5200 3900
-Wire Wire Line
-	5200 3700 5200 3600
-Wire Wire Line
-	5200 3600 5100 3600
-Connection ~ 5200 3600
-$Comp
-L Device:CP COUT1
-U 1 1 5DFA6ACC
-P 9850 3200
-F 0 "COUT1" H 9968 3246 50  0000 L CNN
-F 1 "470uF" H 9968 3155 50  0000 L CNN
-F 2 "Capacitor_THT:CP_Radial_D8.0mm_P3.50mm" H 9888 3050 50  0001 C CNN
-F 3 "https://store.comet.bg/Catalogue/Product/36876/" H 9850 3200 50  0001 C CNN
-	1    9850 3200
-	1    0    0    -1  
-$EndComp
-$Comp
-L Connector_Generic:Conn_01x04 J3
-U 1 1 5E26C348
-P 5500 4675
-F 0 "J3" H 5450 5025 50  0000 L CNN
-F 1 "Power In" H 5350 4925 50  0000 L CNN
-F 2 "Connector_Molex:Molex_KK-396_A-41791-0004_1x04_P3.96mm_Vertical" H 5500 4675 50  0001 C CNN
-F 3 "https://store.comet.bg/Catalogue/Product/25223/" H 5500 4675 50  0001 C CNN
-	1    5500 4675
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	5300 4575 5200 4575
-Wire Wire Line
-	5300 4675 5200 4675
-Wire Wire Line
-	5300 4775 5200 4775
-Wire Wire Line
-	5300 4875 5200 4875
-Wire Wire Line
-	5200 4775 5200 4875
-Wire Wire Line
-	5200 4875 5100 4875
-Connection ~ 5200 4875
-Wire Wire Line
-	5200 4675 5200 4575
-Wire Wire Line
-	5200 4575 5100 4575
-Connection ~ 5200 4575
-$Comp
-L MCU_Microchip_ATmega:ATmega328P-PU U1
-U 1 1 5DF560CB
-P 1800 3100
-F 0 "U1" H 1150 2950 50  0000 R CNN
-F 1 "ATmega328P-PU" H 1150 3050 50  0000 R CNN
-F 2 "Package_DIP:DIP-28_W7.62mm" H 1800 3100 50  0001 C CIN
-F 3 "http://ww1.microchip.com/downloads/en/DeviceDoc/ATmega328_P%20AVR%20MCU%20with%20picoPower%20Technology%20Data%20Sheet%2040001984A.pdf" H 1800 3100 50  0001 C CNN
-	1    1800 3100
-	1    0    0    1   
-$EndComp
-Wire Wire Line
-	2400 3700 2800 3700
-Wire Wire Line
-	1900 4750 2150 4750
-$Comp
-L power:+5V #PWR0101
-U 1 1 5E2B9136
-P 2150 4750
-F 0 "#PWR0101" H 2150 4600 50  0001 C CNN
-F 1 "+5V" H 2165 4923 50  0000 C CNN
-F 2 "" H 2150 4750 50  0001 C CNN
-F 3 "" H 2150 4750 50  0001 C CNN
-	1    2150 4750
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	3600 3800 3600 3500
-Connection ~ 3600 3800
-Wire Wire Line
-	3600 3850 3600 3800
-$Comp
-L power:GND #PWR0102
-U 1 1 5E2916ED
-P 3600 3850
-F 0 "#PWR0102" H 3600 3600 50  0001 C CNN
-F 1 "GND" H 3605 3677 50  0000 C CNN
-F 2 "" H 3600 3850 50  0001 C CNN
-F 3 "" H 3600 3850 50  0001 C CNN
-	1    3600 3850
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	3450 3800 3600 3800
-NoConn ~ 3150 4000
-NoConn ~ 3150 3900
-NoConn ~ 3150 3000
-NoConn ~ 3150 2900
-$Comp
-L Device:Crystal Y1
-U 1 1 5E152994
-P 3100 3650
-F 0 "Y1" V 3000 3400 50  0000 L CNN
-F 1 "16MHz" V 3100 3250 50  0000 L CNN
-F 2 "Crystal:Crystal_HC49-U_Vertical" H 3100 3650 50  0001 C CNN
-F 3 "https://store.comet.bg/Catalogue/Product/27238/" H 3100 3650 50  0001 C CNN
-	1    3100 3650
-	0    1    1    0   
-$EndComp
-$Comp
-L Device:C C1
-U 1 1 5E16B77E
-P 3300 3500
-F 0 "C1" V 3250 3600 50  0000 C CNN
-F 1 "22pF" V 3350 3650 50  0000 C CNN
-F 2 "Capacitor_THT:C_Disc_D4.3mm_W1.9mm_P5.00mm" H 3338 3350 50  0001 C CNN
-F 3 "https://store.comet.bg/Catalogue/Product/27466/" H 3300 3500 50  0001 C CNN
-	1    3300 3500
-	0    1    1    0   
-$EndComp
-$Comp
-L Device:C C2
-U 1 1 5E17AFFA
-P 3300 3800
-F 0 "C2" V 3250 3900 50  0000 C CNN
-F 1 "22pF" V 3350 3950 50  0000 C CNN
-F 2 "Capacitor_THT:C_Disc_D4.3mm_W1.9mm_P5.00mm" H 3338 3650 50  0001 C CNN
-F 3 "https://store.comet.bg/Catalogue/Product/27466/" H 3300 3800 50  0001 C CNN
-	1    3300 3800
-	0    1    1    0   
-$EndComp
-Wire Wire Line
-	3800 2300 3800 2250
-$Comp
-L Device:R R4
-U 1 1 5E2884D8
-P 3800 2100
-F 0 "R4" H 3870 2146 50  0000 L CNN
-F 1 "20k" H 3870 2055 50  0000 L CNN
-F 2 "Resistor_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P7.62mm_Horizontal" V 3730 2100 50  0001 C CNN
-F 3 "https://store.comet.bg/Catalogue/Product/3884/" H 3800 2100 50  0001 C CNN
-	1    3800 2100
-	1    0    0    -1  
-$EndComp
-Connection ~ 3100 3800
-Wire Wire Line
-	3100 3800 3150 3800
-Wire Wire Line
-	3600 3500 3450 3500
-Connection ~ 3100 3500
-Wire Wire Line
-	3100 3500 3150 3500
-Connection ~ 1900 4750
-Wire Wire Line
-	1800 4750 1900 4750
-Wire Wire Line
-	1800 4600 1800 4750
-Wire Wire Line
-	1900 4750 1900 4600
-Wire Wire Line
-	1200 4300 1150 4300
-$Comp
-L Device:R R5
-U 1 1 5E122269
-P 2600 2800
-F 0 "R5" V 2500 2700 50  0000 C CNN
-F 1 "10k" V 2500 2850 50  0000 C CNN
-F 2 "Resistor_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P7.62mm_Horizontal" V 2530 2800 50  0001 C CNN
-F 3 "https://store.comet.bg/Catalogue/Product/25851/" H 2600 2800 50  0001 C CNN
-	1    2600 2800
-	0    1    1    0   
-$EndComp
-Wire Wire Line
-	2750 2800 2800 2800
-Wire Wire Line
-	2400 2800 2450 2800
-Wire Wire Line
-	2400 2500 3550 2500
-Wire Wire Line
-	3550 1550 3800 1550
-Wire Wire Line
-	3550 2500 3550 1550
-Wire Wire Line
-	3800 1900 3800 1950
-Connection ~ 3800 1900
-Wire Wire Line
-	3800 1900 4250 1900
-Wire Wire Line
-	3800 1850 3800 1900
-$Comp
-L Device:R R3
-U 1 1 5E100EA7
-P 3800 1700
-F 0 "R3" H 3870 1746 50  0000 L CNN
-F 1 "10k" H 3870 1655 50  0000 L CNN
-F 2 "Resistor_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P7.62mm_Horizontal" V 3730 1700 50  0001 C CNN
-F 3 "https://store.comet.bg/Catalogue/Product/25851/" H 3800 1700 50  0001 C CNN
-	1    3800 1700
-	1    0    0    -1  
-$EndComp
-Text GLabel 3000 4300 2    50   Input ~ 0
-OE
-Text GLabel 3000 4200 2    50   Input ~ 0
-STB
-Text GLabel 3000 4100 2    50   Input ~ 0
-CLK
-Wire Wire Line
-	2400 3400 3050 3400
-Wire Wire Line
-	2400 3300 3050 3300
-Wire Wire Line
-	2400 3200 3050 3200
-Wire Wire Line
-	2400 3100 3050 3100
-Text GLabel 3050 3100 2    50   Input ~ 0
-D
-Text GLabel 3050 3200 2    50   Input ~ 0
-C
-Text GLabel 3050 3300 2    50   Input ~ 0
-B
-Text GLabel 3050 3400 2    50   Input ~ 0
-A
-Wire Wire Line
-	2400 1900 3000 1900
-Wire Wire Line
-	2400 2000 3000 2000
-Wire Wire Line
-	2400 2100 3000 2100
-Text GLabel 3000 1900 2    50   Input ~ 0
-B1
-Text GLabel 3000 2000 2    50   Input ~ 0
-G1
-Text GLabel 3000 2100 2    50   Input ~ 0
-R1
-Wire Wire Line
-	2400 2400 3000 2400
-Wire Wire Line
-	2400 2300 3000 2300
-Wire Wire Line
-	2400 2200 3000 2200
-Text GLabel 3000 2200 2    50   Input ~ 0
-B0
-Text GLabel 3000 2300 2    50   Input ~ 0
-G0
-Text GLabel 3000 2400 2    50   Input ~ 0
-R0
-Wire Wire Line
-	2500 4400 2950 4400
-Wire Wire Line
-	2500 4300 2500 4400
-Wire Wire Line
-	2400 4300 2500 4300
-Wire Wire Line
-	2550 4300 3000 4300
-Wire Wire Line
-	2550 4200 2550 4300
-Wire Wire Line
-	2400 4200 2550 4200
-Wire Wire Line
-	2600 4200 3000 4200
-Wire Wire Line
-	2600 4100 2600 4200
-Wire Wire Line
-	2400 4100 2600 4100
-Wire Wire Line
-	2650 4100 3000 4100
-Wire Wire Line
-	2650 4000 2650 4100
-Wire Wire Line
-	2400 4000 2650 4000
-Wire Wire Line
-	2700 4000 3150 4000
-Wire Wire Line
-	2700 3900 2700 4000
-Wire Wire Line
-	2400 3900 2700 3900
-Text Label 2750 3900 0    50   ~ 0
-13
-Text Label 2750 4000 0    50   ~ 0
-12
-Text Label 2750 4100 0    50   ~ 0
-11
-Text Label 2750 4200 0    50   ~ 0
-10
-Text Label 2800 4300 0    50   ~ 0
-9
-Text Label 2800 4400 0    50   ~ 0
-8
-Wire Wire Line
-	2750 3900 3150 3900
-Wire Wire Line
-	2750 3800 2750 3900
-Wire Wire Line
-	2400 3800 2750 3800
-Wire Wire Line
-	2800 3500 3100 3500
-Wire Wire Line
-	2800 3600 2800 3500
-Wire Wire Line
-	2400 3600 2800 3600
-Wire Wire Line
-	2800 3800 3100 3800
-Wire Wire Line
-	2800 3700 2800 3800
-Text Label 2750 2900 0    50   ~ 0
-A5
-Text Label 2750 3000 0    50   ~ 0
-A4
-Text Label 2750 3100 0    50   ~ 0
-A3
-Text Label 2750 3200 0    50   ~ 0
-A2
-Text Label 2750 3300 0    50   ~ 0
-A1
-Text Label 2750 3400 0    50   ~ 0
-A0
-Wire Wire Line
-	2400 3000 3150 3000
-Wire Wire Line
-	2400 2900 3150 2900
-Text Label 2750 1900 0    50   ~ 0
-7
-Text Label 2750 2000 0    50   ~ 0
-6
-Text Label 2750 2100 0    50   ~ 0
-5
-Text Label 2750 2200 0    50   ~ 0
-4
-Text Label 2750 2300 0    50   ~ 0
-3
-Text Label 2750 2400 0    50   ~ 0
-2
-Text Label 2700 2600 0    50   ~ 0
-RXD
-Text Label 2700 2500 0    50   ~ 0
-TXD
-$Comp
-L power:GND #PWR0103
-U 1 1 5E3D329E
-P 1950 1450
-F 0 "#PWR0103" H 1950 1200 50  0001 C CNN
-F 1 "GND" H 1955 1277 50  0000 C CNN
-F 2 "" H 1950 1450 50  0001 C CNN
-F 3 "" H 1950 1450 50  0001 C CNN
-	1    1950 1450
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	1800 1450 1950 1450
-Wire Wire Line
-	1800 1450 1800 1600
-$Comp
-L power:+5V #PWR0104
-U 1 1 5E3F8F53
-P 2800 2800
-F 0 "#PWR0104" H 2800 2650 50  0001 C CNN
-F 1 "+5V" H 2900 2900 50  0000 C CNN
-F 2 "" H 2800 2800 50  0001 C CNN
-F 3 "" H 2800 2800 50  0001 C CNN
-	1    2800 2800
-	1    0    0    -1  
-$EndComp
-$Comp
-L power:GND #PWR0105
-U 1 1 5E40D0CE
-P 4000 4925
-F 0 "#PWR0105" H 4000 4675 50  0001 C CNN
-F 1 "GND" H 4005 4752 50  0000 C CNN
-F 2 "" H 4000 4925 50  0001 C CNN
-F 3 "" H 4000 4925 50  0001 C CNN
-	1    4000 4925
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	4000 3475 4000 4275
-Wire Wire Line
-	4000 3475 4400 3475
-Wire Wire Line
-	4000 4675 4400 4675
-Connection ~ 4000 4675
-Wire Wire Line
-	4000 4675 4000 4925
-Wire Wire Line
-	4000 4275 4400 4275
-Connection ~ 4000 4275
-Wire Wire Line
-	4000 4275 4000 4675
-$Comp
-L power:GND #PWR0106
-U 1 1 5E43D1EE
-P 5100 4875
-F 0 "#PWR0106" H 5100 4625 50  0001 C CNN
-F 1 "GND" H 5105 4702 50  0000 C CNN
-F 2 "" H 5100 4875 50  0001 C CNN
-F 3 "" H 5100 4875 50  0001 C CNN
-	1    5100 4875
-	1    0    0    -1  
-$EndComp
-$Comp
-L power:+12V #PWR0107
-U 1 1 5E463591
-P 5100 4575
-F 0 "#PWR0107" H 5100 4425 50  0001 C CNN
-F 1 "+12V" H 5115 4748 50  0000 C CNN
-F 2 "" H 5100 4575 50  0001 C CNN
-F 3 "" H 5100 4575 50  0001 C CNN
-	1    5100 4575
-	1    0    0    -1  
-$EndComp
-$Comp
-L power:GND #PWR0108
-U 1 1 5E464023
-P 5100 3900
-F 0 "#PWR0108" H 5100 3650 50  0001 C CNN
-F 1 "GND" H 5105 3727 50  0000 C CNN
-F 2 "" H 5100 3900 50  0001 C CNN
-F 3 "" H 5100 3900 50  0001 C CNN
-	1    5100 3900
-	1    0    0    -1  
-$EndComp
-$Comp
-L power:+5V #PWR0109
-U 1 1 5E476F4D
-P 5100 3600
-F 0 "#PWR0109" H 5100 3450 50  0001 C CNN
-F 1 "+5V" H 5115 3773 50  0000 C CNN
-F 2 "" H 5100 3600 50  0001 C CNN
-F 3 "" H 5100 3600 50  0001 C CNN
-	1    5100 3600
-	1    0    0    -1  
-$EndComp
-$Comp
-L power:GND #PWR0110
-U 1 1 5E4813F6
-P 7450 5150
-F 0 "#PWR0110" H 7450 4900 50  0001 C CNN
-F 1 "GND" H 7455 4977 50  0000 C CNN
-F 2 "" H 7450 5150 50  0001 C CNN
-F 3 "" H 7450 5150 50  0001 C CNN
-	1    7450 5150
-	1    0    0    -1  
-$EndComp
-$Comp
-L power:GND #PWR0111
-U 1 1 5E48ABD8
-P 10650 5150
-F 0 "#PWR0111" H 10650 4900 50  0001 C CNN
-F 1 "GND" H 10655 4977 50  0000 C CNN
-F 2 "" H 10650 5150 50  0001 C CNN
-F 3 "" H 10650 5150 50  0001 C CNN
-	1    10650 5150
-	1    0    0    -1  
-$EndComp
-$Comp
-L power:GND #PWR0112
-U 1 1 5E4944C4
-P 10650 3400
-F 0 "#PWR0112" H 10650 3150 50  0001 C CNN
-F 1 "GND" H 10655 3227 50  0000 C CNN
-F 2 "" H 10650 3400 50  0001 C CNN
-F 3 "" H 10650 3400 50  0001 C CNN
-	1    10650 3400
-	1    0    0    -1  
-$EndComp
-$Comp
-L power:GND #PWR0113
-U 1 1 5E49DEF5
-P 7450 3400
-F 0 "#PWR0113" H 7450 3150 50  0001 C CNN
-F 1 "GND" H 7455 3227 50  0000 C CNN
-F 2 "" H 7450 3400 50  0001 C CNN
-F 3 "" H 7450 3400 50  0001 C CNN
-	1    7450 3400
-	1    0    0    -1  
-$EndComp
-$Comp
-L power:+12V #PWR0114
-U 1 1 5E4C461B
-P 7450 4550
-F 0 "#PWR0114" H 7450 4400 50  0001 C CNN
-F 1 "+12V" H 7465 4723 50  0000 C CNN
-F 2 "" H 7450 4550 50  0001 C CNN
-F 3 "" H 7450 4550 50  0001 C CNN
-	1    7450 4550
-	1    0    0    -1  
-$EndComp
-$Comp
-L power:+12V #PWR0115
-U 1 1 5E4CDF3C
-P 7450 2800
-F 0 "#PWR0115" H 7450 2650 50  0001 C CNN
-F 1 "+12V" H 7465 2973 50  0000 C CNN
-F 2 "" H 7450 2800 50  0001 C CNN
-F 3 "" H 7450 2800 50  0001 C CNN
-	1    7450 2800
-	1    0    0    -1  
-$EndComp
-$Comp
-L power:GND #PWR0116
-U 1 1 5E4EA9BE
-P 3800 2300
-F 0 "#PWR0116" H 3800 2050 50  0001 C CNN
-F 1 "GND" H 3800 2150 50  0000 C CNN
-F 2 "" H 3800 2300 50  0001 C CNN
-F 3 "" H 3800 2300 50  0001 C CNN
-	1    3800 2300
-	1    0    0    -1  
-$EndComp
-$Comp
-L power:+4V #PWR0117
-U 1 1 5E526B11
-P 4500 2300
-F 0 "#PWR0117" H 4500 2150 50  0001 C CNN
-F 1 "+4V" H 4515 2473 50  0000 C CNN
-F 2 "" H 4500 2300 50  0001 C CNN
-F 3 "" H 4500 2300 50  0001 C CNN
-	1    4500 2300
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	4500 2300 4750 2300
-$Comp
-L power:GND #PWR0118
-U 1 1 5E53B52D
-P 4500 2700
-F 0 "#PWR0118" H 4500 2450 50  0001 C CNN
-F 1 "GND" H 4505 2527 50  0000 C CNN
-F 2 "" H 4500 2700 50  0001 C CNN
-F 3 "" H 4500 2700 50  0001 C CNN
-	1    4500 2700
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	4500 2700 4750 2700
-$Comp
-L power:+4V #PWR0119
-U 1 1 5E55845B
-P 10650 3000
-F 0 "#PWR0119" H 10650 2850 50  0001 C CNN
-F 1 "+4V" H 10665 3173 50  0000 C CNN
-F 2 "" H 10650 3000 50  0001 C CNN
-F 3 "" H 10650 3000 50  0001 C CNN
-	1    10650 3000
-	1    0    0    -1  
-$EndComp
-$Comp
-L power:+5V #PWR0120
-U 1 1 5E56BC18
-P 10650 4750
-F 0 "#PWR0120" H 10650 4600 50  0001 C CNN
-F 1 "+5V" H 10665 4923 50  0000 C CNN
-F 2 "" H 10650 4750 50  0001 C CNN
-F 3 "" H 10650 4750 50  0001 C CNN
-	1    10650 4750
-	1    0    0    -1  
-$EndComp
-$Comp
-L Device:C C3
-U 1 1 5E57F981
-P 1150 4450
-F 0 "C3" H 925 4500 50  0000 L CNN
-F 1 "100n" H 850 4425 50  0000 L CNN
-F 2 "Capacitor_THT:C_Disc_D4.3mm_W1.9mm_P5.00mm" H 1188 4300 50  0001 C CNN
-F 3 "https://store.comet.bg/Catalogue/Product/5920/" H 1150 4450 50  0001 C CNN
-	1    1150 4450
-	1    0    0    -1  
-$EndComp
-$Comp
-L power:GND #PWR0121
-U 1 1 5E2B082D
-P 1150 4650
-F 0 "#PWR0121" H 1150 4400 50  0001 C CNN
-F 1 "GND" H 1155 4477 50  0000 C CNN
-F 2 "" H 1150 4650 50  0001 C CNN
-F 3 "" H 1150 4650 50  0001 C CNN
-	1    1150 4650
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	1150 4650 1150 4600
-$Comp
-L power:+5V #PWR0122
-U 1 1 5E5ABDC2
-P 2675 4975
-F 0 "#PWR0122" H 2675 4825 50  0001 C CNN
-F 1 "+5V" H 2690 5148 50  0000 C CNN
-F 2 "" H 2675 4975 50  0001 C CNN
-F 3 "" H 2675 4975 50  0001 C CNN
-	1    2675 4975
-	1    0    0    -1  
-$EndComp
-$Comp
-L power:GND #PWR0123
-U 1 1 5E5B557C
-P 2675 5375
-F 0 "#PWR0123" H 2675 5125 50  0001 C CNN
-F 1 "GND" H 2680 5202 50  0000 C CNN
-F 2 "" H 2675 5375 50  0001 C CNN
-F 3 "" H 2675 5375 50  0001 C CNN
-	1    2675 5375
-	1    0    0    -1  
-$EndComp
-$Comp
-L Device:C C4
-U 1 1 5E5BEE3A
-P 2525 5175
-F 0 "C4" H 2300 5225 50  0000 L CNN
-F 1 "100n" H 2225 5150 50  0000 L CNN
-F 2 "Capacitor_THT:C_Disc_D4.3mm_W1.9mm_P5.00mm" H 2563 5025 50  0001 C CNN
-F 3 "https://store.comet.bg/Catalogue/Product/5920/" H 2525 5175 50  0001 C CNN
-	1    2525 5175
-	1    0    0    -1  
-$EndComp
-$Comp
-L Device:C C5
-U 1 1 5E5C89EE
-P 2825 5175
-F 0 "C5" H 2925 5225 50  0000 L CNN
-F 1 "100n" H 2925 5150 50  0000 L CNN
-F 2 "Capacitor_THT:C_Disc_D4.3mm_W1.9mm_P5.00mm" H 2863 5025 50  0001 C CNN
-F 3 "https://store.comet.bg/Catalogue/Product/5920/" H 2825 5175 50  0001 C CNN
-	1    2825 5175
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	2525 5025 2675 5025
-Wire Wire Line
-	2675 4975 2675 5025
-Connection ~ 2675 5025
-Wire Wire Line
-	2675 5025 2825 5025
-Wire Wire Line
-	2525 5325 2675 5325
-Wire Wire Line
-	2675 5375 2675 5325
-Connection ~ 2675 5325
-Wire Wire Line
-	2675 5325 2825 5325
-$Comp
-L Device:R R6
-U 1 1 5E6F86C9
-P 3800 2600
-F 0 "R6" V 3700 2700 50  0000 C CNN
-F 1 "10k" V 3700 2500 50  0000 C CNN
-F 2 "Resistor_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P7.62mm_Horizontal" V 3730 2600 50  0001 C CNN
-F 3 "~" H 3800 2600 50  0001 C CNN
-	1    3800 2600
-	0    -1   -1   0   
-$EndComp
-Wire Wire Line
-	4250 1900 4250 2500
-Wire Wire Line
-	2400 2600 3650 2600
-Wire Wire Line
-	3950 2600 4750 2600
-$Comp
-L Device:R R7
-U 1 1 5E295091
-P 3100 4400
-F 0 "R7" V 3000 4500 50  0000 C CNN
-F 1 "10k" V 3000 4300 50  0000 C CNN
-F 2 "Resistor_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P7.62mm_Horizontal" V 3030 4400 50  0001 C CNN
-F 3 "~" H 3100 4400 50  0001 C CNN
-	1    3100 4400
-	0    -1   -1   0   
-$EndComp
-Wire Wire Line
-	3250 4400 3300 4400
-Wire Wire Line
-	4750 2400 4700 2400
-Text GLabel 4700 2400 0    50   Input ~ 0
-SIM_RST
-Text GLabel 3300 4400 2    50   Input ~ 0
-SIM_RST
-$Comp
-L Device:C C6
-U 1 1 5E2B96D7
-P 10350 3200
-F 0 "C6" H 10450 3250 50  0000 L CNN
-F 1 "100n" H 10450 3175 50  0000 L CNN
-F 2 "Capacitor_THT:C_Disc_D4.3mm_W1.9mm_P5.00mm" H 10388 3050 50  0001 C CNN
-F 3 "https://store.comet.bg/Catalogue/Product/5920/" H 10350 3200 50  0001 C CNN
-	1    10350 3200
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	10350 3050 10350 3000
-Connection ~ 10350 3000
-Wire Wire Line
-	10350 3000 10650 3000
-Wire Wire Line
-	10350 3350 10350 3400
-Connection ~ 10350 3400
-Wire Wire Line
-	10350 3400 10650 3400
-$Comp
-L Device:C C7
-U 1 1 5E2FC6B7
-P 10350 4950
-F 0 "C7" H 10450 5000 50  0000 L CNN
-F 1 "100n" H 10450 4925 50  0000 L CNN
-F 2 "Capacitor_THT:C_Disc_D4.3mm_W1.9mm_P5.00mm" H 10388 4800 50  0001 C CNN
-F 3 "https://store.comet.bg/Catalogue/Product/5920/" H 10350 4950 50  0001 C CNN
-	1    10350 4950
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	10350 4800 10350 4750
-Connection ~ 10350 4750
-Wire Wire Line
-	10350 4750 10650 4750
-Wire Wire Line
-	10350 5100 10350 5150
-Connection ~ 10350 5150
-Wire Wire Line
-	10350 5150 10650 5150
-$Comp
 L Mechanical:MountingHole H1
 U 1 1 5E2BE7C8
-P 4800 5550
-F 0 "H1" H 4900 5596 50  0000 L CNN
-F 1 "MountingHole" H 4900 5505 50  0000 L CNN
-F 2 "MountingHole:MountingHole_3.2mm_M3_ISO14580" H 4800 5550 50  0001 C CNN
-F 3 "~" H 4800 5550 50  0001 C CNN
-	1    4800 5550
+P 8900 1475
+F 0 "H1" H 9000 1521 50  0000 L CNN
+F 1 "MountingHole" H 9000 1430 50  0000 L CNN
+F 2 "MountingHole:MountingHole_3.2mm_M3_ISO14580" H 8900 1475 50  0001 C CNN
+F 3 "~" H 8900 1475 50  0001 C CNN
+	1    8900 1475
 	1    0    0    -1  
 $EndComp
 $Comp
 L Mechanical:MountingHole H2
 U 1 1 5E2BF783
-P 4800 5750
-F 0 "H2" H 4900 5796 50  0000 L CNN
-F 1 "MountingHole" H 4900 5705 50  0000 L CNN
-F 2 "MountingHole:MountingHole_3.2mm_M3_ISO14580" H 4800 5750 50  0001 C CNN
-F 3 "~" H 4800 5750 50  0001 C CNN
-	1    4800 5750
+P 8900 1675
+F 0 "H2" H 9000 1721 50  0000 L CNN
+F 1 "MountingHole" H 9000 1630 50  0000 L CNN
+F 2 "MountingHole:MountingHole_3.2mm_M3_ISO14580" H 8900 1675 50  0001 C CNN
+F 3 "~" H 8900 1675 50  0001 C CNN
+	1    8900 1675
 	1    0    0    -1  
 $EndComp
 $Comp
 L Mechanical:MountingHole H3
 U 1 1 5E2CA4B3
-P 4800 5950
-F 0 "H3" H 4900 5996 50  0000 L CNN
-F 1 "MountingHole" H 4900 5905 50  0000 L CNN
-F 2 "MountingHole:MountingHole_3.2mm_M3_ISO14580" H 4800 5950 50  0001 C CNN
-F 3 "~" H 4800 5950 50  0001 C CNN
-	1    4800 5950
+P 8900 1875
+F 0 "H3" H 9000 1921 50  0000 L CNN
+F 1 "MountingHole" H 9000 1830 50  0000 L CNN
+F 2 "MountingHole:MountingHole_3.2mm_M3_ISO14580" H 8900 1875 50  0001 C CNN
+F 3 "~" H 8900 1875 50  0001 C CNN
+	1    8900 1875
 	1    0    0    -1  
 $EndComp
 $Comp
 L Mechanical:MountingHole H4
 U 1 1 5E2D525A
-P 4800 6150
-F 0 "H4" H 4900 6196 50  0000 L CNN
-F 1 "MountingHole" H 4900 6105 50  0000 L CNN
-F 2 "MountingHole:MountingHole_3.2mm_M3_ISO14580" H 4800 6150 50  0001 C CNN
-F 3 "~" H 4800 6150 50  0001 C CNN
-	1    4800 6150
+P 8900 2075
+F 0 "H4" H 9000 2121 50  0000 L CNN
+F 1 "MountingHole" H 9000 2030 50  0000 L CNN
+F 2 "MountingHole:MountingHole_3.2mm_M3_ISO14580" H 8900 2075 50  0001 C CNN
+F 3 "~" H 8900 2075 50  0001 C CNN
+	1    8900 2075
 	1    0    0    -1  
 $EndComp
+Wire Wire Line
+	10475 5975 10775 5975
+Connection ~ 10475 5975
+Wire Wire Line
+	10475 5925 10475 5975
+Wire Wire Line
+	10475 5575 10775 5575
+Connection ~ 10475 5575
+Wire Wire Line
+	10475 5625 10475 5575
+$Comp
+L Device:C C7
+U 1 1 5E2FC6B7
+P 10475 5775
+F 0 "C7" H 10575 5825 50  0000 L CNN
+F 1 "100nF" H 10575 5750 50  0000 L CNN
+F 2 "Capacitor_THT:C_Disc_D4.3mm_W1.9mm_P5.00mm" H 10513 5625 50  0001 C CNN
+F 3 "https://store.comet.bg/Catalogue/Product/5920/" H 10475 5775 50  0001 C CNN
+	1    10475 5775
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	10475 4675 10775 4675
+Connection ~ 10475 4675
+Wire Wire Line
+	10475 4625 10475 4675
+Wire Wire Line
+	10475 4275 10775 4275
+Connection ~ 10475 4275
+Wire Wire Line
+	10475 4325 10475 4275
+$Comp
+L Device:C C6
+U 1 1 5E2B96D7
+P 10475 4475
+F 0 "C6" H 10575 4525 50  0000 L CNN
+F 1 "100nF" H 10575 4450 50  0000 L CNN
+F 2 "Capacitor_THT:C_Disc_D4.3mm_W1.9mm_P5.00mm" H 10513 4325 50  0001 C CNN
+F 3 "https://store.comet.bg/Catalogue/Product/5920/" H 10475 4475 50  0001 C CNN
+	1    10475 4475
+	1    0    0    -1  
+$EndComp
+Text GLabel 4725 6600 2    50   Input ~ 0
+SIM_RST
+Text GLabel 4425 1100 0    50   Input ~ 0
+SIM_RST
+Wire Wire Line
+	5175 2150 5200 2150
+Wire Wire Line
+	2550 4550 2700 4550
+Connection ~ 2550 4550
+Wire Wire Line
+	2550 4600 2550 4550
+Wire Wire Line
+	2400 4550 2550 4550
+Wire Wire Line
+	2550 4250 2700 4250
+Connection ~ 2550 4250
+Wire Wire Line
+	2550 4200 2550 4250
+Wire Wire Line
+	2400 4250 2550 4250
+$Comp
+L Device:C C5
+U 1 1 5E5C89EE
+P 2700 4400
+F 0 "C5" H 2800 4450 50  0000 L CNN
+F 1 "100n" H 2800 4375 50  0000 L CNN
+F 2 "Capacitor_THT:C_Disc_D4.3mm_W1.9mm_P5.00mm" H 2738 4250 50  0001 C CNN
+F 3 "https://store.comet.bg/Catalogue/Product/5920/" H 2700 4400 50  0001 C CNN
+	1    2700 4400
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C4
+U 1 1 5E5BEE3A
+P 2400 4400
+F 0 "C4" H 2175 4450 50  0000 L CNN
+F 1 "100n" H 2100 4375 50  0000 L CNN
+F 2 "Capacitor_THT:C_Disc_D4.3mm_W1.9mm_P5.00mm" H 2438 4250 50  0001 C CNN
+F 3 "https://store.comet.bg/Catalogue/Product/5920/" H 2400 4400 50  0001 C CNN
+	1    2400 4400
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR0123
+U 1 1 5E5B557C
+P 2550 4600
+F 0 "#PWR0123" H 2550 4350 50  0001 C CNN
+F 1 "GND" H 2555 4427 50  0000 C CNN
+F 2 "" H 2550 4600 50  0001 C CNN
+F 3 "" H 2550 4600 50  0001 C CNN
+	1    2550 4600
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+5V #PWR0122
+U 1 1 5E5ABDC2
+P 2550 4200
+F 0 "#PWR0122" H 2550 4050 50  0001 C CNN
+F 1 "+5V" H 2565 4373 50  0000 C CNN
+F 2 "" H 2550 4200 50  0001 C CNN
+F 3 "" H 2550 4200 50  0001 C CNN
+	1    2550 4200
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2875 6850 2875 6800
+$Comp
+L power:GND #PWR0121
+U 1 1 5E2B082D
+P 2875 6850
+F 0 "#PWR0121" H 2875 6600 50  0001 C CNN
+F 1 "GND" H 2880 6677 50  0000 C CNN
+F 2 "" H 2875 6850 50  0001 C CNN
+F 3 "" H 2875 6850 50  0001 C CNN
+	1    2875 6850
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+5V #PWR0120
+U 1 1 5E56BC18
+P 10775 5575
+F 0 "#PWR0120" H 10775 5425 50  0001 C CNN
+F 1 "+5V" H 10790 5748 50  0000 C CNN
+F 2 "" H 10775 5575 50  0001 C CNN
+F 3 "" H 10775 5575 50  0001 C CNN
+	1    10775 5575
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+4V #PWR0119
+U 1 1 5E55845B
+P 10775 4275
+F 0 "#PWR0119" H 10775 4125 50  0001 C CNN
+F 1 "+4V" H 10790 4448 50  0000 C CNN
+F 2 "" H 10775 4275 50  0001 C CNN
+F 3 "" H 10775 4275 50  0001 C CNN
+	1    10775 4275
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5050 1850 5200 1850
+$Comp
+L power:+4V #PWR0117
+U 1 1 5E526B11
+P 5050 1850
+F 0 "#PWR0117" H 5050 1700 50  0001 C CNN
+F 1 "+4V" H 5050 2000 50  0000 C CNN
+F 2 "" H 5050 1850 50  0001 C CNN
+F 3 "" H 5050 1850 50  0001 C CNN
+	1    5050 1850
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+12V #PWR0115
+U 1 1 5E4CDF3C
+P 7575 4075
+F 0 "#PWR0115" H 7575 3925 50  0001 C CNN
+F 1 "+12V" H 7590 4248 50  0000 C CNN
+F 2 "" H 7575 4075 50  0001 C CNN
+F 3 "" H 7575 4075 50  0001 C CNN
+	1    7575 4075
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+12V #PWR0114
+U 1 1 5E4C461B
+P 7575 5375
+F 0 "#PWR0114" H 7575 5225 50  0001 C CNN
+F 1 "+12V" H 7590 5548 50  0000 C CNN
+F 2 "" H 7575 5375 50  0001 C CNN
+F 3 "" H 7575 5375 50  0001 C CNN
+	1    7575 5375
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR0113
+U 1 1 5E49DEF5
+P 7575 4675
+F 0 "#PWR0113" H 7575 4425 50  0001 C CNN
+F 1 "GND" H 7580 4502 50  0000 C CNN
+F 2 "" H 7575 4675 50  0001 C CNN
+F 3 "" H 7575 4675 50  0001 C CNN
+	1    7575 4675
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR0112
+U 1 1 5E4944C4
+P 10775 4675
+F 0 "#PWR0112" H 10775 4425 50  0001 C CNN
+F 1 "GND" H 10780 4502 50  0000 C CNN
+F 2 "" H 10775 4675 50  0001 C CNN
+F 3 "" H 10775 4675 50  0001 C CNN
+	1    10775 4675
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR0111
+U 1 1 5E48ABD8
+P 10775 5975
+F 0 "#PWR0111" H 10775 5725 50  0001 C CNN
+F 1 "GND" H 10780 5802 50  0000 C CNN
+F 2 "" H 10775 5975 50  0001 C CNN
+F 3 "" H 10775 5975 50  0001 C CNN
+	1    10775 5975
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR0110
+U 1 1 5E4813F6
+P 7575 5975
+F 0 "#PWR0110" H 7575 5725 50  0001 C CNN
+F 1 "GND" H 7580 5802 50  0000 C CNN
+F 2 "" H 7575 5975 50  0001 C CNN
+F 3 "" H 7575 5975 50  0001 C CNN
+	1    7575 5975
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+5V #PWR0109
+U 1 1 5E476F4D
+P 2250 1850
+F 0 "#PWR0109" H 2250 1700 50  0001 C CNN
+F 1 "+5V" H 2265 2023 50  0000 C CNN
+F 2 "" H 2250 1850 50  0001 C CNN
+F 3 "" H 2250 1850 50  0001 C CNN
+	1    2250 1850
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR0108
+U 1 1 5E464023
+P 2250 2150
+F 0 "#PWR0108" H 2250 1900 50  0001 C CNN
+F 1 "GND" H 2255 1977 50  0000 C CNN
+F 2 "" H 2250 2150 50  0001 C CNN
+F 3 "" H 2250 2150 50  0001 C CNN
+	1    2250 2150
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1225 2000 1225 2400
+Connection ~ 1225 2000
+Wire Wire Line
+	1225 2000 1625 2000
+Wire Wire Line
+	1225 2400 1225 2650
+Connection ~ 1225 2400
+Wire Wire Line
+	1225 2400 1625 2400
+Wire Wire Line
+	1225 1200 1625 1200
+Wire Wire Line
+	1225 1200 1225 2000
+$Comp
+L power:GND #PWR0105
+U 1 1 5E40D0CE
+P 1225 2650
+F 0 "#PWR0105" H 1225 2400 50  0001 C CNN
+F 1 "GND" H 1230 2477 50  0000 C CNN
+F 2 "" H 1225 2650 50  0001 C CNN
+F 3 "" H 1225 2650 50  0001 C CNN
+	1    1225 2650
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+5V #PWR0104
+U 1 1 5E3F8F53
+P 4620 5000
+F 0 "#PWR0104" H 4620 4850 50  0001 C CNN
+F 1 "+5V" H 4620 5150 50  0000 C CNN
+F 2 "" H 4620 5000 50  0001 C CNN
+F 3 "" H 4620 5000 50  0001 C CNN
+	1    4620 5000
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3525 3650 3525 3800
+$Comp
+L power:GND #PWR0103
+U 1 1 5E3D329E
+P 3675 3650
+F 0 "#PWR0103" H 3675 3400 50  0001 C CNN
+F 1 "GND" H 3680 3477 50  0000 C CNN
+F 2 "" H 3675 3650 50  0001 C CNN
+F 3 "" H 3675 3650 50  0001 C CNN
+	1    3675 3650
+	1    0    0    -1  
+$EndComp
+Text Label 4425 4700 0    50   ~ 0
+TXD
+Text Label 4425 4800 0    50   ~ 0
+RXD
+Text Label 4475 4600 0    50   ~ 0
+2
+Text Label 4475 4500 0    50   ~ 0
+3
+Text Label 4475 4400 0    50   ~ 0
+4
+Text Label 4475 4300 0    50   ~ 0
+5
+Text Label 4475 4200 0    50   ~ 0
+6
+Text Label 4475 4100 0    50   ~ 0
+7
+Wire Wire Line
+	4125 5100 4875 5100
+Wire Wire Line
+	4125 5200 4875 5200
+Text Label 4475 5600 0    50   ~ 0
+A0
+Text Label 4475 5500 0    50   ~ 0
+A1
+Text Label 4475 5400 0    50   ~ 0
+A2
+Text Label 4475 5300 0    50   ~ 0
+A3
+Text Label 4475 5200 0    50   ~ 0
+A4
+Text Label 4475 5100 0    50   ~ 0
+A5
+Wire Wire Line
+	4525 5900 4525 6000
+Wire Wire Line
+	4525 6000 4825 6000
+Wire Wire Line
+	4125 5800 4525 5800
+Wire Wire Line
+	4525 5800 4525 5700
+Wire Wire Line
+	4525 5700 4825 5700
+Wire Wire Line
+	4125 6000 4475 6000
+Wire Wire Line
+	4475 6000 4475 6100
+Wire Wire Line
+	4475 6100 4875 6100
+Text Label 4525 6600 0    50   ~ 0
+8
+Text Label 4525 6500 0    50   ~ 0
+9
+Text Label 4475 6400 0    50   ~ 0
+10
+Text Label 4475 6300 0    50   ~ 0
+11
+Text Label 4475 6200 0    50   ~ 0
+12
+Text Label 4475 6100 0    50   ~ 0
+13
+Wire Wire Line
+	4125 6100 4425 6100
+Wire Wire Line
+	4425 6100 4425 6200
+Wire Wire Line
+	4425 6200 4875 6200
+Wire Wire Line
+	4125 6200 4375 6200
+Wire Wire Line
+	4375 6200 4375 6300
+Wire Wire Line
+	4375 6300 4725 6300
+Wire Wire Line
+	4125 6300 4325 6300
+Wire Wire Line
+	4325 6300 4325 6400
+Wire Wire Line
+	4325 6400 4725 6400
+Wire Wire Line
+	4125 6400 4275 6400
+Wire Wire Line
+	4275 6400 4275 6500
+Wire Wire Line
+	4275 6500 4725 6500
+Wire Wire Line
+	4125 6500 4225 6500
+Wire Wire Line
+	4225 6500 4225 6600
+Text GLabel 4725 4600 2    50   Input ~ 0
+R0
+Text GLabel 4725 4500 2    50   Input ~ 0
+G0
+Text GLabel 4725 4400 2    50   Input ~ 0
+B0
+Wire Wire Line
+	4125 4400 4725 4400
+Wire Wire Line
+	4125 4500 4725 4500
+Wire Wire Line
+	4125 4600 4725 4600
+Text GLabel 4725 4300 2    50   Input ~ 0
+R1
+Text GLabel 4725 4200 2    50   Input ~ 0
+G1
+Text GLabel 4725 4100 2    50   Input ~ 0
+B1
+Wire Wire Line
+	4125 4300 4725 4300
+Wire Wire Line
+	4125 4200 4725 4200
+Wire Wire Line
+	4125 4100 4725 4100
+Text GLabel 4775 5600 2    50   Input ~ 0
+A
+Text GLabel 4775 5500 2    50   Input ~ 0
+B
+Text GLabel 4775 5400 2    50   Input ~ 0
+C
+Text GLabel 4775 5300 2    50   Input ~ 0
+D
+Wire Wire Line
+	4125 5300 4775 5300
+Wire Wire Line
+	4125 5400 4775 5400
+Wire Wire Line
+	4125 5500 4775 5500
+Wire Wire Line
+	4125 5600 4775 5600
+Text GLabel 4725 6300 2    50   Input ~ 0
+CLK
+Text GLabel 4725 6400 2    50   Input ~ 0
+STB
+Text GLabel 4725 6500 2    50   Input ~ 0
+OE
+$Comp
+L Device:R R3
+U 1 1 5E100EA7
+P 4175 1850
+F 0 "R3" H 4225 1900 50  0000 L CNN
+F 1 "16k" H 4225 1825 50  0000 L CNN
+F 2 "Resistor_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P7.62mm_Horizontal" V 4105 1850 50  0001 C CNN
+F 3 "https://store.comet.bg/Catalogue/Product/25851/" H 4175 1850 50  0001 C CNN
+	1    4175 1850
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4100 1700 4175 1700
+Wire Wire Line
+	4505 5000 4620 5000
+Wire Wire Line
+	2925 6500 2875 6500
+Wire Wire Line
+	3625 6950 3625 6800
+Wire Wire Line
+	3525 6800 3525 6950
+Wire Wire Line
+	3525 6950 3625 6950
+Connection ~ 3625 6950
+Wire Wire Line
+	4825 5700 4875 5700
+Connection ~ 4825 5700
+Wire Wire Line
+	5325 5700 5175 5700
+Wire Wire Line
+	4825 6000 4875 6000
+Connection ~ 4825 6000
+$Comp
+L Device:R R4
+U 1 1 5E2884D8
+P 4175 2250
+F 0 "R4" H 4225 2300 50  0000 L CNN
+F 1 "20k" H 4225 2225 50  0000 L CNN
+F 2 "Resistor_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P7.62mm_Horizontal" V 4105 2250 50  0001 C CNN
+F 3 "https://store.comet.bg/Catalogue/Product/3884/" H 4175 2250 50  0001 C CNN
+	1    4175 2250
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C2
+U 1 1 5E17AFFA
+P 5025 6000
+F 0 "C2" V 4975 6100 50  0000 C CNN
+F 1 "22pF" V 5075 6150 50  0000 C CNN
+F 2 "Capacitor_THT:C_Disc_D4.3mm_W1.9mm_P5.00mm" H 5063 5850 50  0001 C CNN
+F 3 "https://store.comet.bg/Catalogue/Product/27466/" H 5025 6000 50  0001 C CNN
+	1    5025 6000
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:C C1
+U 1 1 5E16B77E
+P 5025 5700
+F 0 "C1" V 4975 5800 50  0000 C CNN
+F 1 "22pF" V 5075 5850 50  0000 C CNN
+F 2 "Capacitor_THT:C_Disc_D4.3mm_W1.9mm_P5.00mm" H 5063 5550 50  0001 C CNN
+F 3 "https://store.comet.bg/Catalogue/Product/27466/" H 5025 5700 50  0001 C CNN
+	1    5025 5700
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:Crystal Y1
+U 1 1 5E152994
+P 4825 5850
+F 0 "Y1" V 4725 5600 50  0000 L CNN
+F 1 "16MHz" V 4825 5450 50  0000 L CNN
+F 2 "Crystal:Crystal_HC49-U_Vertical" H 4825 5850 50  0001 C CNN
+F 3 "https://store.comet.bg/Catalogue/Product/27238/" H 4825 5850 50  0001 C CNN
+	1    4825 5850
+	0    1    1    0   
+$EndComp
+NoConn ~ 4875 5100
+NoConn ~ 4875 5200
+NoConn ~ 4875 6100
+NoConn ~ 4875 6200
+Wire Wire Line
+	5175 6000 5325 6000
+$Comp
+L power:GND #PWR0102
+U 1 1 5E2916ED
+P 5325 6050
+F 0 "#PWR0102" H 5325 5800 50  0001 C CNN
+F 1 "GND" H 5330 5877 50  0000 C CNN
+F 2 "" H 5325 6050 50  0001 C CNN
+F 3 "" H 5325 6050 50  0001 C CNN
+	1    5325 6050
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5325 6050 5325 6000
+Connection ~ 5325 6000
+Wire Wire Line
+	5325 6000 5325 5700
+$Comp
+L power:+5V #PWR0101
+U 1 1 5E2B9136
+P 3875 6950
+F 0 "#PWR0101" H 3875 6800 50  0001 C CNN
+F 1 "+5V" H 3890 7123 50  0000 C CNN
+F 2 "" H 3875 6950 50  0001 C CNN
+F 3 "" H 3875 6950 50  0001 C CNN
+	1    3875 6950
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3625 6950 3875 6950
+Wire Wire Line
+	4125 5900 4525 5900
+$Comp
+L MCU_Microchip_ATmega:ATmega328P-PU U1
+U 1 1 5DF560CB
+P 3525 5300
+F 0 "U1" H 2975 5150 50  0000 R CNN
+F 1 "ATmega328P-PU" H 2975 5250 50  0000 R CNN
+F 2 "Package_DIP:DIP-28_W7.62mm" H 3525 5300 50  0001 C CIN
+F 3 "http://ww1.microchip.com/downloads/en/DeviceDoc/ATmega328_P%20AVR%20MCU%20with%20picoPower%20Technology%20Data%20Sheet%2040001984A.pdf" H 3525 5300 50  0001 C CNN
+	1    3525 5300
+	1    0    0    1   
+$EndComp
+$Comp
+L Device:CP COUT1
+U 1 1 5DFA6ACC
+P 9975 4475
+F 0 "COUT1" H 10075 4475 50  0000 L CNN
+F 1 "16V/470uF" H 10000 4375 50  0000 L CNN
+F 2 "Capacitor_THT:CP_Radial_D8.0mm_P3.50mm" H 10013 4325 50  0001 C CNN
+F 3 "https://store.comet.bg/Catalogue/Product/36876/" H 9975 4475 50  0001 C CNN
+	1    9975 4475
+	1    0    0    -1  
+$EndComp
+Connection ~ 2350 1850
+Wire Wire Line
+	2350 1850 2250 1850
+Wire Wire Line
+	2350 1950 2350 1850
+Connection ~ 2350 2150
+Wire Wire Line
+	2350 2150 2250 2150
+Wire Wire Line
+	2350 2050 2350 2150
+Wire Wire Line
+	2450 2150 2350 2150
+Wire Wire Line
+	2450 2050 2350 2050
+Wire Wire Line
+	2450 1950 2350 1950
+Wire Wire Line
+	2450 1850 2350 1850
+$Comp
+L Connector_Generic:Conn_01x04 J2
+U 1 1 5E3512ED
+P 2650 1950
+F 0 "J2" H 2600 2300 50  0000 L CNN
+F 1 "LED matrix power" H 2450 2200 50  0000 L CNN
+F 2 "Connector_Molex:Molex_KK-396_A-41791-0004_1x04_P3.96mm_Vertical" H 2650 1950 50  0001 C CNN
+F 3 "https://store.comet.bg/Catalogue/Product/25223/" H 2650 1950 50  0001 C CNN
+	1    2650 1950
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:CP CIN2
+U 1 1 5E3391F1
+P 7975 5675
+F 0 "CIN2" H 7675 5725 50  0000 L CNN
+F 1 "35V/680uF" H 7425 5625 50  0000 L CNN
+F 2 "Capacitor_THT:CP_Radial_D10.0mm_P5.00mm" H 8013 5525 50  0001 C CNN
+F 3 "https://store.comet.bg/Catalogue/Product/44664/" H 7975 5675 50  0001 C CNN
+	1    7975 5675
+	1    0    0    -1  
+$EndComp
+Text Notes 7625 4675 0    50   ~ 0
+IN-
+Text Notes 7625 4075 0    50   ~ 0
+IN+
+Text Notes 7625 5975 0    50   ~ 0
+IN-
+Text Notes 7625 5375 0    50   ~ 0
+IN+
+Text Notes 10525 4675 0    50   ~ 0
+OUT-
+Text Notes 10525 4275 0    50   ~ 0
+OUT+
+Text Notes 10525 5575 0    50   ~ 0
+OUT+
+Text Notes 10525 5975 0    50   ~ 0
+OUT-
+Wire Wire Line
+	9975 5325 9975 5575
+Wire Wire Line
+	9225 5375 9225 5325
+Wire Wire Line
+	9975 5325 9225 5325
+$Comp
+L Device:L L2
+U 1 1 5E20713A
+P 9675 5575
+F 0 "L2" V 9865 5575 50  0000 C CNN
+F 1 "33uH" V 9774 5575 50  0000 C CNN
+F 2 "Inductor_SMD:L_Bourns_SDR1806" H 9675 5575 50  0001 C CNN
+F 3 "https://store.comet.bg/Catalogue/Product/15514/" H 9675 5575 50  0001 C CNN
+	1    9675 5575
+	0    -1   -1   0   
+$EndComp
+Connection ~ 9975 5975
+Wire Wire Line
+	9975 5975 10475 5975
+Connection ~ 9975 5575
+Wire Wire Line
+	9975 5575 10475 5575
+Connection ~ 9375 5975
+Wire Wire Line
+	9975 5975 9975 5925
+Wire Wire Line
+	9375 5975 9975 5975
+Wire Wire Line
+	9825 5575 9975 5575
+Wire Wire Line
+	9975 5575 9975 5625
+Wire Wire Line
+	7975 5525 7975 5375
+Wire Wire Line
+	7975 5375 8225 5375
+Connection ~ 7975 5375
+Wire Wire Line
+	7575 5375 7975 5375
+Connection ~ 7975 5975
+Connection ~ 8725 5975
+Wire Wire Line
+	9375 5975 8725 5975
+Wire Wire Line
+	9375 5925 9375 5975
+Wire Wire Line
+	9375 5575 9525 5575
+Connection ~ 9375 5575
+Wire Wire Line
+	9375 5575 9375 5625
+$Comp
+L Device:D_Schottky D2
+U 1 1 5E207114
+P 9375 5775
+F 0 "D2" V 9329 5854 50  0000 L CNN
+F 1 "100V/5A" V 9420 5854 50  0000 L CNN
+F 2 "Diode_THT:D_DO-27_P12.70mm_Horizontal" H 9375 5775 50  0001 C CNN
+F 3 "https://store.comet.bg/Catalogue/Product/9381/" H 9375 5775 50  0001 C CNN
+	1    9375 5775
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	9225 5575 9375 5575
+Wire Wire Line
+	7575 5975 7975 5975
+Wire Wire Line
+	7975 5825 7975 5975
+Connection ~ 8175 5975
+Wire Wire Line
+	7975 5975 8175 5975
+Wire Wire Line
+	8175 5575 8175 5975
+Wire Wire Line
+	8175 5975 8725 5975
+Wire Wire Line
+	8175 5575 8225 5575
+Wire Wire Line
+	8725 5775 8725 5975
+$Comp
+L Device:CP COUT2
+U 1 1 5E2070F5
+P 9975 5775
+F 0 "COUT2" H 10075 5775 50  0000 L CNN
+F 1 "25V/330uF" H 10000 5675 50  0000 L CNN
+F 2 "Capacitor_THT:CP_Radial_D8.0mm_P3.50mm" H 10013 5625 50  0001 C CNN
+F 3 "https://store.comet.bg/Catalogue/Product/7086/" H 9975 5775 50  0001 C CNN
+	1    9975 5775
+	1    0    0    -1  
+$EndComp
+$Comp
+L Regulator_Switching:LM2596S-5 VR2
+U 1 1 5E1D68D4
+P 8725 5475
+F 0 "VR2" H 8725 5842 50  0000 C CNN
+F 1 "LM2596S-5" H 8725 5751 50  0000 C CNN
+F 2 "Package_TO_SOT_SMD:TO-263-5_TabPin3" H 8775 5225 50  0001 L CIN
+F 3 "https://store.comet.bg/Catalogue/Product/16565/" H 8725 5475 50  0001 C CNN
+	1    8725 5475
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:L L1
+U 1 1 5E02F62B
+P 9675 4275
+F 0 "L1" V 9865 4275 50  0000 C CNN
+F 1 "33uH" V 9774 4275 50  0000 C CNN
+F 2 "Inductor_SMD:L_Bourns_SDR1806" H 9675 4275 50  0001 C CNN
+F 3 "https://store.comet.bg/Catalogue/Product/15514/" H 9675 4275 50  0001 C CNN
+	1    9675 4275
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	7175 4925 8725 4925
+Wire Wire Line
+	8725 4925 8725 4675
+Connection ~ 8975 3575
+Wire Wire Line
+	9975 3575 9975 4275
+Wire Wire Line
+	8975 3575 9975 3575
+Wire Wire Line
+	8975 3575 8925 3575
+Wire Wire Line
+	8975 3225 8975 3575
+Wire Wire Line
+	8925 3225 8975 3225
+Connection ~ 9975 4675
+Wire Wire Line
+	9975 4675 10475 4675
+Connection ~ 9975 4275
+Wire Wire Line
+	9975 4275 10475 4275
+Connection ~ 9375 4675
+Wire Wire Line
+	9975 4675 9975 4625
+Wire Wire Line
+	9375 4675 9975 4675
+Wire Wire Line
+	9825 4275 9975 4275
+Wire Wire Line
+	9975 4275 9975 4325
+Wire Wire Line
+	7975 4225 7975 4075
+Wire Wire Line
+	7975 4075 8225 4075
+Connection ~ 7975 4075
+Wire Wire Line
+	7575 4075 7975 4075
+Connection ~ 7975 4675
+Connection ~ 8725 4675
+Wire Wire Line
+	9375 4675 8725 4675
+Wire Wire Line
+	9375 4625 9375 4675
+Wire Wire Line
+	9375 4275 9525 4275
+Connection ~ 9375 4275
+Wire Wire Line
+	9375 4275 9375 4325
+$Comp
+L Device:D_Schottky D1
+U 1 1 5DFADDFD
+P 9375 4475
+F 0 "D1" V 9329 4554 50  0000 L CNN
+F 1 "100V/5A" V 9420 4554 50  0000 L CNN
+F 2 "Diode_THT:D_DO-27_P12.70mm_Horizontal" H 9375 4475 50  0001 C CNN
+F 3 "https://store.comet.bg/Catalogue/Product/9381/" H 9375 4475 50  0001 C CNN
+	1    9375 4475
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	9225 4275 9375 4275
+Wire Wire Line
+	7175 3575 7175 4925
+Wire Wire Line
+	8225 3575 7175 3575
+Connection ~ 8575 3575
+Wire Wire Line
+	8575 3575 8625 3575
+Wire Wire Line
+	8575 3575 8575 3725
+Wire Wire Line
+	8525 3575 8575 3575
+Wire Wire Line
+	9225 3725 8575 3725
+Wire Wire Line
+	9225 4075 9225 3725
+Wire Wire Line
+	7575 4675 7975 4675
+Wire Wire Line
+	7975 4525 7975 4675
+Connection ~ 8175 4675
+Wire Wire Line
+	7975 4675 8175 4675
+Wire Wire Line
+	8175 4275 8175 4675
+Wire Wire Line
+	8175 4675 8725 4675
+Wire Wire Line
+	8175 4275 8225 4275
+Wire Wire Line
+	8725 4475 8725 4675
+$Comp
+L Device:C CFF1
+U 1 1 5DFA831C
+P 8775 3225
+F 0 "CFF1" V 8523 3225 50  0000 C CNN
+F 1 "10nF" V 8614 3225 50  0000 C CNN
+F 2 "Capacitor_THT:C_Disc_D4.3mm_W1.9mm_P5.00mm" H 8813 3075 50  0001 C CNN
+F 3 "https://store.comet.bg/Catalogue/Product/5919/" H 8775 3225 50  0001 C CNN
+	1    8775 3225
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:CP CIN1
+U 1 1 5DFA53B3
+P 7975 4375
+F 0 "CIN1" H 7675 4425 50  0000 L CNN
+F 1 "35V/680uF" H 7425 4325 50  0000 L CNN
+F 2 "Capacitor_THT:CP_Radial_D10.0mm_P5.00mm" H 8013 4225 50  0001 C CNN
+F 3 "https://store.comet.bg/Catalogue/Product/44664/" H 7975 4375 50  0001 C CNN
+	1    7975 4375
+	1    0    0    -1  
+$EndComp
+$Comp
+L TrafficSignPCB-rescue:SIM800L-SIM800L U2
+U 1 1 5DF831F1
+P 5800 2050
+F 0 "U2" H 5500 2650 60  0000 C CNN
+F 1 "SIM800L" H 5600 2550 60  0000 C CNN
+F 2 "SIM800:Sim800L" H 6100 1900 60  0001 C CNN
+F 3 "https://img.filipeflop.com/files/download/Datasheet_SIM800L.pdf" H 6100 1900 60  0001 C CNN
+	1    5800 2050
+	1    0    0    -1  
+$EndComp
+NoConn ~ 6450 2300
+NoConn ~ 6450 2200
+NoConn ~ 6450 2100
+NoConn ~ 6450 2000
+NoConn ~ 6450 1900
+NoConn ~ 6450 1800
+$Comp
+L Device:R R2
+U 1 1 5DF907CE
+P 8775 3575
+F 0 "R2" V 8568 3575 50  0000 C CNN
+F 1 "2.21k/1%" V 8659 3575 50  0000 C CNN
+F 2 "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal" V 8705 3575 50  0001 C CNN
+F 3 "https://store.comet.bg/Catalogue/Product/5041342/" H 8775 3575 50  0001 C CNN
+	1    8775 3575
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:R R1
+U 1 1 5DF8F28A
+P 8375 3575
+F 0 "R1" V 8168 3575 50  0000 C CNN
+F 1 "1k/1%" V 8259 3575 50  0000 C CNN
+F 2 "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal" V 8305 3575 50  0001 C CNN
+F 3 "https://store.comet.bg/Catalogue/Product/6406/" H 8375 3575 50  0001 C CNN
+	1    8375 3575
+	0    1    1    0   
+$EndComp
+$Comp
+L Regulator_Switching:LM2596S-ADJ VR1
+U 1 1 5E041BCD
+P 8725 4175
+F 0 "VR1" H 8725 4542 50  0000 C CNN
+F 1 "LM2596S-ADJ" H 8725 4451 50  0000 C CNN
+F 2 "Package_TO_SOT_SMD:TO-263-5_TabPin3" H 8775 3925 50  0001 L CIN
+F 3 "https://store.comet.bg/Catalogue/Product/16564/" H 8725 4175 50  0001 C CNN
+	1    8725 4175
+	1    0    0    -1  
+$EndComp
+Text GLabel 1525 1500 0    50   Input ~ 0
+CLK
+Text GLabel 1525 1400 0    50   Input ~ 0
+STB
+Text GLabel 1525 1300 0    50   Input ~ 0
+OE
+Wire Wire Line
+	1525 2700 1625 2700
+Wire Wire Line
+	1525 2600 1625 2600
+Wire Wire Line
+	1525 2500 1625 2500
+Wire Wire Line
+	1525 2300 1625 2300
+Wire Wire Line
+	1525 2200 1625 2200
+Wire Wire Line
+	1525 2100 1625 2100
+Wire Wire Line
+	1525 1900 1625 1900
+Wire Wire Line
+	1525 1800 1625 1800
+Wire Wire Line
+	1525 1700 1625 1700
+Wire Wire Line
+	1525 1600 1625 1600
+Wire Wire Line
+	1525 1500 1625 1500
+Wire Wire Line
+	1525 1400 1625 1400
+Wire Wire Line
+	1625 1300 1525 1300
+Text GLabel 1525 1600 0    50   Input ~ 0
+D
+Text GLabel 1525 1700 0    50   Input ~ 0
+C
+Text GLabel 1525 1800 0    50   Input ~ 0
+B
+Text GLabel 1525 1900 0    50   Input ~ 0
+A
+Text GLabel 1525 2100 0    50   Input ~ 0
+B1
+Text GLabel 1525 2200 0    50   Input ~ 0
+G1
+Text GLabel 1525 2300 0    50   Input ~ 0
+R1
+Text GLabel 1525 2500 0    50   Input ~ 0
+B0
+Text GLabel 1525 2600 0    50   Input ~ 0
+G0
+Text GLabel 1525 2700 0    50   Input ~ 0
+R0
+$Comp
+L Connector_Generic:Conn_01x16 J1
+U 1 1 5DF93F79
+P 1825 2000
+F 0 "J1" H 1743 975 50  0000 C CNN
+F 1 "LED matrix data" H 1743 1066 50  0000 C CNN
+F 2 "Connector_IDC:IDC-Header_2x08_P2.54mm_Vertical" H 1825 2000 50  0001 C CNN
+F 3 "~" H 1825 2000 50  0001 C CNN
+	1    1825 2000
+	1    0    0    1   
+$EndComp
+Wire Wire Line
+	3525 3650 3675 3650
+Wire Wire Line
+	4725 4800 4125 4800
+Wire Wire Line
+	4125 4700 4725 4700
+Wire Wire Line
+	5050 2250 5200 2250
+$Comp
+L power:GND #PWR0118
+U 1 1 5E53B52D
+P 5050 2250
+F 0 "#PWR0118" H 5050 2000 50  0001 C CNN
+F 1 "GND" H 5050 2100 50  0000 C CNN
+F 2 "" H 5050 2250 50  0001 C CNN
+F 3 "" H 5050 2250 50  0001 C CNN
+	1    5050 2250
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4875 2150 4750 2150
+Text GLabel 4750 2150 0    50   Input ~ 0
+SIM_TX
+Text GLabel 4100 1700 0    50   Input ~ 0
+SIM_RX
+Wire Wire Line
+	4175 2050 5200 2050
+Connection ~ 4175 2050
+Wire Wire Line
+	4175 2050 4175 2100
+Wire Wire Line
+	4175 2000 4175 2050
+Wire Notes Line
+	1000 875  3200 875 
+Wire Notes Line
+	3200 875  3200 2950
+Wire Notes Line
+	3200 2950 1000 2950
+Wire Notes Line
+	1000 2950 1000 875 
+Text Notes 2075 1025 0    75   Italic 15
+Visualization Block
+Wire Wire Line
+	4225 6600 4725 6600
+Text GLabel 4725 4700 2    50   Input ~ 0
+SIM_RX
+Text GLabel 4725 4800 2    50   Input ~ 0
+SIM_TX
+$Comp
+L Device:R R6
+U 1 1 5E6F86C9
+P 5025 2150
+F 0 "R6" V 5060 2330 50  0000 C CNN
+F 1 "10k" V 4980 2330 50  0000 C CNN
+F 2 "Resistor_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P7.62mm_Horizontal" V 4955 2150 50  0001 C CNN
+F 3 "~" H 5025 2150 50  0001 C CNN
+	1    5025 2150
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	4125 5000 4205 5000
+$Comp
+L Device:R R5
+U 1 1 5E122269
+P 4355 5000
+F 0 "R5" V 4205 4995 50  0000 C CNN
+F 1 "10k" V 4275 5000 50  0000 C CNN
+F 2 "Resistor_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P7.62mm_Horizontal" V 4285 5000 50  0001 C CNN
+F 3 "https://store.comet.bg/Catalogue/Product/25851/" H 4355 5000 50  0001 C CNN
+	1    4355 5000
+	0    1    1    0   
+$EndComp
+Wire Notes Line
+	3725 975  3725 2675
+Wire Notes Line
+	3725 2675 6625 2675
+Wire Notes Line
+	6625 2675 6625 975 
+Wire Notes Line
+	6625 975  3725 975 
+Text Notes 5350 1125 0    75   Italic 15
+Communication Block
+Wire Wire Line
+	5175 1750 5200 1750
+Wire Wire Line
+	5175 1650 5175 1750
+$Comp
+L Device:Antenna AE1
+U 1 1 5E0362F2
+P 5175 1450
+F 0 "AE1" H 5100 1700 50  0000 L CNN
+F 1 "Antenna" H 5025 1600 50  0000 L CNN
+F 2 "Connector_Coaxial:SMA_Amphenol_901-144_Vertical" H 5175 1450 50  0001 C CNN
+F 3 "https://store.comet.bg/Catalogue/Product/51344/" H 5175 1450 50  0001 C CNN
+	1    5175 1450
+	1    0    0    -1  
+$EndComp
+Wire Notes Line
+	2025 3475 2025 7125
+Wire Notes Line
+	2025 7125 5475 7125
+Wire Notes Line
+	5475 3475 2025 3475
+Wire Notes Line
+	5475 7125 5475 3475
+Text Notes 4600 3650 0    75   Italic 15
+Control Block
+$Comp
+L Device:C C3
+U 1 1 5E57F981
+P 2875 6650
+F 0 "C3" H 2650 6700 50  0000 L CNN
+F 1 "100n" H 2575 6625 50  0000 L CNN
+F 2 "Capacitor_THT:C_Disc_D4.3mm_W1.9mm_P5.00mm" H 2913 6500 50  0001 C CNN
+F 3 "https://store.comet.bg/Catalogue/Product/5920/" H 2875 6650 50  0001 C CNN
+	1    2875 6650
+	1    0    0    -1  
+$EndComp
+Wire Notes Line
+	7050 6300 10950 6300
+Wire Notes Line
+	10950 6300 10950 2850
+Text Notes 10150 3050 0    75   Italic 15
+Power Block
+Wire Notes Line
+	10950 2850 7050 2850
+Wire Wire Line
+	8575 3575 8575 3225
+Wire Wire Line
+	8575 3225 8625 3225
+Wire Notes Line
+	7050 2850 7050 6300
+$Comp
+L Device:R R7
+U 1 1 5E490DB1
+P 4500 1250
+F 0 "R7" H 4550 1300 50  0000 L CNN
+F 1 "16k" H 4550 1225 50  0000 L CNN
+F 2 "Resistor_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P7.62mm_Horizontal" V 4430 1250 50  0001 C CNN
+F 3 "https://store.comet.bg/Catalogue/Product/25851/" H 4500 1250 50  0001 C CNN
+	1    4500 1250
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4425 1100 4500 1100
+$Comp
+L Device:R R8
+U 1 1 5E490DB8
+P 4500 1650
+F 0 "R8" H 4550 1700 50  0000 L CNN
+F 1 "20k" H 4550 1625 50  0000 L CNN
+F 2 "Resistor_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P7.62mm_Horizontal" V 4430 1650 50  0001 C CNN
+F 3 "https://store.comet.bg/Catalogue/Product/3884/" H 4500 1650 50  0001 C CNN
+	1    4500 1650
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4500 1400 4500 1450
+Wire Wire Line
+	4750 1450 4500 1450
+Connection ~ 4500 1450
+Wire Wire Line
+	4500 1450 4500 1500
+Wire Wire Line
+	4750 1950 5200 1950
+Wire Wire Line
+	4175 2450 4175 2400
+$Comp
+L power:GND #PWR0116
+U 1 1 5E4EA9BE
+P 4175 2450
+F 0 "#PWR0116" H 4175 2200 50  0001 C CNN
+F 1 "GND" H 4175 2300 50  0000 C CNN
+F 2 "" H 4175 2450 50  0001 C CNN
+F 3 "" H 4175 2450 50  0001 C CNN
+	1    4175 2450
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4500 1850 4500 1800
+$Comp
+L power:GND #PWR0106
+U 1 1 5E490DAB
+P 4500 1850
+F 0 "#PWR0106" H 4500 1600 50  0001 C CNN
+F 1 "GND" H 4500 1700 50  0000 C CNN
+F 2 "" H 4500 1850 50  0001 C CNN
+F 3 "" H 4500 1850 50  0001 C CNN
+	1    4500 1850
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4750 1450 4750 1950
 $EndSCHEMATC
