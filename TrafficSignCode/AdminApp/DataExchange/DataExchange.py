@@ -61,7 +61,7 @@ class DataExchange:
         # Receive the number of available devices
         deviceLen = self.WaitForData()
         if(deviceLen == "nocon" or deviceLen == "timeout"):
-            return deviceLen
+            return None
         # Clear the device list
         Connection().deviceList.clear()
         if deviceLen:
@@ -71,6 +71,7 @@ class DataExchange:
                 device = self.WaitForData()
                 # Add it to the device list
                 Connection().deviceList.append(device)
+        return 'ok'
 
     # Requests details about one of the available devices
     def GetDeviceDetails(self, target):

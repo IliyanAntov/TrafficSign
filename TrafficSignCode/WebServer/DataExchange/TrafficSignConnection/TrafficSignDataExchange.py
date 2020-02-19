@@ -23,7 +23,7 @@ class TrafficSignDataExchange(Thread):
     # Adds the socket to the available device list
     def AddDevice(self, socket):
         # Receive the device's IMEI
-        incoming = socket.recv(30)
+        incoming = socket.recv(22)
         # Split the received data for easier manipulation
         data = incoming.decode("utf-8").split(" ")
         # If the IMEI was received correctly:

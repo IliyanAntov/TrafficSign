@@ -63,7 +63,16 @@ class MainWindow(QMainWindow):
     # Requests information from the web server and updates the devices in the displayed device list
     def UpdateDeviceList(self):
         # Request available devices from the web server
-        self.dataExchange.GetDevices()
+        result = self.dataExchange.GetDevices()
+        if not result:
+            QMessageBox.critical(
+                    self,
+                    "Error",
+                    "Lost connection to the web server, closing...",
+                    QMessageBox.Ok,
+                )
+            # Exit the application
+            self.Exit()
         # Disable and clear the currently displayed list of devices
         self.ui.DeviceList.setDisabled(True)
         self.ui.DeviceList.clear()
@@ -204,7 +213,6 @@ class MainWindow(QMainWindow):
             IMEI = Connection().knownDevices[selectedDevice]
             # Request details for the selected device
             incoming = self.dataExchange.GetDeviceDetails(IMEI)
-            print(incoming)
             # If there is a problem with the server connection:
             if incoming == "nocon" or incoming == "timeout":
                 # Display an error message

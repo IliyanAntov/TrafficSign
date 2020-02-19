@@ -71,8 +71,8 @@ class Connection:
                 deviceSocket.send(str.encode(toSend))
             except:
                 return "nosend"
-            # Wait for device response; timeout after 5 seconds
-            ready = select.select([deviceSocket], [], [], 5)
+            # Wait for device response; timeout after 10 seconds
+            ready = select.select([deviceSocket], [], [], 10)
             if ready[0]:
                 # Read the acknowledgement
                 data = deviceSocket.recv(2)
@@ -131,8 +131,8 @@ class Connection:
                 print("Requested device not found")
                 return b"nosend"
 
-            # Wait for device response; timeout after 5 seconds
-            ready = select.select([deviceSocket], [], [], 5)
+            # Wait for device response; timeout after 10 seconds
+            ready = select.select([deviceSocket], [], [], 10)
 
             if ready[0]:
                 # Read the details message
