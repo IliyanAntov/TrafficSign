@@ -204,6 +204,7 @@ class MainWindow(QMainWindow):
             IMEI = Connection().knownDevices[selectedDevice]
             # Request details for the selected device
             incoming = self.dataExchange.GetDeviceDetails(IMEI)
+            print(incoming)
             # If there is a problem with the server connection:
             if incoming == "nocon" or incoming == "timeout":
                 # Display an error message

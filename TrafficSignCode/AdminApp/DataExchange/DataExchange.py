@@ -99,8 +99,8 @@ class DataExchange:
 
     # Waits for data from the web server
     def WaitForData(self):
-        # Wait for incoming data on the socket; timeout after 2 seconds
-        ready = select.select([Connection().client_socket], [], [], 2)
+        # Wait for incoming data on the socket; timeout after 9 seconds
+        ready = select.select([Connection().client_socket], [], [], 9)
         if ready[0]:
             try:
                 # Read the available message
