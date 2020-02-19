@@ -60,6 +60,8 @@ class DataExchange:
         Connection().SendMessage(str.encode("GET devices"))
         # Receive the number of available devices
         deviceLen = self.WaitForData()
+        if(deviceLen == "nocon" or deviceLen == "timeout"):
+            return deviceLen
         # Clear the device list
         Connection().deviceList.clear()
         if deviceLen:

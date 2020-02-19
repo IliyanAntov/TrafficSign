@@ -84,7 +84,7 @@ class AdminAppDataExchange(Thread):
                 # Generate error
                 details = b"error"
             # Send the details to the admin application
-            Connection().SendMessage(self.socket, details.decode())
+            Connection().SendMessage(self.socket, details)
         # Request unknown:
         else:
             # Do nothing

@@ -129,7 +129,7 @@ class Connection:
                 deviceSocket.send(str.encode("GET " + request + "\n"))
             except:
                 print("Requested device not found")
-                return "nosend"
+                return b"nosend"
 
             # Wait for device response; timeout after 5 seconds
             ready = select.select([deviceSocket], [], [], 5)
@@ -143,9 +143,9 @@ class Connection:
                 print("Error, device not responding")
                 # Remove the device from the list of available devices
                 Connection().deviceList.pop(targetIMEI)
-                return "noresp"
+                return b"noresp"
         # If the requested traffic sign device is not available:
         else:
             print("Requested device not found")
-            return "notfound"
+            return b"notfound"
 
