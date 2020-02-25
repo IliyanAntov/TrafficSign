@@ -22,8 +22,8 @@ class Connection:
     client_socket = context.wrap_socket(
         sock=unwrapped, server_hostname="TrafficSignAdminApp"
     )
-    # Blocking socket operations timeout after 10 seconds
-    client_socket.settimeout(10)
+    # Blocking socket operations timeout after 20 seconds
+    client_socket.settimeout(20)
 
     deviceList = []  # All currently available devices' IMEIs
     knownDevices = {}  # All known custom user aliases (key == Alias, value == IMEI)
