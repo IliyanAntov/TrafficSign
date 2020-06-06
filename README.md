@@ -1,5 +1,7 @@
 # Пътен знак с дистанционно управление<br/>Adjustable traffic sign
 
+# [Презентация на проекта](https://docs.google.com/presentation/d/1zqneEv3nR7Rzqj332nx1eZqfj7IUzNgIM3qGUmzLu_I/edit?usp=sharing)
+
 ![ ](./Documentation/Thesis/Images/StopSign1.jpg)
 
 *Пътната обстановка се променя постоянно, но знаците, с които обозначаваме правилата, си остават едни и същи. Дипломният проект цели да разреши този проблем - пътният знак с дистанционно управление използва светодиодна матрица, на която могат да се изобразяват произволни предписания според нуждата. Той е свързан към централен сървър с помощта на GPRS връзка, което позволява дистанционното му управление чрез специално разработен управляващ софтуер.*
@@ -16,4 +18,12 @@
 
 ## Автор:
 
-Илиян Антов - [Iliyan Antov](https://github.com/IliyanAntov)
+Илиян Антов - [Iliyan Antov](https://github.com/IliyanAntov) - [i.antov2@gmail.com](i.antov2@gmail.com)
+
+## Още снимки:
+
+![ ](./Documentation/Thesis/Images/stoika.jpg)
+![ ](./Documentation/Thesis/Images/znaknalqvo.jpg)
+![ ](./Documentation/Thesis/Images/znakogranichenie2.jpg)
+![ ](./Documentation/Thesis/Images/prilojenie1.jpg)
+![ ](./Documentation/Thesis/Images/prilojenie2.jpg)
