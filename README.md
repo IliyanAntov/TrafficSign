@@ -25,5 +25,5 @@
 ![ ](./Documentation/Thesis/Images/stoika.jpg)
 ![ ](./Documentation/Thesis/Images/znaknalqvo.jpg)
 ![ ](./Documentation/Thesis/Images/znakogranichenie2.jpg)
-![ ](./Documentation/Thesis/Images/prilojenie1.jpg)
-![ ](./Documentation/Thesis/Images/prilojenie2.jpg)
+![ ](./Documentation/Thesis/Images/prilojenie1.png)
+![ ](./Documentation/Thesis/Images/prilojenie2.png)
