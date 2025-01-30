@@ -1,4 +1,5 @@
-# Пътен знак с дистанционно управление<br/>Adjustable traffic sign
+ <h1 align="center">Пътен знак с дистанционно управление<br/><br/>
+ Adjustable traffic sign</h1>
 
 ## [Документация](./Documentation/Thesis/Diplomna_rabota_Iliyan_Antov.pdf)
 
