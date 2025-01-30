@@ -3,7 +3,7 @@
 ## [Документация](./Documentation/Thesis/Diplomna_rabota_Iliyan_Antov.pdf)
 
 ## [Презентация на проекта](https://docs.google.com/presentation/d/1zqneEv3nR7Rzqj332nx1eZqfj7IUzNgIM3qGUmzLu_I/edit?usp=sharing)
-<p float="left">
+<p align="center" float="left">
   <img src="./Documentation/Thesis/Images/StopSign1.jpg" width="400">
   <img src="./Documentation/Thesis/Images/znaknalqvo.jpg" width="400">
 </p>
@@ -17,7 +17,7 @@
 * Schematics/Layout: Altium
 
 ## Още снимки:
-<p float="left">
+<p align="center" float="left">
   <img src="./Documentation/Thesis/Images/stoika.jpg" width="400">
   <img src="./Documentation/Thesis/Images/znakogranichenie2.jpg" width="400">
   <img src="./Documentation/Thesis/Images/prilojenie1.png" width="400">
